@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "brechtskookboek",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

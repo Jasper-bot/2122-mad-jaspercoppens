@@ -1,0 +1,7 @@
+{
+  "name": "brechtskookboek",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
