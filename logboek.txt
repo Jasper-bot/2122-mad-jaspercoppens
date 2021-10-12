@@ -1,0 +1,60 @@
+LOGBOEK Mobile Application Development
+Naam: Jasper Coppens
+Projectomschrijving:
+Een digitaal kookboek waar iedereen kan inloggen en recepten aan toevoegen. 
+Elk recept bevat een ingrediëntenlijst (aanpasbaar voor x aantal personen), beschrijving en foto's of een demonstratievideo. 
+Gebruikers kunnen de uploader van het recept berichten sturen of een verzoek tot live video chat om vragen te stellen.
+Ook bestaat de mogelijkheid om openbare reviews/reacties te plaatsen of foto's van uw uitvoering van een recept, na goedkeuring van de foto, te delen op de pagina van een recept. 
+Gebruikers kunnen favoriete recepten bewaren in een lijst of bepaalde categorieën volgen zodat ze meldingen krijgen van nieuwe recepten bij een categorie.
+Gebruikers kunnen ook een aantal ingrediënten ingeven en een overzicht krijgen van alle recepten die hiermee klaar te maken zijn.
+Ook kunnen gebruikers kookbadges verdienen. De badge "eierboer lvl 1" krijgt men bijvoorbeeld als men 2 recepten met ei heeft geüpload en 
+4 foto's van verschillende gerechten met ei heeft toegevoegd, "eierboer lvl 2" is dan beschikbaar als men 4 recepten met ei heeft geüpload en 10 foto's.
+
+WEEK 1
+Technologie kiezen (een wpa in react en firebase), een aantal tutorialvideos kijken omtrent wpa's.
+
+Uitdenken wat ik ga doen (kookboekapplicatie) en op pinterest/internet kijken naar inspiratie voor design. Foto's zoeken voor in de applicatie en beginnen met het figma design.
+
+WEEK 2
+
+	- Afwerken van het prototype in figma.
+	- Gestart met een react developer course op Udemy. Er zitten lessen tussen over integratie met Firebase en lessen over PWA's specifiek.
+
+
+VIDEOLINKS / COMMANDS / BIJHOUDEN
+https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/15476268#content
+
+WEEK 3
+GEDAAN
+	- Udemy course chapter over wpa en react uitgekeken.
+	- project setup met pwa template
+	- Ionic components toegevoegd
+	- Firebase project aangemaakt en videolessen rond firebase gekeken
+	- Firebase toegevoegd aan project
+
+PROBLEMEN
+	- Ik had eerst een react project aangemaakt met een pwa template. Hierna een Ionic app gemaakt, hierdoor had ik een ionic react app in een react app.
+	Dit zorgde ook voor dependency problemen. Ik ga alles verwijderen en een nieuw project aanmaken, voorlopig heb ik enkel getest met Ionic en react dus om problemen
+	te voorkomen lijkt het mij beter opnieuw te beginnen
+
+LINKS / COMMANDS / BIJHOUDEN
+https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/15476268#content
+https://www.youtube.com/watch?v=_03VKmdrxV8		1u30min project setup
+https://www.youtube.com/watch?v=-aHBhvkrFlY
+https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/15037574#content
+
+PWA toevoegen aan ionic react project:
+	https://www.linkedin.com/pulse/transform-react-app-progressive-web-pwa-shankhadeep-bhadra?trk=public_profile_article_view
+Ionic icons:
+	https://ionic.io/ionicons
+
+setup voor react app met pwa basis:
+	npx create-react-app my-app --template cra-template-pwa
+ionic cli installeren:
+	npm install -g @ionic/cli
+ionic toevoegen aan react project:
+	yarn add @ionic/react
+ionic project met react maken:
+	ionic start brechts_kookboek tabs
+ionic project opstarten
+	ionic serve
