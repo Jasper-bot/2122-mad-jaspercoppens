@@ -58,3 +58,9 @@ ionic project met react maken:
 	ionic start brechts_kookboek tabs
 ionic project opstarten
 	ionic serve
+
+
+WEEK 4
+
+GEDAAN
+	- .env.local bestand gemaakt en firebase variabelen eraan toegevoegd
