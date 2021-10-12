@@ -4,10 +4,10 @@ interface ImageProps {
     imagePath: string;
 }
 
-const Image: React.FC<ImageProps> = ({ name }) => {
+const Image: React.FC<ImageProps> = ({ imagePath }) => {
     return (
         <div className="container">
-            <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+            <p>{ imagePath }</p>
         </div>
     );
 };

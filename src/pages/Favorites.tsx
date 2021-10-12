@@ -16,7 +16,7 @@ const Tab2: React.FC = () => {
             <IonTitle size="large">Favorites</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Favorites" />
+              <ExploreContainer name="Favorites" />
       </IonContent>
     </IonPage>
   );
