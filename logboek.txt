@@ -64,4 +64,16 @@ WEEK 4
 
 GEDAAN
 	- .env.local bestand gemaakt en firebase variabelen eraan toegevoegd
-	-
+	- image component gemaakt voor de tiles op de homepage
+	- nodige foto's gecompresseerd en juiste dimensies gegeven
+	- homepage gemaakt
+	- navigatiebar gemaakt (icons en routing)
+
+PROBLEMEN
+    - als een component geïmporteerd wordt, wordt de css hiervan ook geïmporteerd
+        : nog geen oplossing
+    - styling van een titel over een image is lastig (mobiele dimensies)
+        : geprobeerd: container met position: relative.
+            image in container als block
+            tekst met position absolute, top: 50%, left : 50%
+        dit werkt voor desktop maar de positionering klopt nog niet voor een mobiel formaat
