@@ -6,8 +6,9 @@ interface ImageProps {
 
 const Image: React.FC<ImageProps> = ({ imagePath }) => {
     return (
-        <div className="container">
+        <div>
             <p>{ imagePath }</p>
+            <h1>Dit mag geen rood zijn</h1>
         </div>
     );
 };

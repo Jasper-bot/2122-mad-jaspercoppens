@@ -64,3 +64,4 @@ WEEK 4
 
 GEDAAN
 	- .env.local bestand gemaakt en firebase variabelen eraan toegevoegd
+	-

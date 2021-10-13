@@ -9,10 +9,11 @@ import {
   IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { home, book, bag, heart } from 'ionicons/icons';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
-import Tab3 from './pages/Tab3';
+import YourRecipes from './pages/yourRecipes';
+import AllRecipes from './pages/allRecipes';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -35,6 +36,7 @@ import './theme/variables.css';
 
 const App: React.FC = () => (
   <IonApp>
+    {/* routes */}
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
@@ -44,25 +46,33 @@ const App: React.FC = () => (
           <Route exact path="/favorites">
             <Favorites />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route path="/allRecipes">
+            <AllRecipes />
+          </Route>
+          <Route path="/yourRecipes">
+            <YourRecipes />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
+        {/* tabbar */}
         <IonTabBar slot="bottom">
           <IonTabButton tab="home" href="/home">
-            <IonIcon icon={triangle} />
+            <IonIcon icon={home}></IonIcon>
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-                    <IonTabButton tab="favorites" href="/favorites">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Favorites</IonLabel>
+          <IonTabButton tab="allRecipes" href="/allRecipes">
+            <IonIcon icon={book} />
+            <IonLabel>Alle recepten</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="yourRecipes" href="/yourRecipes">
+            <IonIcon icon={bag} />
+            <IonLabel>Uw recepten</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="favorites" href="/favorites">
+            <IonIcon icon={heart} />
+            <IonLabel>Favorieten</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

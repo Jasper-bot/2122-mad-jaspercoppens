@@ -1,8 +1,8 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Tab3.css';
+import './yourRecipes.css';
 
-const Tab3: React.FC = () => {
+const YourRecipes: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -13,7 +13,7 @@ const Tab3: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 3</IonTitle>
+            <IonTitle size="large">Your recipes</IonTitle>
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 3 page" />
@@ -22,4 +22,4 @@ const Tab3: React.FC = () => {
   );
 };
 
-export default Tab3;
+export default YourRecipes;
