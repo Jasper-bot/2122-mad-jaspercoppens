@@ -1,24 +1,54 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar} from '@ionic/react';
 import Image from '../components/Image';
 import './Home.css';
+import React from "react";
 
-const Tab1: React.FC = () => {
+const Home: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Homepage</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen>
-        <Image imagePath="test1"></Image>
-        <Image imagePath="test2"></Image>
-        <Image imagePath="test3"></Image>
-          <p>dit is een test</p>
-          <h1>dit is ook een test</h1>
+          <img src="assets/images/topbarlogo.jpg" id="headerimg"></img>
+          <IonGrid>
+            <IonRow>
+                <IonCol>
+                    <Image
+                        imagePath="assets/images/allerecepten.jpg"
+                        description="Alle Recepten">
+                    </Image>
+                </IonCol>
+                <IonCol>
+                    <Image
+                        imagePath="assets/images/uwaccount.jpg"
+                        description="Uw Account">
+                    </Image>
+                </IonCol>
+            </IonRow>
+              <IonRow>
+                  <IonCol>
+                      <Image
+                          imagePath="assets/images/voegrecepttoe.jpg"
+                          description="Voeg Recept Toe">
+                      </Image>
+                  </IonCol>
+                  <IonCol>
+                      <Image
+                          imagePath="assets/images/favorieterecepten.jpg"
+                          description="Favoriete Recepten">
+                      </Image>
+                  </IonCol>
+              </IonRow>
+              <IonRow>
+                  <IonCol>
+                      <Image
+                          imagePath="assets/images/zoekrecepten.jpg"
+                          description="Zoek Recepten">
+                      </Image>
+                  </IonCol>
+              </IonRow>
+          </IonGrid>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Tab1;
+export default Home;

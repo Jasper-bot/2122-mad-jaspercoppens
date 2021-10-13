@@ -1,14 +1,18 @@
 import React, { FC } from 'react';
+import './Image.css';
 
 interface ImageProps {
-    imagePath: string;
+    imagePath: string,
+    description: string,
 }
 
-const Image: React.FC<ImageProps> = ({ imagePath }) => {
+const Image: React.FC<ImageProps> = ({ imagePath , description}) => {
     return (
         <div>
-            <p>{ imagePath }</p>
-            <h1>Dit mag geen rood zijn</h1>
+            <div className="container">
+                <img src={ imagePath } alt={ imagePath } max-height='150'></img>
+                <p>{ description }</p>
+            </div>
         </div>
     );
 };
