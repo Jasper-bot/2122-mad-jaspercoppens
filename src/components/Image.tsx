@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './Image.css';
+import styles from './Image.module.css';
 
 interface ImageProps {
     imagePath: string,
@@ -9,9 +9,9 @@ interface ImageProps {
 const Image: React.FC<ImageProps> = ({ imagePath , description}) => {
     return (
         <div>
-            <div className="container">
-                <img src={ imagePath } alt={ imagePath } max-height='150'></img>
-                <p>{ description }</p>
+            <div className={styles.container}>
+                <img src={ imagePath } alt={ imagePath } max-height='150' className={styles.image}></img>
+                <p className={styles.description}>{ description }</p>
             </div>
         </div>
     );

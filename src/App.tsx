@@ -15,6 +15,7 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import YourRecipes from './pages/yourRecipes';
 import AllRecipes from './pages/allRecipes';
+import Register from "./pages/register";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -53,6 +54,9 @@ const App: React.FC = () => (
           </Route>
           <Route path="/yourRecipes">
             <YourRecipes />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />

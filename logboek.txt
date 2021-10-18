@@ -10,10 +10,14 @@ Gebruikers kunnen ook een aantal ingrediënten ingeven en een overzicht krijgen 
 Ook kunnen gebruikers kookbadges verdienen. De badge "eierboer lvl 1" krijgt men bijvoorbeeld als men 2 recepten met ei heeft geüpload en 
 4 foto's van verschillende gerechten met ei heeft toegevoegd, "eierboer lvl 2" is dan beschikbaar als men 4 recepten met ei heeft geüpload en 10 foto's.
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
 WEEK 1
 Technologie kiezen (een wpa in react en firebase), een aantal tutorialvideos kijken omtrent wpa's.
 
 Uitdenken wat ik ga doen (kookboekapplicatie) en op pinterest/internet kijken naar inspiratie voor design. Foto's zoeken voor in de applicatie en beginnen met het figma design.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 WEEK 2
 
@@ -23,6 +27,8 @@ WEEK 2
 
 VIDEOLINKS / COMMANDS / BIJHOUDEN
 https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/15476268#content
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 WEEK 3
 GEDAAN
@@ -47,7 +53,6 @@ PWA toevoegen aan ionic react project:
 	https://www.linkedin.com/pulse/transform-react-app-progressive-web-pwa-shankhadeep-bhadra?trk=public_profile_article_view
 Ionic icons:
 	https://ionic.io/ionicons
-
 setup voor react app met pwa basis:
 	npx create-react-app my-app --template cra-template-pwa
 ionic cli installeren:
@@ -59,6 +64,7 @@ ionic project met react maken:
 ionic project opstarten
 	ionic serve
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 WEEK 4
 
@@ -68,12 +74,40 @@ GEDAAN
 	- nodige foto's gecompresseerd en juiste dimensies gegeven
 	- homepage gemaakt
 	- navigatiebar gemaakt (icons en routing)
+	- usertesten afgenomen
+	- react ionic firebase cursus op udemy aan het kijken
+	- modular css voor component
+	- Register pagina + header component gemaakt
 
 PROBLEMEN
     - als een component geïmporteerd wordt, wordt de css hiervan ook geïmporteerd
-        : nog geen oplossing
+        : oplossing; css modules: https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/
     - styling van een titel over een image is lastig (mobiele dimensies)
         : geprobeerd: container met position: relative.
             image in container als block
             tekst met position absolute, top: 50%, left : 50%
         dit werkt voor desktop maar de positionering klopt nog niet voor een mobiel formaat
+
+LINKS / COMMANDS / BIJHOUDEN
+react ionic firebase:
+    https://www.udemy.com/course/ionic-react/learn/lecture/18188512#overview
+
+custom components
+    https://www.youtube.com/watch?v=za5NaFavux4
+
+met css modules:
+    https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/
+
+Sample ionic react apps:
+    https://ionicframework.com/react#samples
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+WEEK 5
+
+WAT DOEN
+    - Login pagina maken
+    - Login + Register functioneel via firebase
+    - Alle recepten pagina maken
+    - Recepten uit firebase databank kunnen halen
+    - Probleem oplossen register/login header met spacing
