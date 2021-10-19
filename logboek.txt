@@ -111,3 +111,9 @@ WAT DOEN
     - Alle recepten pagina maken
     - Recepten uit firebase databank kunnen halen
     - Probleem oplossen register/login header met spacing
+
+
+LINKS / COMMANDS / BIJHOUDEN
+https://www.youtube.com/playlist?list=PLYxzS__5yYQlhvyLXSKhv4oAvl06MInSE
+https://ionicframework.com/blog/using-react-hooks-in-an-ionic-react-app/
+https://ionicframework.com/blog/a-state-management-pattern-for-ionic-react-with-react-hooks/

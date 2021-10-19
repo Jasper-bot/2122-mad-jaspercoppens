@@ -9,9 +9,10 @@ import {
     IonLabel,
     IonList,
     IonNav,
-    IonPage, IonRow
+    IonPage, IonRouterLink, IonRow
 } from "@ionic/react";
-import './register.css';
+
+import styles from './Register.module.css';
 import RegisterHeader from "../components/RegisterHeader";
 
 const Register: React.FC = () => {
@@ -40,7 +41,9 @@ const Register: React.FC = () => {
                        <IonButton>Register</IonButton>
                    </IonRow>
                    <IonRow  class="ion-justify-content-center">
-                       <a id={"login-link"}>Of Login</a>
+                       <IonRow  class="ion-justify-content-center" className={styles.row}>
+                           <IonRouterLink routerLink="/Login" className={styles.login}>Of Login</IonRouterLink>
+                       </IonRow>
                    </IonRow>
                </IonGrid>
            </IonContent>

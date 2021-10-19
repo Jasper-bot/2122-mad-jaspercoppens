@@ -1,8 +1,8 @@
-ion-row{
+.row{
     margin:2%;
 }
 
-#login-link{
+.login{
     color: black;
     text-decoration: underline;
 }
