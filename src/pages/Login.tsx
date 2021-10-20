@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import {
     IonButton,
     IonContent, IonGrid,
@@ -17,11 +17,7 @@ import { auth } from '../firebase/firebase.utils.js';
 import {Redirect} from "react-router-dom";
 import { useAuth } from "../auth";
 
-interface Props {
-    onLogin: () => void;
-}
-
-const Login: React.FC<Props> = ({ onLogin }) => {
+const Login: React.FC = ({  }) => {
     const { loggedIn } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -31,9 +27,7 @@ const Login: React.FC<Props> = ({ onLogin }) => {
         try {
             setstatus({loading: true, error: false});
             const credential = await auth.signInWithEmailAndPassword(email, password);
-            setstatus({loading: false, error: false});
             console.log('cred:', credential);
-            onLogin();
         } catch(error) {
             setstatus({loading: false, error: true});
             console.log(error);
