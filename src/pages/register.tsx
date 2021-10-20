@@ -1,21 +1,28 @@
 import React from "react";
 import {
     IonButton,
-    IonCol,
-    IonContent, IonGrid,
+    IonContent,
+    IonGrid,
     IonHeader,
     IonInput,
     IonItem,
     IonLabel,
     IonList,
-    IonNav,
-    IonPage, IonRouterLink, IonRow
+    IonPage,
+    IonRouterLink,
+    IonRow
 } from "@ionic/react";
 
 import styles from './Register.module.css';
 import RegisterHeader from "../components/RegisterHeader";
+import {auth} from "../firebase/firebase.utils";
 
 const Register: React.FC = () => {
+    const register = async () => {
+        const credential = await auth.createUserWithEmailAndPassword('test@gmail.com', 'testwachtwoord');
+        console.log('cred:', credential);
+    }
+
     return (
         <IonPage>
             <IonHeader>
@@ -38,7 +45,7 @@ const Register: React.FC = () => {
                </IonList>
                <IonGrid>
                    <IonRow class="ion-justify-content-center">
-                       <IonButton>Register</IonButton>
+                       <IonButton onClick={register}>Register</IonButton>
                    </IonRow>
                    <IonRow  class="ion-justify-content-center">
                        <IonRow  class="ion-justify-content-center" className={styles.row}>

@@ -106,14 +106,24 @@ Sample ionic react apps:
 WEEK 5
 
 WAT DOEN
-    - Login pagina maken
+    - Login+register pagina maken
     - Login + Register functioneel via firebase
     - Alle recepten pagina maken
     - Recepten uit firebase databank kunnen halen
     - Probleem oplossen register/login header met spacing
 
+GEDAAN
+    - Login + register pagina gemaakt
+    - auth.ts aangemaakt om beter met state te werken
+    - Routes beveiligd: alleen toegang indien ingelogd
+    - Login + register werkt al hard coded
+    - register/login header spacing opgelost
+    - Heel goede course gekeken op udemy die werkt met ionic + react +
+    - "Not found" page aangemaakt + route
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/playlist?list=PLYxzS__5yYQlhvyLXSKhv4oAvl06MInSE
 https://ionicframework.com/blog/using-react-hooks-in-an-ionic-react-app/
 https://ionicframework.com/blog/a-state-management-pattern-for-ionic-react-with-react-hooks/
+https://www.youtube.com/watch?v=rQvOAnNvcNQ&t=246s
+https://www.udemy.com/course/ionic-react/learn/lecture/19240432#content

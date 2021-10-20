@@ -1,11 +1,11 @@
 .container {
     position: relative;
     display: inline-block;
-    margin-bottom: 10%;
 }
 
 .logo {
     position: relative;
+    overflow: hidden;
 }
 
 .bg {

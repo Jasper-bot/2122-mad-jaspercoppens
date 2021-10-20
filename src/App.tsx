@@ -1,22 +1,19 @@
-import React from "react";
-import { Redirect, Route } from 'react-router-dom';
-import {
-  IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-} from '@ionic/react';
+//<editor-fold desc="imports">
+
+import React, {useState} from "react";
+import {Redirect, Route, Switch} from 'react-router-dom';
+import AppTabs from "./AppTabs";
+
+/* Import Components */
+import {IonApp} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { home, book, bag, heart } from 'ionicons/icons';
-import Home from './pages/Home';
-import Favorites from './pages/Favorites';
-import YourRecipes from './pages/yourRecipes';
-import AllRecipes from './pages/allRecipes';
+
+/* Import Pages */
 import Register from "./pages/register";
 import Login from "./pages/Login";
+import NotFoundPage from "./pages/NotFoundPage";
+
+import { AuthContext} from "./auth";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,58 +34,38 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => (
-  <IonApp>
+//</editor-fold>
 
-    {/* routes */}
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/home">
-            <Home />
-          </Route>
-          <Route exact path="/favorites">
-            <Favorites />
-          </Route>
-          <Route path="/allRecipes">
-            <AllRecipes />
-          </Route>
-          <Route path="/yourRecipes">
-            <YourRecipes />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
-
-        {/* tabbar */}
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home}></IonIcon>
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="allRecipes" href="/allRecipes">
-            <IonIcon icon={book} />
-            <IonLabel>Alle recepten</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="yourRecipes" href="/yourRecipes">
-            <IonIcon icon={bag} />
-            <IonLabel>Uw recepten</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="favorites" href="/favorites">
-            <IonIcon icon={heart} />
-            <IonLabel>Favorieten</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  return (
+      <IonApp>
+        <AuthContext.Provider value={{ loggedIn }}>
+        {/* routes */}
+        <IonReactRouter>
+            <Switch>
+              <Route path="/register">
+                <Register />
+              </Route>
+              <Route path="/login">
+                    <Login
+                        onLogin={() => setLoggedIn(true)}
+                    />
+              </Route>
+              <Route path="/my">
+                <AppTabs />
+              </Route>
+              <Route exact path="/">
+                <Redirect to="/login" />
+              </Route>
+              <Route>
+                <NotFoundPage />
+              </Route>
+            </Switch>
+        </IonReactRouter>
+        </AuthContext.Provider>
+      </IonApp>
+  );
+};
 
 export default App;

@@ -1,21 +1,35 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     IonButton,
-    IonCol,
     IonContent, IonGrid,
     IonHeader,
     IonInput,
     IonItem,
     IonLabel,
     IonList,
-    IonNav,
     IonPage, IonRouterLink, IonRow
 } from "@ionic/react";
 
 import styles from './Login.module.css';
-import RegisterHeader from "../components/RegisterHeader";
+import RegisterHeader from '../components/RegisterHeader';
 
-const Login: React.FC = () => {
+import { auth } from '../firebase/firebase.utils.js';
+import {Redirect} from "react-router-dom";
+import { useAuth } from "../auth";
+
+interface Props {
+    onLogin: () => void;
+}
+
+const Login: React.FC<Props> = ({ onLogin}) => {
+    const { loggedIn } = useAuth();
+    // const login = async () => {
+    //     const credential = await auth.signInWithEmailAndPassword('jasper.coppens12@gmail.com', 'testwachtwoord');
+    //     console.log('cred:', credential);
+    // }
+    if (loggedIn) {
+        return <Redirect to="/my/home"/>;
+    }
     return (
         <IonPage>
             <IonHeader>
@@ -34,7 +48,7 @@ const Login: React.FC = () => {
                 </IonList>
                 <IonGrid>
                     <IonRow class="ion-justify-content-center">
-                        <IonButton>Login</IonButton>
+                        <IonButton onClick={onLogin}>Login</IonButton>
                     </IonRow>
                     <IonRow  class="ion-justify-content-center">
                         <IonRow  class="ion-justify-content-center" className={styles.row}>
