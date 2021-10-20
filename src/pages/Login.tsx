@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {
     IonButton,
     IonContent, IonGrid,
@@ -6,8 +6,8 @@ import {
     IonInput,
     IonItem,
     IonLabel,
-    IonList,
-    IonPage, IonRouterLink, IonRow
+    IonList, IonLoading,
+    IonPage, IonRouterLink, IonRow, IonText
 } from "@ionic/react";
 
 import styles from './Login.module.css';
@@ -21,12 +21,25 @@ interface Props {
     onLogin: () => void;
 }
 
-const Login: React.FC<Props> = ({ onLogin}) => {
+const Login: React.FC<Props> = ({ onLogin }) => {
     const { loggedIn } = useAuth();
-    // const login = async () => {
-    //     const credential = await auth.signInWithEmailAndPassword('jasper.coppens12@gmail.com', 'testwachtwoord');
-    //     console.log('cred:', credential);
-    // }
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [status, setstatus] = useState({loading: false, error: false});
+
+    const handleLogin = async () => {
+        try {
+            setstatus({loading: true, error: false});
+            const credential = await auth.signInWithEmailAndPassword(email, password);
+            setstatus({loading: false, error: false});
+            console.log('cred:', credential);
+            onLogin();
+        } catch(error) {
+            setstatus({loading: false, error: true});
+            console.log(error);
+        }
+
+    }
     if (loggedIn) {
         return <Redirect to="/my/home"/>;
     }
@@ -38,17 +51,25 @@ const Login: React.FC<Props> = ({ onLogin}) => {
             <IonContent class="ion-padding">
                 <IonList lines="inset">
                     <IonItem lines="inset">
+                        {status.error &&
+                            <IonText color="danger">Ongeldige login gegevens</IonText>
+                        }
                         <IonLabel position={"stacked"}>Email</IonLabel>
-                        <IonInput type={"email"}></IonInput>
+                        <IonInput type={"email"} value={email}
+                            onIonChange={(event) => setEmail(event.detail.value)}
+                        />
                     </IonItem>
                     <IonItem lines="inset">
                         <IonLabel position={"stacked"}>Password</IonLabel>
-                        <IonInput type={"password"}></IonInput>
+                        <IonInput type={"password"} value={password}
+                            onIonChange={(event) => setPassword(event.detail.value)}
+                        />
                     </IonItem>
                 </IonList>
                 <IonGrid>
                     <IonRow class="ion-justify-content-center">
-                        <IonButton onClick={onLogin}>Login</IonButton>
+                        <IonButton onClick={handleLogin}>Login</IonButton>
+                        <IonLoading isOpen={status.loading}/>
                     </IonRow>
                     <IonRow  class="ion-justify-content-center">
                         <IonRow  class="ion-justify-content-center" className={styles.row}>
