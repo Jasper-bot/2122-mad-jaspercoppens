@@ -25,7 +25,7 @@ const App: React.FC = () => {
             setAuthState({loading: false, loggedIn: Boolean(user)});
         });
     }, []);
-    console.log(`authstate in:`, authState);
+    console.log(`authstate is:`, authState);
     if(authState.loading) {
         return <IonLoading isOpen />
     }

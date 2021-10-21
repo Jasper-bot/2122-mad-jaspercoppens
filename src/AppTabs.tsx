@@ -17,6 +17,7 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import YourRecipes from './pages/yourRecipes';
 import AllRecipes from './pages/allRecipes';
+import Profile from './pages/Profile';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -60,6 +61,9 @@ const AppTabs: React.FC = () => {
               </Route>
               <Route path="/my/your-recipes">
                     <YourRecipes />
+              </Route>
+              <Route path="/my/profile">
+                <Profile/>
               </Route>
             </IonRouterOutlet>
 

@@ -26,11 +26,9 @@ const Login: React.FC = ({  }) => {
     const handleLogin = async () => {
         try {
             setstatus({loading: true, error: false});
-            const credential = await auth.signInWithEmailAndPassword(email, password);
-            console.log('cred:', credential);
+            await auth.signInWithEmailAndPassword(email, password);
         } catch(error) {
             setstatus({loading: false, error: true});
-            console.log(error);
         }
 
     }
@@ -67,7 +65,7 @@ const Login: React.FC = ({  }) => {
                     </IonRow>
                     <IonRow  class="ion-justify-content-center">
                         <IonRow  class="ion-justify-content-center" className={styles.row}>
-                            <IonRouterLink routerLink="/Register" className={styles.login}>Of Registreer</IonRouterLink>
+                            <IonRouterLink routerLink="/register" className={styles.login}>Of Registreer</IonRouterLink>
                         </IonRow>
                     </IonRow>
                 </IonGrid>
