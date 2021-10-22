@@ -1,7 +1,35 @@
-import React, {useContext} from 'react';
+// imports
+import React, {useContext, useEffect, useState} from 'react';
+import {auth as firebaseAuth}  from "./firebase/firebase.utils";
 
-export const AuthContext = React.createContext({loggedIn: false});
+// interfaces
+interface Auth {
+    loggedIn: boolean;
+    userId?: string;
+}
 
-export function useAuth() {
+interface AuthInit{
+    loading: boolean;
+    auth?: Auth;
+}
+
+export const AuthContext = React.createContext<Auth>({loggedIn: false});
+
+// hooks
+// gebruikt door components om auth data te gebruiken
+export function useAuth(): Auth {
     return useContext(AuthContext);
+}
+// gebruikt door App.tsx om firebasegebruiker op te halen
+export function useAuthInit(): AuthInit {
+    const [authInit, setAuthInit] = useState<AuthInit>({loading: true});
+    useEffect(() => {
+        return firebaseAuth.onAuthStateChanged((firebaseUser) => {
+            const auth = firebaseUser?
+                { loggedIn: true, userId: firebaseUser.uid} :
+                { loggedIn: false};
+            setAuthInit({ loading: false, auth})
+        });
+    }, []);
+    return authInit;
 }

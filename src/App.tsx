@@ -1,9 +1,8 @@
 //<editor-fold desc="imports">
 
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Redirect, Route, Switch} from 'react-router-dom';
 import AppTabs from "./AppTabs";
-import {auth} from "./firebase/firebase.utils.js";
 
 /* Import Components */
 import {IonApp, IonLoading} from '@ionic/react';
@@ -14,24 +13,20 @@ import Register from "./pages/register";
 import Login from "./pages/Login";
 import NotFoundPage from "./pages/NotFoundPage";
 
-import {AuthContext} from "./auth";
+import {AuthContext, useAuthInit} from "./auth";
 
 //</editor-fold>
 
 const App: React.FC = () => {
-    const [authState, setAuthState] = useState({loading: true, loggedIn: false});
-    useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-            setAuthState({loading: false, loggedIn: Boolean(user)});
-        });
-    }, []);
-    console.log(`authstate is:`, authState);
-    if(authState.loading) {
+    const {loading, auth} = useAuthInit();
+
+    if(loading) {
         return <IonLoading isOpen />
     }
+    console.log(`authstate is:`, auth);
     return (
         <IonApp>
-            <AuthContext.Provider value={{loggedIn: authState.loggedIn}}>
+            <AuthContext.Provider value={auth}>
                 {/* routes */}
                 <IonReactRouter>
                     <Switch>

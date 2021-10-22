@@ -1,15 +1,19 @@
-usertest robbe van den hove
+usertest Robbe Van Den Hove
 
 	- terugpijl toevoegen aan paginas
+	    - Dit ga ik doen bij sommige pagina's waarschijnlijk, android gebruikers kunnen de terug knop op hun toestel gebruiken en ios gebruikers kunnen naar links swipen of hun terug knop gebruiken op hun scherm.
+	     In Ionic is het heel makkelijk een extra knop toe te voegen maar ik wil eerst zien hoe nodig dat het is.
 	- chatmodule duidelijker zetten
 
 opname:
 https://hubkaho-my.sharepoint.com/:v:/g/personal/jasper_coppens_student_odisee_be/EYjr5-VMh4xHmxcxmXBP5mMBbgH30s0uHm4KLyNoHV1EMA
 
 
-usertest vincent laureys
+usertest Vincent Laureys
 
 	- uitlijning toevoegen recepten pagina meer gecentreerd
+	    - Ik vind alles centreren niet altijd mooi. Ook denk ik UX gewijs dat het beter is als alle componenten links uitlijnen.
+	    Eventueel kan ik wel alle elementen even breed maken.
 
 Opname:
 https://hubkaho-my.sharepoint.com/:v:/g/personal/jasper_coppens_student_odisee_be/ERALEO5Y8rVNkIpMptqXATQBCDOHJjNf9m43elKWAwRYDw

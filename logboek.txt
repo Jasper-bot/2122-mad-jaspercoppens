@@ -116,10 +116,17 @@ GEDAAN
     - Login + register pagina gemaakt
     - auth.ts aangemaakt om beter met state te werken
     - Routes beveiligd: alleen toegang indien ingelogd
-    - Login + register werkt al hard coded
     - register/login header spacing opgelost
-    - Heel goede course gekeken op udemy die werkt met ionic + react +
+    - Heel goede course gekeken op udemy die werkt met ionic + react + firebase
     - "Not found" page aangemaakt + route
+    - Login + Register + Logout functionaliteit via firebase
+    - Firestore aangemaakt
+    - Versimpelde collection van recepten aangemaakt en deze weergeven op een pagina
+
+PROBLEEM
+    - firebase auth en firebase firestore zijn 2 aparte services, een user wordt dus niet opgeslaan in de firestore. 2 links die ik heb gevonden om dit zelf te doen:
+        https://medium.com/firebase-developers/patterns-for-security-with-firebase-offload-client-work-to-cloud-functions-7c420710f07
+        https://stackoverflow.com/questions/58964099/reference-firebase-user-objects-in-firestore
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/playlist?list=PLYxzS__5yYQlhvyLXSKhv4oAvl06MInSE
