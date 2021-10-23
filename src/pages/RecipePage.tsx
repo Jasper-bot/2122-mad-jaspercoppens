@@ -2,20 +2,18 @@ import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/react
 import { db } from '../firebase/firebase.utils';
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router";
+import {Recipe, toRecipe} from "../models/recipe";
 
 interface RouteParams {
     id: string;
 }
 
-const Recipe: React.FC = () => {
+const RecipePage: React.FC = () => {
     const { id } = useParams<RouteParams>();
-    const [recipe, setRecipe] = useState<any>();
+    const [recipe, setRecipe] = useState<Recipe>();
     useEffect(() => {
         const recipeRef = db.collection('recipes').doc(id);
-        recipeRef.get().then ((doc) => {
-            const recipe = { id: doc.id, ...doc.data()}
-            setRecipe(recipe);
-        });
+        recipeRef.get().then ((doc) => setRecipe(toRecipe(doc)));
     }, [id]);
     return (
         <IonPage>
@@ -25,15 +23,10 @@ const Recipe: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
-                <IonHeader collapse="condense">
-                    <IonToolbar>
-                        <IonTitle size="large">{recipe?.title}</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
                 <p>{recipe?.description}</p>
             </IonContent>
         </IonPage>
     );
 };
 
-export default Recipe;
+export default RecipePage;

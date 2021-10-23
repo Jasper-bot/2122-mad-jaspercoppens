@@ -18,6 +18,7 @@ import Favorites from './pages/Favorites';
 import YourRecipes from './pages/yourRecipes';
 import AllRecipes from './pages/allRecipes';
 import Profile from './pages/Profile';
+import RecipePage from "./pages/RecipePage";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,8 +38,9 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+
 import {useAuth} from "./auth";
-import Recipe from "./pages/Recipe";
+
 
 //</editor-fold>
 
@@ -61,7 +63,7 @@ const AppTabs: React.FC = () => {
                 <AllRecipes />
               </Route>
               <Route path="/my/recipes/:id">
-                <Recipe />
+                <RecipePage />
               </Route>
               <Route path="/my/your-recipes">
                     <YourRecipes />

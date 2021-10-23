@@ -1,21 +1,16 @@
 import {IonContent, IonHeader, IonItem, IonList, IonPage, IonTitle, IonToolbar} from '@ionic/react';
 import './allRecipes.css';
 import { db } from '../firebase/firebase.utils';
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import {Recipe, toRecipe} from "../models/recipe";
 
 const AllRecipes: React.FC = () => {
-    const [recipes, setRecipes] = useState([]);
+    const [recipes, setRecipes] = useState<Recipe[]>([]);
     // als values in deps param veranderen wordt deze functie uitgevoerd + bij startup pagina
     useEffect(() => {
         const recipesRef = db.collection('recipes');
-        recipesRef.get().then((snapshot) => {
-           const recipes = snapshot.docs.map((doc) => ({
-               id: doc.id,
-               ...doc.data(),
-           }));
-          setRecipes(recipes);
-        });
-    }, []);
+        recipesRef.get().then(({docs}) =>  setRecipes(docs.map(toRecipe)));
+        }, []);
     return (
         <IonPage>
             <IonHeader>
