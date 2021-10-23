@@ -31,7 +31,8 @@ const AllRecipes: React.FC = () => {
                 </IonHeader>
                 <IonList>
                     {recipes.map((entry) =>
-                    <IonItem button key={entry.id}>
+                    <IonItem button key={entry.id}
+                    routerLink={`/my/recipes/${entry.id}`}>
                         {entry.title}
                     </IonItem>)}
                 </IonList>
