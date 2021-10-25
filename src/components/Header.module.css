@@ -1,0 +1,35 @@
+.container {
+    position: relative;
+    display: inline-block;
+}
+
+.logo {
+    position: relative;
+    overflow: hidden;
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.fg{
+    width: 10%;
+    height: auto;
+}
+
+.name {
+    color: white;
+    font-size: 150%;
+}
+
+.flexbox {
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}

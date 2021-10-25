@@ -122,11 +122,18 @@ GEDAAN
     - Login + Register + Logout functionaliteit via firebase
     - Firestore aangemaakt
     - Versimpelde collection van recepten aangemaakt en deze weergeven op een pagina
+    - Users collection gemaakt
+    - Routing/Linking van homepage in orde gezet
+    - Header component aangemaakt
 
 PROBLEEM
     - firebase auth en firebase firestore zijn 2 aparte services, een user wordt dus niet opgeslaan in de firestore. 2 links die ik heb gevonden om dit zelf te doen:
         https://medium.com/firebase-developers/patterns-for-security-with-firebase-offload-client-work-to-cloud-functions-7c420710f07
         https://stackoverflow.com/questions/58964099/reference-firebase-user-objects-in-firestore
+    - centering van header
+    - routerlink naar detailpagina werkt niet
+    - manier vinden om in database recepten met referenties te zetten
+        - misschien elke user een collectie 'eigen recepten' en 'favoriete recepten' geven
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/playlist?list=PLYxzS__5yYQlhvyLXSKhv4oAvl06MInSE
@@ -134,3 +141,25 @@ https://ionicframework.com/blog/using-react-hooks-in-an-ionic-react-app/
 https://ionicframework.com/blog/a-state-management-pattern-for-ionic-react-with-react-hooks/
 https://www.youtube.com/watch?v=rQvOAnNvcNQ&t=246s
 https://www.udemy.com/course/ionic-react/learn/lecture/19240432#content
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+WEEK 6
+
+WAT DOEN
+    - Problemen vorige week oplossen
+    - Homepage lijnen onder kaarten weghalen
+    - Alle recepten lay-out
+    - In firebase kijken hoe ik 'favoriete recepten' en 'eigen recepten' ga uitwerken
+    - Recept toevoegen aan firebase
+    - Starten met recepten uitwerken in database + layout van detailpagina van een recept
+
+GEDAAN
+
+
+PROBLEEM
+
+
+LINKS / COMMANDS / BIJHOUDEN
+

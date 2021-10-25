@@ -3,6 +3,7 @@ import './allRecipes.css';
 import { db } from '../firebase/firebase.utils';
 import React, {useEffect, useState} from "react";
 import {Recipe, toRecipe} from "../models/recipe";
+import Header from "../components/Header";
 
 const AllRecipes: React.FC = () => {
     console.log('all recipes load');
@@ -15,9 +16,7 @@ const AllRecipes: React.FC = () => {
     return (
         <IonPage>
             <IonHeader>
-                <IonToolbar>
-                    <IonTitle>Tab 3</IonTitle>
-                </IonToolbar>
+                <Header />
             </IonHeader>
             <IonContent fullscreen>
                 <IonHeader collapse="condense">

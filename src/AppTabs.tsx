@@ -56,7 +56,7 @@ const AppTabs: React.FC = () => {
               <Route exact path="/my/home">
                 <Home />
               </Route>
-              <Route exact path="/my/favorites">
+              <Route exact path="/my/favorite-recipes">
                 <Favorites />
               </Route>
               <Route path="/my/recipes">
@@ -87,7 +87,7 @@ const AppTabs: React.FC = () => {
                 <IonIcon icon={bag} />
                 <IonLabel>Uw recepten</IonLabel>
               </IonTabButton>
-              <IonTabButton tab="favorites" href="/my/favorites">
+              <IonTabButton tab="favorites" href="/my/favorite-recipes">
                 <IonIcon icon={heart} />
                 <IonLabel>Favorieten</IonLabel>
               </IonTabButton>

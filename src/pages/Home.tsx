@@ -14,13 +14,15 @@ const Home: React.FC = () => {
                 <IonCol>
                     <Image
                         imagePath="assets/images/allerecepten.jpg"
-                        description="Alle Recepten">
+                        description="Alle Recepten"
+                        linkPath="recipes">
                     </Image>
                 </IonCol>
                 <IonCol>
                     <Image
                         imagePath="assets/images/uwaccount.jpg"
-                        description="Uw Account">
+                        description="Uw Account"
+                        linkPath="account">
                     </Image>
                 </IonCol>
             </IonRow>
@@ -28,13 +30,15 @@ const Home: React.FC = () => {
                   <IonCol>
                       <Image
                           imagePath="assets/images/voegrecepttoe.jpg"
-                          description="Voeg Recept Toe">
+                          description="Voeg Recept Toe"
+                          linkPath="add-recipe">
                       </Image>
                   </IonCol>
                   <IonCol>
                       <Image
                           imagePath="assets/images/favorieterecepten.jpg"
-                          description="Favoriete Recepten">
+                          description="Favoriete Recepten"
+                          linkPath="favorite-recipes">
                       </Image>
                   </IonCol>
               </IonRow>
@@ -42,7 +46,8 @@ const Home: React.FC = () => {
                   <IonCol>
                       <Image
                           imagePath="assets/images/zoekrecepten.jpg"
-                          description="Zoek Recepten">
+                          description="Zoek Recepten"
+                          linkPath="search-recipes">
                       </Image>
                   </IonCol>
               </IonRow>
