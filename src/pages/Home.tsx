@@ -1,14 +1,13 @@
-import {IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow} from '@ionic/react';
+import {IonCol, IonContent, IonGrid, IonPage, IonRow} from '@ionic/react';
 import Image from '../components/Image';
 import './Home.css';
 import React from "react";
-import {useAuth} from "../auth";
 
 const Home: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-          <img src="assets/images/topbarlogo.jpg" id="headerimg"></img>
+          <img src="assets/images/topbarlogo.jpg" id="headerimg" alt="Header van de homepagina" />
           <IonGrid>
             <IonRow>
                 <IonCol>
