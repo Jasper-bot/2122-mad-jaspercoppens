@@ -62,7 +62,7 @@ const AppTabs: React.FC = () => {
               <Route path="/my/recipes">
                 <AllRecipes />
               </Route>
-              <Route path="/my/recipes/:id">
+              <Route path="/my/recipes/view/:id">
                 <RecipePage />
               </Route>
               <Route path="/my/your-recipes">
@@ -76,7 +76,7 @@ const AppTabs: React.FC = () => {
             {/* tabbar */}
             <IonTabBar slot="bottom">
               <IonTabButton tab="home" href="/my/home">
-                <IonIcon icon={home}></IonIcon>
+                <IonIcon icon={home} />
                 <IonLabel>Home</IonLabel>
               </IonTabButton>
               <IonTabButton tab="allRecipes" href="/my/recipes">

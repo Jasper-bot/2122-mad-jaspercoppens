@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import {Recipe, toRecipe} from "../models/recipe";
 
 const AllRecipes: React.FC = () => {
+    console.log('all recipes load');
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     // als values in deps param veranderen wordt deze functie uitgevoerd + bij startup pagina
     useEffect(() => {
@@ -27,7 +28,7 @@ const AllRecipes: React.FC = () => {
                 <IonList>
                     {recipes.map((entry) =>
                     <IonItem button key={entry.id}
-                    routerLink={`/my/recipes/${entry.id}`}>
+                    routerLink={`/my/recipes/view/${entry.id}`}>
                         {entry.title}
                     </IonItem>)}
                 </IonList>

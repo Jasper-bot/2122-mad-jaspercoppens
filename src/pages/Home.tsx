@@ -1,7 +1,8 @@
-import {IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow, IonTitle, IonToolbar} from '@ionic/react';
+import {IonCol, IonContent, IonGrid, IonHeader, IonPage, IonRow} from '@ionic/react';
 import Image from '../components/Image';
 import './Home.css';
 import React from "react";
+import {useAuth} from "../auth";
 
 const Home: React.FC = () => {
   return (
