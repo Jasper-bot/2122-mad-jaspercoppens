@@ -59,7 +59,7 @@ const AppTabs: React.FC = () => {
               <Route exact path="/my/favorite-recipes">
                 <Favorites />
               </Route>
-              <Route path="/my/recipes">
+              <Route exact path="/my/recipes">
                 <AllRecipes />
               </Route>
               <Route path="/my/recipes/view/:id">

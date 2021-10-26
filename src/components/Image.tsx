@@ -10,7 +10,7 @@ interface ImageProps {
 
 const Image: React.FC<ImageProps> = ({ imagePath , description, linkPath}) => {
     return (
-        <IonItem routerLink={`/my/${linkPath}`}>
+        <IonItem routerLink={`/my/${linkPath}`} lines="none">
             <div className={styles.container}>
                 <img src={ imagePath } alt={ imagePath } max-height='150' className={styles.image}></img>
                 <p className={styles.description}>{ description }</p>

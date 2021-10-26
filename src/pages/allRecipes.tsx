@@ -1,4 +1,15 @@
-import {IonContent, IonHeader, IonItem, IonList, IonPage, IonTitle, IonToolbar} from '@ionic/react';
+import {
+    IonCard, IonCardContent,
+    IonCardHeader, IonCardSubtitle, IonCardTitle,
+    IonCol,
+    IonContent,
+    IonHeader,
+    IonItem,
+    IonList,
+    IonPage,
+    IonTitle,
+    IonToolbar
+} from '@ionic/react';
 import './allRecipes.css';
 import { db } from '../firebase/firebase.utils';
 import React, {useEffect, useState} from "react";
@@ -19,18 +30,15 @@ const AllRecipes: React.FC = () => {
                 <Header />
             </IonHeader>
             <IonContent fullscreen>
-                <IonHeader collapse="condense">
-                    <IonToolbar>
-                        <IonTitle size="large">All recipes</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
-                <IonList>
-                    {recipes.map((entry) =>
-                    <IonItem button key={entry.id}
-                    routerLink={`/my/recipes/view/${entry.id}`}>
-                        {entry.title}
-                    </IonItem>)}
-                </IonList>
+                {recipes.map((entry) =>
+                <IonCard routerLink={`/my/recipes/view/${entry.id}`}>
+                    <img src={entry.imagePath}/>
+                    <IonCardHeader>
+                        <IonCardSubtitle>Uploader name</IonCardSubtitle>
+                        <IonCardTitle>{entry.title}</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>{entry.description}</IonCardContent>
+                </IonCard>)}
             </IonContent>
         </IonPage>
     );
