@@ -30,9 +30,10 @@ const AllRecipes: React.FC = () => {
                 <Header />
             </IonHeader>
             <IonContent fullscreen>
+                <IonTitle className="ion-padding">Alle Recepten</IonTitle>
                 {recipes.map((entry) =>
                 <IonCard routerLink={`/my/recipes/view/${entry.id}`}>
-                    <img src={entry.imagePath}/>
+                    <img src={entry.imagePath} alt={entry.title}/>
                     <IonCardHeader>
                         <IonCardSubtitle>Uploader name</IonCardSubtitle>
                         <IonCardTitle>{entry.title}</IonCardTitle>

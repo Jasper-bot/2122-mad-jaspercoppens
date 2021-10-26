@@ -156,10 +156,14 @@ WAT DOEN
     - Starten met recepten uitwerken in database + layout van detailpagina van een recept
 
 GEDAAN
-
+    - Homepage bijgewerkt
+    - allRecipes pagina lay out in orde gezet
+    - routing probleem allrecipes opgelost
+    - Headers toegevoegd aan bepaalde paginas
+    - Routing voor sommige routes aangepast
+    - not found page aangemaakt voor routes onder /my/
 
 PROBLEEM
-
 
 LINKS / COMMANDS / BIJHOUDEN
 

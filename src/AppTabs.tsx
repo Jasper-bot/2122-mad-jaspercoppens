@@ -17,7 +17,7 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import YourRecipes from './pages/yourRecipes';
 import AllRecipes from './pages/allRecipes';
-import Profile from './pages/Profile';
+import Account from './pages/Account';
 import RecipePage from "./pages/RecipePage";
 
 /* Core CSS required for Ionic components to work properly */
@@ -40,6 +40,8 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 import {useAuth} from "./auth";
+import AddRecipe from "./pages/AddRecipe";
+import NotFoundPage from "./pages/NotFoundPage";
 
 
 //</editor-fold>
@@ -59,17 +61,23 @@ const AppTabs: React.FC = () => {
               <Route exact path="/my/favorite-recipes">
                 <Favorites />
               </Route>
-              <Route exact path="/my/recipes">
-                <AllRecipes />
-              </Route>
               <Route path="/my/recipes/view/:id">
                 <RecipePage />
+              </Route>
+              <Route path="/my/recipes/add-recipe">
+                <AddRecipe />
+              </Route>
+              <Route exact path="/my/recipes">
+                <AllRecipes />
               </Route>
               <Route path="/my/your-recipes">
                     <YourRecipes />
               </Route>
-              <Route path="/my/profile">
-                <Profile/>
+              <Route path="/my/account">
+                <Account/>
+              </Route>
+              <Route>
+                <NotFoundPage/>
               </Route>
             </IonRouterOutlet>
 

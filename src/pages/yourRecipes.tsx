@@ -1,14 +1,13 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './yourRecipes.css';
+import Header from "../components/Header";
 
 // React.FC = React.Functional Component
 const YourRecipes: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
-        </IonToolbar>
+            <Header />
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">

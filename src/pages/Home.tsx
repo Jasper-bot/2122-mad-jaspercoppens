@@ -30,7 +30,7 @@ const Home: React.FC = () => {
                       <Image
                           imagePath="assets/images/voegrecepttoe.jpg"
                           description="Voeg Recept Toe"
-                          linkPath="add-recipe">
+                          linkPath="recipes/add-recipe">
                       </Image>
                   </IonCol>
                   <IonCol>
