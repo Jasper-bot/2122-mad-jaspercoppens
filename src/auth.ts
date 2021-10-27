@@ -6,11 +6,13 @@ import {auth as firebaseAuth}  from "./firebase/firebase.utils";
 interface Auth {
     loggedIn: boolean;
     userId?: string;
+    userName?: string;
 }
 
 interface AuthInit{
     loading: boolean;
     auth?: Auth;
+    userName?: string;
 }
 
 export const AuthContext = React.createContext<Auth>({loggedIn: false});

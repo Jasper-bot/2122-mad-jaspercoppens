@@ -13,15 +13,17 @@ import { db } from '../firebase/firebase.utils';
 import React, {useEffect, useState} from "react";
 import {Recipe, toRecipe} from "../models/recipe";
 import Header from "../components/Header";
+import {useAuth} from "../auth";
 
 const AllRecipes: React.FC = () => {
-    console.log('all recipes load');
+    const { userId } = useAuth();
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     // als values in deps param veranderen wordt deze functie uitgevoerd + bij startup pagina
     useEffect(() => {
         const recipesRef = db.collection('recipes');
-        recipesRef.get().then(({docs}) =>  setRecipes(docs.map(toRecipe)));
-        }, []);
+        return recipesRef.onSnapshot(({ docs }) => setRecipes(docs.map(toRecipe)));
+        }, [userId]);
+
     return (
         <IonPage>
             <IonHeader>
@@ -30,10 +32,10 @@ const AllRecipes: React.FC = () => {
             <IonContent fullscreen>
                 <IonTitle className="ion-padding">Alle Recepten</IonTitle>
                 {recipes.map((entry) =>
-                <IonCard routerLink={`/my/recipes/view/${entry.id}`}>
+                <IonCard routerLink={`/my/recipes/view/${entry.id}`} key={entry.id}>
                     <img src={entry.imagePath} alt={entry.title}/>
                     <IonCardHeader>
-                        <IonCardSubtitle>Uploader name</IonCardSubtitle>
+                        <IonCardSubtitle>{entry.uploaderId}</IonCardSubtitle>
                         <IonCardTitle>{entry.title}</IonCardTitle>
                     </IonCardHeader>
                     <IonCardContent>{entry.description}</IonCardContent>

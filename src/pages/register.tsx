@@ -14,12 +14,14 @@ import styles from './Login.module.css';
 import RegisterHeader from '../components/RegisterHeader';
 
 import { auth } from '../firebase/firebase.utils.js';
+import { db } from '../firebase/firebase.utils';
 import {Redirect} from "react-router-dom";
 import { useAuth } from "../auth";
 
 const Register: React.FC = ({  }) => {
     const { loggedIn } = useAuth();
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [rPassword, setRPassword] = useState('');
     const [status, setStatus] = useState({loading: false, error: false, errorMessage: null});
@@ -28,7 +30,11 @@ const Register: React.FC = ({  }) => {
         setStatus({loading: true, error: false, errorMessage: null});
         if(verifyInput()){
             try {
-                await auth.createUserWithEmailAndPassword(email, password);
+                await auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        addToDatabase(user.uid);
+                    })
             } catch(error) {
                 setStatus({loading: false, error: true, errorMessage: "Registration failed"});
             }
@@ -45,6 +51,12 @@ const Register: React.FC = ({  }) => {
             setStatus({loading: false, error: true, errorMessage: "Het wachtwoord moet minstens bestaan uit 8 tekens en minstens 1 nummer en 1 letter hebben."});
             return false;
         } else return true;
+    }
+
+    const addToDatabase = (userId) => {
+        const usersRef = db.collection('users');
+        const userData = { userId, username};
+        usersRef.add(userData);
     }
 
     if (loggedIn) {
@@ -67,6 +79,12 @@ const Register: React.FC = ({  }) => {
                         <IonLabel position={"stacked"}>Email</IonLabel>
                         <IonInput type={"email"} value={email}
                                   onIonChange={(event) => setEmail(event.detail.value)}
+                        />
+                    </IonItem>
+                    <IonItem lines="inset">
+                        <IonLabel position={"stacked"}>Username</IonLabel>
+                        <IonInput type={"text"} value={username}
+                                  onIonChange={(event) => setUsername(event.detail.value)}
                         />
                     </IonItem>
                     <IonItem lines="inset">

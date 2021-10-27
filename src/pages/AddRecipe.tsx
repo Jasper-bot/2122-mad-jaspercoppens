@@ -22,11 +22,11 @@ const AddRecipe: React.FC = () => {
     const {userId}  = useAuth();
     const history = useHistory();
 
-    const handleAddRecipe = async () => {
+    const handleAddRecipe = () => {
         const uploaderId = userId;
         const recipesRef = db.collection('recipes');
         const recipeData = { title, description, uploaderId};
-        await recipesRef.add(recipeData);
+        recipesRef.add(recipeData);
         history.goBack();
     }
 

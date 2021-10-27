@@ -3,6 +3,7 @@ export interface Recipe {
     title: string;
     description: string;
     imagePath: string;
+    uploaderId: string;
 }
 
 export function toRecipe(doc): Recipe {

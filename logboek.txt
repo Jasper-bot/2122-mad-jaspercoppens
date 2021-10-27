@@ -163,6 +163,10 @@ GEDAAN
     - Routing voor sommige routes aangepast
     - not found page aangemaakt voor routes onder /my/
     - Add recipe pagina aangemaakt
+    - collectie users toegevoegd aan firebase, wanneer een gebruiker registreert, wordt deze ook opgeslaan in een databank (gebruikersnaam + id)
+
+
+    TODO: in auth, de username bijhouden
 
 PROBLEEM
 
