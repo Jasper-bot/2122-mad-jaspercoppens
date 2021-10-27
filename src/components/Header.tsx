@@ -7,10 +7,10 @@ const Header: React.FC = () => {
         <div className={styles.container}>
             <div className={styles.logo}>
                 <div className={styles.flexbox}>
-                    <img src="assets/icon/logowit.png" alt="" className={styles.fg} ></img>
+                    <img src="assets/icon/logowit.png" alt="logo brechts kookboek" className={styles.fg} ></img>
                     <IonTitle className={styles.name}>Brechts Kookboek</IonTitle>
                 </div>
-                <img src="assets/images/headerimage.png" alt="" className={styles.bg}></img>
+                <img src="assets/images/headerimage.png" alt="achtergrond van logo" className={styles.bg}></img>
             </div>
 
         </div>

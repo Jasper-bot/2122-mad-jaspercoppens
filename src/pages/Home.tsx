@@ -1,15 +1,15 @@
 import {IonCol, IonContent, IonGrid, IonPage, IonRow} from '@ionic/react';
 import Image from '../components/Image';
-import './Home.css';
+import styles from  './Home.module.css';
 import React from "react";
 
 const Home: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-          <img src="assets/images/topbarlogo.jpg" id="headerimg" alt="Header van de homepagina" />
+          <img src="assets/images/topbarlogo.jpg" className={styles.img} alt="Header van de homepagina" />
           <IonGrid>
-            <IonRow>
+            <IonRow className={styles.row}>
                 <IonCol>
                     <Image
                         imagePath="assets/images/allerecepten.jpg"

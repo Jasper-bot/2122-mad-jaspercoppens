@@ -1,5 +1,4 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import './yourRecipes.css';
 import Header from "../components/Header";
 
 // React.FC = React.Functional Component

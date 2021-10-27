@@ -1,5 +1,4 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import './Favorites.css';
 import Header from "../components/Header";
 
 const Favorites: React.FC = () => {

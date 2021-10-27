@@ -1,16 +1,14 @@
 import {
-    IonCard, IonCardContent,
-    IonCardHeader, IonCardSubtitle, IonCardTitle,
-    IonCol,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
     IonContent,
     IonHeader,
-    IonItem,
-    IonList,
     IonPage,
     IonTitle,
-    IonToolbar
 } from '@ionic/react';
-import './allRecipes.css';
 import { db } from '../firebase/firebase.utils';
 import React, {useEffect, useState} from "react";
 import {Recipe, toRecipe} from "../models/recipe";
