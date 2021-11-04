@@ -172,3 +172,19 @@ PROBLEEM
 
 LINKS / COMMANDS / BIJHOUDEN
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+WEEK 7
+
+WAT DOEN
+
+
+GEDAAN
+
+
+
+    TODO: in auth, de username bijhouden
+
+PROBLEEM
+
+LINKS / COMMANDS / BIJHOUDEN
