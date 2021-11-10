@@ -2,8 +2,10 @@ import {IonCol, IonContent, IonGrid, IonPage, IonRow} from '@ionic/react';
 import Image from '../components/Image';
 import styles from  './Home.module.css';
 import React from "react";
+import {useSetUsername} from "../models/user";
 
 const Home: React.FC = () => {
+    useSetUsername();
   return (
     <IonPage>
       <IonContent fullscreen>

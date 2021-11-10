@@ -165,9 +165,6 @@ GEDAAN
     - Add recipe pagina aangemaakt
     - collectie users toegevoegd aan firebase, wanneer een gebruiker registreert, wordt deze ook opgeslaan in een databank (gebruikersnaam + id)
 
-
-    TODO: in auth, de username bijhouden
-
 PROBLEEM
 
 LINKS / COMMANDS / BIJHOUDEN
@@ -177,14 +174,21 @@ LINKS / COMMANDS / BIJHOUDEN
 WEEK 7
 
 WAT DOEN
-
+    - Username bijhouden in firestore
+    - Users ook opslaan in collection users
+    - Recipes uitbreiden met meer data (toevoeg pagina en weergave pagina)
+    - Firestore favoriete recepten (en eigen recepten)
+    - Foto's nemen en direct opslaan
 
 GEDAAN
 
 
 
-    TODO: in auth, de username bijhouden
+    TODO: de username zetten VOOR dat de eerste pagina geladen wordt.
 
 PROBLEEM
 
 LINKS / COMMANDS / BIJHOUDEN
+https://dev.to/_ali_/react-custom-hooks-a-simple-explanation-bpj
+https://stackoverflow.com/questions/48541270/how-to-add-document-with-custom-id-to-firestore
+https://stackoverflow.com/questions/38732639/accessing-object-in-returned-promise-using-fetch-w-react-js

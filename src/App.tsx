@@ -1,6 +1,6 @@
 //<editor-fold desc="imports">
 
-import React from "react";
+import React, {useEffect} from "react";
 import {Redirect, Route, Switch} from 'react-router-dom';
 import AppTabs from "./AppTabs";
 
@@ -14,16 +14,15 @@ import Login from "./pages/Login";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import {AuthContext, useAuthInit} from "./auth";
+import {useSetUsername} from "./models/user";
 
 //</editor-fold>
 
 const App: React.FC = () => {
     const {loading, auth} = useAuthInit();
-
     if(loading) {
         return <IonLoading isOpen />
     }
-    console.log(`authstate is:`, auth);
     return (
         <IonApp>
             <AuthContext.Provider value={auth}>

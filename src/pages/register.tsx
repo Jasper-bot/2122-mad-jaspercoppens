@@ -54,9 +54,10 @@ const Register: React.FC = ({  }) => {
     }
 
     const addToDatabase = (userId) => {
-        const usersRef = db.collection('users');
-        const userData = { userId, username};
-        usersRef.add(userData);
+        db.collection("users").doc(userId).set({
+                username: username,
+                email: email
+        });
     }
 
     if (loggedIn) {
