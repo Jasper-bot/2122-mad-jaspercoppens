@@ -23,6 +23,9 @@ const AllRecipes: React.FC = () => {
         const recipesRef = db.collection('recipes');
         return recipesRef.onSnapshot(({ docs }) => setRecipes(docs.map(toRecipe)));
         }, [userId]);
+    useEffect(() => {
+
+    }, recipes)
 
     return (
         <IonPage>
@@ -35,7 +38,7 @@ const AllRecipes: React.FC = () => {
                 <IonCard routerLink={`/my/recipes/view/${entry.id}`} key={entry.id}>
                     <img src={entry.imagePath} alt={entry.title}/>
                     <IonCardHeader>
-                        <IonCardSubtitle>{entry.uploaderId}</IonCardSubtitle>
+                        <IonCardSubtitle>{entry.uploaderName}</IonCardSubtitle>
                         <IonCardTitle>{entry.title}</IonCardTitle>
                     </IonCardHeader>
                     <IonCardContent>{entry.description}</IonCardContent>

@@ -19,13 +19,14 @@ import {useHistory} from "react-router";
 const AddRecipe: React.FC = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const {userId}  = useAuth();
+    const {userId, userName}  = useAuth();
     const history = useHistory();
 
     const handleAddRecipe = () => {
         const uploaderId = userId;
+        const uploaderName = userName;
         const recipesRef = db.collection('recipes');
-        const recipeData = { title, description, uploaderId};
+        const recipeData = { title, description, uploaderId, uploaderName};
         recipesRef.add(recipeData);
         history.goBack();
     }
@@ -36,6 +37,7 @@ const AddRecipe: React.FC = () => {
                 <Header />
             </IonHeader>
             <IonContent class="ion-padding">
+                <p>{userName}</p>
                 <IonList>
                     <IonItem lines="inset">
                         <IonLabel position={"stacked"}>Title</IonLabel>

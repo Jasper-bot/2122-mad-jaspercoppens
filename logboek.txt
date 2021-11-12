@@ -174,14 +174,13 @@ LINKS / COMMANDS / BIJHOUDEN
 WEEK 7
 
 WAT DOEN
-    - Username bijhouden in firestore
-    - Users ook opslaan in collection users
+    - Username bijhouden in firestore x
+    - Users ook opslaan in collection users x
     - Recipes uitbreiden met meer data (toevoeg pagina en weergave pagina)
     - Firestore favoriete recepten (en eigen recepten)
     - Foto's nemen en direct opslaan
 
 GEDAAN
-
 
 
     TODO: de username zetten VOOR dat de eerste pagina geladen wordt.

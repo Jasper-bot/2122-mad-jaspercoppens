@@ -13,7 +13,6 @@ interface Auth {
 interface AuthInit{
     loading: boolean;
     auth?: Auth;
-    userName?: string;
 }
 
 export const AuthContext = React.createContext<Auth>({loggedIn: false});
@@ -36,6 +35,17 @@ export function useAuthInit(): AuthInit {
         });
     }, []);
     return authInit;
+}
+
+export function useSetUsername() {
+    const auth = useAuth();
+    const userRef = db.collection("users").doc(auth.userId);
+    userRef.get().then((doc) => {
+        const user = {id: doc.id, username: doc.data().username, email: doc.data().email};
+        // const newAuth = {loggedIn: true, userId: user.id, username: user.username}
+
+        auth.userName = user.username;
+    });
 }
 
 //  export async function useAuthInit() {

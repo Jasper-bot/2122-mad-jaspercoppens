@@ -2,7 +2,7 @@ import {IonCol, IonContent, IonGrid, IonPage, IonRow} from '@ionic/react';
 import Image from '../components/Image';
 import styles from  './Home.module.css';
 import React from "react";
-import {useSetUsername} from "../models/user";
+import {useSetUsername} from "../auth";
 
 const Home: React.FC = () => {
     useSetUsername();
