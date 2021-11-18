@@ -38,7 +38,7 @@ const RecipePage: React.FC = () => {
                 <IonText class="ion-text-center">
                     <h2>{recipe?.title}</h2>
                 </IonText>
-                <p className={styles.uploader}>Door {recipe?.uploaderId}</p>
+                <p className={styles.uploader}>Door {recipe?.userName }</p>
                 {/*<img src={recipe?.imagePath}/>*/}
                 <p>{recipe?.description}</p>
                 <IonFab vertical='bottom' horizontal='end' slot='fixed'>

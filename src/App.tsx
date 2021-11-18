@@ -19,15 +19,7 @@ import {AuthContext, useAuthInit} from "./auth";
 
 const App: React.FC = () => {
     const {loading, auth} = useAuthInit();
-    const [username, setUsername] = useState();
-    const updateUsername = (newUsername) => {
-        setUsername(newUsername);
-    };
 
-    const authTest = {
-        auth: auth,
-        username: username
-    }
     console.log("authstate is", auth);
     if(loading) {
         return <IonLoading isOpen />
