@@ -15,6 +15,12 @@ import {db, storage} from '../firebase/firebase.utils';
 import {useAuth} from "../auth";
 import {useHistory} from "react-router";
 import styles from "./AddRecipe.module.css";
+import {
+    Camera,
+    CameraResultType,
+    CameraSource,
+    Photo,
+} from "@capacitor/camera";
 
 async function savePhoto(blobUrl, idNewRecipe) {
     const photoRef = storage.ref(`/images/${idNewRecipe}/${idNewRecipe}`);
@@ -49,7 +55,6 @@ const AddRecipe: React.FC = () => {
     const handleAddRecipe = async () => {
         const recipesRef = db.collection('recipes');
         const recipeData = { title, description, userId, userName, photo};
-        console.log(photo);
         const recipeRef = await recipesRef.add(recipeData);
 
         if (recipeData.photo.startsWith('blob:')){
@@ -64,6 +69,13 @@ const AddRecipe: React.FC = () => {
             const photoUrl = URL.createObjectURL(file);
             setPhoto(photoUrl);
         }
+    }
+
+    const handlePictureClick = async () => {
+        //fileInputRef.current.click();
+        const photo = await Camera.getPhoto({
+            resultType: CameraResultType.Uri,
+        });
     }
 
     return (
