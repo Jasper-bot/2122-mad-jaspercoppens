@@ -1,5 +1,5 @@
 {
-	"appId": "io.ionic.starter",
+	"appId": "org.example.myapp",
 	"appName": "brechtskookboek",
 	"webDir": "build",
 	"bundledWebRuntime": false

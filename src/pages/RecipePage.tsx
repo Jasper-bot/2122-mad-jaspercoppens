@@ -3,7 +3,7 @@ import {
     IonFab,
     IonFabButton,
     IonHeader,
-    IonIcon,
+    IonIcon, IonItem, IonLabel, IonList, IonListHeader,
     IonPage,
     IonText,
     IonTitle,
@@ -37,10 +37,39 @@ const RecipePage: React.FC = () => {
             <IonContent class="ion-padding">
                 <IonText class="ion-text-center">
                     <h2>{recipe?.title}</h2>
+                    <p className={styles.uploader}>Door {recipe?.userName }</p>
                 </IonText>
-                <p className={styles.uploader}>Door {recipe?.userName }</p>
-                {/*<img src={recipe?.imagePath}/>*/}
+                <img src={recipe?.photo} alt={recipe?.title}/>
                 <p>{recipe?.description}</p>
+                <IonList>
+                    <IonListHeader>
+                        Ingrediënten
+                    </IonListHeader>
+                    {recipe?.ingredients.map((entry) =>
+                        <IonItem key={entry.valueOf()}>
+                            <IonLabel>
+                                <p>
+                                    {entry.valueOf()}
+                                </p>
+                            </IonLabel>
+                        </IonItem>
+                    )}
+                </IonList>
+                <IonListHeader>
+                    Stappen
+                </IonListHeader>
+                <IonList>
+                    {/*{recipe?.steps.forEach(())}*/}
+                    {recipe?.steps.map((entry) =>
+                        <IonItem key={entry.valueOf()}>
+                            <IonLabel>
+                                <p>
+                                    {entry.valueOf()}
+                                </p>
+                            </IonLabel>
+                        </IonItem>
+                    )}
+                </IonList>
                 <IonFab vertical='bottom' horizontal='end' slot='fixed'>
                     <IonFabButton>
                         <IonIcon icon={chatbubble} />

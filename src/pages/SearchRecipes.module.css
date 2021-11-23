@@ -1,0 +1,12 @@
+.centerx {
+    margin: 0 auto;
+}
+.center_textx {
+    text-align: center;
+}
+
+.logoutx{
+    font-size: 80%;
+    color: black;
+    text-decoration: underline;
+}

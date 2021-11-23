@@ -8,6 +8,9 @@ export interface Recipe {
     photo: string;
     uploaderId: string;
     userName?: string;
+    ingredients?: string[];
+    steps?: string[];
+    category: string;
 }
 
 export function toRecipe(doc): Recipe {

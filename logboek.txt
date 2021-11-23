@@ -177,14 +177,15 @@ WAT DOEN
     - Username bijhouden in firestore x
     - Users ook opslaan in collection users x
     - auth + username fixen x
-    - Recipes uitbreiden met meer data (toevoeg pagina en weergave pagina)
+    - Recipes uitbreiden met meer data (toevoeg pagina en weergave pagina) x
     - Firestore favoriete recepten (en eigen recepten)
-    - Foto's nemen en direct opslaan
+    - Foto's nemen en direct opslaan x
 
 GEDAAN
     - authstate aangepast met username
     - users opgeslaan in collection
     - file storage toegevoegd
+    - search recipe pagina toegevoegd
 
 PROBLEEM
 
@@ -192,3 +193,6 @@ LINKS / COMMANDS / BIJHOUDEN
 https://dev.to/_ali_/react-custom-hooks-a-simple-explanation-bpj
 https://stackoverflow.com/questions/48541270/how-to-add-document-with-custom-id-to-firestore
 https://stackoverflow.com/questions/38732639/accessing-object-in-returned-promise-using-fetch-w-react-js
+
+https://capacitorjs.com/docs/apis/camera
+https://github.com/ionic-team/capacitor

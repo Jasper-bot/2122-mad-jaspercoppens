@@ -42,6 +42,7 @@ import './theme/variables.css';
 import {useAuth} from "./auth";
 import AddRecipe from "./pages/AddRecipe";
 import NotFoundPage from "./pages/NotFoundPage";
+import SearchRecipes from "./pages/SearchRecipes";
 
 
 //</editor-fold>
@@ -72,6 +73,9 @@ const AppTabs: React.FC = () => {
               </Route>
               <Route path="/my/your-recipes">
                     <YourRecipes />
+              </Route>
+              <Route path="/my/search-recipes">
+                <SearchRecipes />
               </Route>
               <Route path="/my/account">
                 <Account/>

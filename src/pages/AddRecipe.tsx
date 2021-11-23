@@ -20,7 +20,7 @@ import {
     CameraResultType,
     CameraSource,
     Photo,
-} from "@capacitor/camera";
+} from '@capacitor/camera';
 
 async function savePhoto(blobUrl, idNewRecipe) {
     const photoRef = storage.ref(`/images/${idNewRecipe}/${idNewRecipe}`);
@@ -52,9 +52,19 @@ const AddRecipe: React.FC = () => {
         }
     }, [photo]);
 
+    const getIngredientsArray = () => {
+        return  ingredients.split(',');
+    }
+
+    const getStepsArray = () => {
+        return steps.split("\n\n");
+    }
+
     const handleAddRecipe = async () => {
         const recipesRef = db.collection('recipes');
-        const recipeData = { title, description, userId, userName, photo};
+        const steps = getStepsArray();
+        const ingredients = getIngredientsArray();
+        const recipeData = { title, description, userId, userName, photo, steps, ingredients, category};
         const recipeRef = await recipesRef.add(recipeData);
 
         if (recipeData.photo.startsWith('blob:')){
