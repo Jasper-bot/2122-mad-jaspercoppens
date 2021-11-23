@@ -19,31 +19,10 @@ import YourRecipes from './pages/yourRecipes';
 import AllRecipes from './pages/allRecipes';
 import Account from './pages/Account';
 import RecipePage from "./pages/RecipePage";
-
-/* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css';
-
-/* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
-
-/* Optional CSS utils that can be commented out */
-import  '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
-
-/* Theme variables */
-import './theme/variables.css';
-
 import {useAuth} from "./auth";
 import AddRecipe from "./pages/AddRecipe";
 import NotFoundPage from "./pages/NotFoundPage";
 import SearchRecipes from "./pages/SearchRecipes";
-
 
 //</editor-fold>
 

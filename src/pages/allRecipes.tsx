@@ -23,6 +23,7 @@ const AllRecipes: React.FC = () => {
         const recipesRef = db.collection('recipes');
         return recipesRef.onSnapshot(({ docs }) => setRecipes(docs.map(toRecipe)));
         }, [userId]);
+
     useEffect(() => {
 
     }, recipes)

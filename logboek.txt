@@ -185,6 +185,7 @@ GEDAAN
     - authstate aangepast met username
     - users opgeslaan in collection
     - file storage toegevoegd
+    - recipes data toegevoegd aan toevoeg en weergave pagina
     - search recipe pagina toegevoegd
 
 PROBLEEM
@@ -196,3 +197,25 @@ https://stackoverflow.com/questions/38732639/accessing-object-in-returned-promis
 
 https://capacitorjs.com/docs/apis/camera
 https://github.com/ionic-team/capacitor
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+WEEK 8
+
+WAT DOEN
+    - add recipe pagina logica toevoegen tegen lege velden
+    - favoriete recepten uitwerken
+    - my recipes pagina start uitwerking
+    - Fix foto nemen met gsm
+    - kijken voor deployment
+
+GEDAAN
+
+PROBLEEM
+
+LINKS / COMMANDS / BIJHOUDEN
+chat:
+https://firebase.google.com/codelabs/firebase-web?authuser=0#0
+
+
+

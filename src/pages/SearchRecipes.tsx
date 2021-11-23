@@ -3,29 +3,59 @@ import {
     IonRow,
     IonContent,
     IonHeader,
-    IonIcon, IonItem, IonLabel,
-    IonPage, IonRadio, IonRadioGroup,
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonPage,
+    IonRadio,
+    IonRadioGroup,
     IonSearchbar,
-    IonGrid, IonButton, IonText, IonTextarea, IonList
+    IonGrid,
+    IonButton,
+    IonText,
+    IonTextarea,
+    IonList,
+    IonCard,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
+    IonCardContent
 } from '@ionic/react';
 import styles from "./SearchRecipes.module.css";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../components/Header";
 import {funnel, funnelOutline} from 'ionicons/icons';
-import {auth} from "../firebase/firebase.utils";
+import {auth, db} from "../firebase/firebase.utils";
+import {Recipe, toRecipe} from "../models/recipe";
+import {useAuth} from "../auth";
 
 const SearchRecipes: React.FC = () => {
-    const [funnelOn, setFunnelOn] = useState(false);
-    const [showSearchOnIngr, setShowSearchOnIngr] = useState(false);
+    const { userId } = useAuth();
+    const [recipes, setRecipes] = useState<Recipe[]>([]);
+    const [hideCategories, setHideCategories] = useState(true);
+    const [hideSearchOnIngr, setHideSearchOnIngr] = useState(true);
     const [ingredients, setIngredients] = useState('');
+    const [searchText, setSearchText] = useState('');
 
     const clickFunnel = () => {
-        setFunnelOn(!funnelOn);
+        setHideCategories(!hideCategories);
     }
 
     const showSearchOnIngredients = () => {
-        setShowSearchOnIngr(!showSearchOnIngr);
+        setHideSearchOnIngr(!hideSearchOnIngr);
     }
+
+    useEffect(() => {
+        // const recipesRef = db
+        //     .collection('recipes')
+        //     .where("title", )
+        // ;
+        // return recipesRef.onSnapshot(({ docs }) => setRecipes(docs.map(toRecipe)));
+    }, [userId]);
+
+    useEffect(() => {
+
+    }, recipes)
 
     return (
         <IonPage>
@@ -34,10 +64,10 @@ const SearchRecipes: React.FC = () => {
             </IonHeader>
             <IonContent fullscreen>
                 <IonItem lines="none">
-                    <IonIcon icon={funnelOn? funnelOutline: funnel} onClick={clickFunnel}/>
-                    <IonSearchbar></IonSearchbar>
+                    <IonIcon icon={hideCategories? funnelOutline: funnel} onClick={clickFunnel}/>
+                    <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
                 </IonItem>
-                <IonItem lines="none" hidden={funnelOn} >
+                <IonItem lines="none" hidden={hideCategories} >
                     <IonRadioGroup allowEmptySelection={true} className={styles.centerx}>
                         <IonGrid>
                             <IonRow>
@@ -95,13 +125,22 @@ const SearchRecipes: React.FC = () => {
                         Of zoek op ingrediënten
                     </IonButton>
                 </IonItem>
-                <IonItem hidden={showSearchOnIngr} lines="none" className={[styles.center_textx , styles.centerx].join(" ")} >
+                <IonItem hidden={hideSearchOnIngr} lines="none" className={[styles.center_textx , styles.centerx].join(" ")} >
                     <IonList className={styles.centerx}>
                         <IonTextarea value={ingredients}
                                      onIonChange={(event) => setIngredients(event.detail.value)} placeholder={'Geef hier ingrediënten in, gescheiden door een komma'} autoGrow={true}/>
                         <IonButton color="dark">Zoek</IonButton>
                     </IonList>
                 </IonItem>
+                {recipes.map((entry) =>
+                    <IonCard routerLink={`/my/recipes/view/${entry.id}`} key={entry.id}>
+                        <img src={entry.photo} alt={entry.title}/>
+                        <IonCardHeader>
+                            <IonCardSubtitle>{entry.userName}</IonCardSubtitle>
+                            <IonCardTitle>{entry.title}</IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>{entry.description}</IonCardContent>
+                    </IonCard>)}
             </IonContent>
         </IonPage>
     );
