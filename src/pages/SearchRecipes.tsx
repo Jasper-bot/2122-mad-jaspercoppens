@@ -36,6 +36,7 @@ const SearchRecipes: React.FC = () => {
     const [hideSearchOnIngr, setHideSearchOnIngr] = useState(true);
     const [ingredients, setIngredients] = useState('');
     const [searchText, setSearchText] = useState('');
+    const [category, setCategory] = useState('');
 
     const clickFunnel = () => {
         setHideCategories(!hideCategories);
@@ -46,16 +47,22 @@ const SearchRecipes: React.FC = () => {
     }
 
     useEffect(() => {
-        // const recipesRef = db
-        //     .collection('recipes')
-        //     .where("title", )
-        // ;
-        // return recipesRef.onSnapshot(({ docs }) => setRecipes(docs.map(toRecipe)));
-    }, [userId]);
+        if(searchText != ''){
+            const recipesRef = db
+                .collection('recipes')
+                .where("title", "==", searchText );
+            return recipesRef.onSnapshot(({ docs }) => setRecipes(docs.map(toRecipe)));
+        }
+        if(searchText == ''){
+            const recipesRef = db
+                .collection('recipes');
+            return recipesRef.onSnapshot(({ docs }) => setRecipes(docs.map(toRecipe)));
+        }
+    }, [searchText]);
 
-    useEffect(() => {
-
-    }, recipes)
+    // useEffect(() => {
+    //     recipes
+    // }, [category])
 
     return (
         <IonPage>
@@ -68,7 +75,7 @@ const SearchRecipes: React.FC = () => {
                     <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
                 </IonItem>
                 <IonItem lines="none" hidden={hideCategories} >
-                    <IonRadioGroup allowEmptySelection={true} className={styles.centerx}>
+                    <IonRadioGroup allowEmptySelection={true} className={styles.centerx} value={category} onIonChange={e => setCategory(e.detail.value)}>
                         <IonGrid>
                             <IonRow>
                                 <IonCol>
