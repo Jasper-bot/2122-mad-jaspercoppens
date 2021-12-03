@@ -8,6 +8,7 @@ interface Auth {
     loggedIn: boolean;
     userId?: string;
     userName?: string;
+    favoriteRecipes?: string[];
 }
 
 interface AuthInit{
@@ -36,7 +37,8 @@ export function useAuthInit(): AuthInit {
                         auth:  {
                             loggedIn: true,
                             userId: firebaseUser.uid,
-                            userName: user
+                            userName: user.username,
+                            favoriteRecipes: user.favoriteRecipes
                     }});
                 })
             } else {
@@ -54,5 +56,5 @@ async function read(id) {
         .doc(id)
         .get();
     if (response === null || response === undefined) return null;
-    return await response.data().username;
+    return await response.data();
 }

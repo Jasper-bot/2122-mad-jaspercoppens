@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import {AuthContext, useAuthInit} from "./auth";
+import Test from "./pages/test";
 
 //</editor-fold>
 
@@ -41,6 +42,9 @@ const App: React.FC = () => {
                         </Route>
                         <Route exact path="/">
                             <Redirect to="/login"/>
+                        </Route>
+                        <Route exact path={"/test"}>
+                            <Test />
                         </Route>
                         <Route>
                             <NotFoundPage/>

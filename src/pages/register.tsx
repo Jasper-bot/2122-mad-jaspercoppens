@@ -56,7 +56,8 @@ const Register: React.FC = ({  }) => {
     const addToDatabase = (userId) => {
         db.collection("users").doc(userId).set({
                 username: username,
-                email: email
+                email: email,
+                favoriteRecipes: []
         });
     }
 

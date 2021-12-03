@@ -34,6 +34,7 @@ async function savePhoto(blobUrl, idNewRecipe) {
 }
 
 const AddRecipe: React.FC = () => {
+    const [errors, setErrors] = useState({isValid: true, errorMessages: []})
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
@@ -60,17 +61,41 @@ const AddRecipe: React.FC = () => {
         return steps.split("\n\n");
     }
 
+    const addErrorMessage = (errorMessage) => {
+        let joined = errors.errorMessages.concat(errorMessage);
+        setErrors({ isValid: false, errorMessages: joined });
+    }
+
+    const errorCheck = async (ingredientsArray, stepsArray) => {
+        console.log('in errorcheck');
+        setErrors({isValid: true, errorMessages: []});
+        const categories = ["Vis", "Vlees", "Veggie", "Dessert", "Andere"];
+        let numberOfPersonsNumber = Number(numberOfPersons);
+        if (title.length < 5) await addErrorMessage('Gebruik minstens vijf karakters voor de titel.');
+        if (description.length < 20) await addErrorMessage('Gebruik minstens 20 karakters voor de beschrijving.');
+        if (!categories.includes(category)) await addErrorMessage("Je hebt een foute of geen categorie geselecteerd.");
+        if (isNaN(numberOfPersonsNumber)) await addErrorMessage("Je moet een numerieke waarde ingeven bij aantal personen.");
+        if (numberOfPersonsNumber < 0 || numberOfPersonsNumber > 100) await addErrorMessage("Je aantal personen moet een getal tussen 1 en 100 zijn.");
+        if (ingredientsArray.length < 3) await addErrorMessage("Geef minstens 3 ingrediënten in.");
+        if (stepsArray.length < 3 ) await addErrorMessage("Geef minstens 3 stappen op.");
+        if (photo == "/assets/images/addImage.png") await  addErrorMessage("Stel een eigen foto in.");
+        console.log(errors);
+    }
+
     const handleAddRecipe = async () => {
         const recipesRef = db.collection('recipes');
         const steps = getStepsArray();
         const ingredients = getIngredientsArray();
-        const recipeData = { title, description, userId, userName, photo, steps, ingredients, category};
-        const recipeRef = await recipesRef.add(recipeData);
+        await errorCheck(ingredients, steps);
+        if(errors.isValid){
+            const recipeData = { title, description, userId, userName, photo, steps, ingredients, category};
+            const recipeRef = await recipesRef.add(recipeData);
 
-        if (recipeData.photo.startsWith('blob:')){
-            await savePhoto(photo, recipeRef.id);
+            if (recipeData.photo.startsWith('blob:')){
+                await savePhoto(photo, recipeRef.id);
+            }
+            history.goBack();
         }
-        history.goBack();
     }
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,6 +120,11 @@ const AddRecipe: React.FC = () => {
             </IonHeader>
             <IonContent class="ion-padding">
                 <IonList>
+                    {!errors.isValid &&
+                            errors.errorMessages.map((entry, index) =>
+                                <IonItem key={index}>{entry.valueOf()}</IonItem>
+                            )
+                    }
                     <IonItem lines="inset">
                         <IonLabel position={"stacked"}>Title</IonLabel>
                         <IonInput value={title}
@@ -148,7 +178,7 @@ const AddRecipe: React.FC = () => {
                     <IonItem lines="inset">
                         <IonLabel position={"stacked"}>Ingrediënten</IonLabel>
                         <IonTextarea value={ingredients}
-                                     onIonChange={(event) => setIngredients(event.detail.value)} placeholder={'Geef hier het aantal ingrediënten in voor ' + {numberOfPersons}  + ' personen, gescheiden door een komma.'} autoGrow={true}/>
+                                     onIonChange={(event) => setIngredients(event.detail.value)} placeholder={'Geef hier het aantal ingrediënten in voor ' + numberOfPersons  + ' personen, gescheiden door een komma.'} autoGrow={true}/>
                     </IonItem>
                     <IonItem lines="inset">
                         <IonLabel position={"stacked"}>Stappen</IonLabel>

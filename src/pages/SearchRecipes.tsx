@@ -60,10 +60,6 @@ const SearchRecipes: React.FC = () => {
         }
     }, [searchText]);
 
-    // useEffect(() => {
-    //     recipes
-    // }, [category])
-
     return (
         <IonPage>
             <IonHeader>

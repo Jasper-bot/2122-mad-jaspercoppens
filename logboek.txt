@@ -211,13 +211,28 @@ WAT DOEN
 
 GEDAAN
     - dark mode trigger aan account pagina toegevoegd
-
+    - my recipes pagina uitgewerkt
+    - alle fotos onder bepaalde directory opgehaald
+    - recept toevoegen en verwijderen aan favorieten aangemaakt
 
 PROBLEEM
 
 LINKS / COMMANDS / BIJHOUDEN
+form rework:
+https://dev.to/aaronksaunders/video-using-react-hook-form-field-array-in-a-modal-form-15l8
 chat:
 https://firebase.google.com/codelabs/firebase-web?authuser=0#0
+
+
+TODO:
+form validation bij addRecipe
+eigen recepten pagina
+favoriete recepten pagina
+chat
+badges (?)
+regels voor databank in firebase
+search pagina (samen laten maken met alle recepten pagina)
+
 
 
 

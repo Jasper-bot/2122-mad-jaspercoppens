@@ -24,9 +24,9 @@ const AllRecipes: React.FC = () => {
         return recipesRef.onSnapshot(({ docs }) => setRecipes(docs.map(toRecipe)));
         }, [userId]);
 
-    useEffect(() => {
-
-    }, recipes)
+    // useEffect(() => {
+    //
+    // }, recipes)
 
     return (
         <IonPage>

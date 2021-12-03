@@ -9,11 +9,12 @@ import {
     IonPage, IonRow, IonText,
 } from '@ionic/react';
 import {db, storage} from '../firebase/firebase.utils';
-import { ref, listAll } from "firebase/storage";
+import { ref, listAll, getDownloadURL } from "firebase/storage";
+import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import React, {useEffect, useRef, useState} from "react";
 import {useParams} from "react-router";
 import {Recipe, toRecipe} from "../models/recipe";
-import {chatbubble, heartOutline} from "ionicons/icons";
+import {chatbubble, heart, heartOutline} from "ionicons/icons";
 import Header from "../components/Header";
 import styles from "./RecipePage.module.css";
 import {useAuth} from "../auth";
@@ -31,18 +32,20 @@ async function savePhoto(blobUrl, recipeId, uploaderName) {
 }
 
 const RecipePage: React.FC = () => {
-    const { userName } = useAuth();
-    const { id } = useParams<RouteParams>();
+    const { userName, favoriteRecipes, userId } = useAuth();
+    const { id } = useParams<RouteParams>() ;
     const [recipe, setRecipe] = useState<Recipe>();
     const [photo, setPhoto] = useState('/assets/images/addImage.png');
-    const [pictures, setPictures] = useState('');
+    const [pictures, setPictures] = useState([]);
     const [uploadMessage, setUploadMessage] = useState('');
+    const [favorite, setFavorite] = useState(false);
 
     const fileInputRef = useRef<HTMLInputElement>();
 
     useEffect(() => {
         const recipeRef = db.collection('recipes').doc(id);
         recipeRef.get().then ((doc) => setRecipe(toRecipe(doc)));
+        if(favoriteRecipes.includes(id)) setFavorite(true);
     }, [id]);
 
     useEffect(() => () => {
@@ -51,23 +54,20 @@ const RecipePage: React.FC = () => {
         }
     }, [photo]);
 
-    // useEffect(() => {
-    //     const listRef = ref(storage, `images/${recipe.id}`);
-    //     let picturesList;
-    //     // Find all the prefixes and items.
-    //     listAll(listRef)
-    //         .then((res) => {
-    //             res.items.forEach((itemRef) => {
-    //                 // All the items under listRef.
-    //                 picturesList.push(itemRef)
-    //             });
-    //         }).catch((error) => {
-    //         // Uh-oh, an error occurred!
-    //     });
-    //
-    //     setPictures(picturesList);
-    //     console.log(pictures);
-    // },[]);
+    useEffect(() => {
+        storage.ref().child(`images/${id}`).listAll()
+            .then(res => {
+                console.log(res);
+                res.items.forEach((item) => {
+                    item.getDownloadURL().then((url) => {
+                        setPictures(arr => [...arr, url]);
+                    })
+                })
+            }).catch(err => {
+            alert(err.message);
+        });
+
+    },[id]);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if(event.target.files.length > 0) {
@@ -89,6 +89,21 @@ const RecipePage: React.FC = () => {
         }
     }
 
+    const changeFavorite = async () => {
+        const userRef = db.collection('users').doc(userId);
+        if(favorite) {
+           await updateDoc(userRef, {
+                favoriteRecipes: arrayRemove(id)
+           });
+        } else {
+            //voeg toe aan de array
+            await updateDoc(userRef, {
+                favoriteRecipes: arrayUnion(id)
+            });
+        }
+        setFavorite(!favorite);
+    }
+
     return (
         <IonPage >
             <IonHeader>
@@ -101,7 +116,7 @@ const RecipePage: React.FC = () => {
                             <h2>{recipe?.title}</h2>
                         </IonCol>
                         <IonCol>
-                            <IonIcon icon={heartOutline} className={styles.heart}/>
+                            <IonButton onClick={changeFavorite}><IonIcon icon={favorite? heart : heartOutline} className={styles.heart}/></IonButton>
                         </IonCol>
                     </IonRow>
                     <IonRow>
@@ -141,7 +156,7 @@ const RecipePage: React.FC = () => {
                     {recipe?.steps.map((entry, i) =>
                         <IonItem key={entry.valueOf()}>
                             <IonLabel>
-                                <p>
+                                <p className="ion-text-wrap">
                                     {i += 1}: {entry.valueOf()}
                                 </p>
                             </IonLabel>
@@ -152,7 +167,9 @@ const RecipePage: React.FC = () => {
                     Fotos
                 </IonListHeader>
                 <IonList>
-                    <p>hier fotos laden vanuit de storage</p>
+                    {pictures.map((val, index) =>
+                        <img src={val.valueOf()} alt={val.valueOf()} key={index}/>
+                    )}
                 </IonList>
                 <IonItem lines="inset">
                     <IonLabel position={"stacked"}>Foto</IonLabel>
