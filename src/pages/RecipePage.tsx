@@ -46,7 +46,7 @@ const RecipePage: React.FC = () => {
         const recipeRef = db.collection('recipes').doc(id);
         recipeRef.get().then ((doc) => setRecipe(toRecipe(doc)));
         if(favoriteRecipes.includes(id)) setFavorite(true);
-    }, [id]);
+    }, [id, favoriteRecipes]);
 
     useEffect(() => () => {
         if(photo.startsWith('blob:')){
@@ -55,9 +55,9 @@ const RecipePage: React.FC = () => {
     }, [photo]);
 
     useEffect(() => {
+        setPictures([]);
         storage.ref().child(`images/${id}`).listAll()
             .then(res => {
-                console.log(res);
                 res.items.forEach((item) => {
                     item.getDownloadURL().then((url) => {
                         setPictures(arr => [...arr, url]);
@@ -66,7 +66,6 @@ const RecipePage: React.FC = () => {
             }).catch(err => {
             alert(err.message);
         });
-
     },[id]);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +95,6 @@ const RecipePage: React.FC = () => {
                 favoriteRecipes: arrayRemove(id)
            });
         } else {
-            //voeg toe aan de array
             await updateDoc(userRef, {
                 favoriteRecipes: arrayUnion(id)
             });
@@ -116,7 +114,7 @@ const RecipePage: React.FC = () => {
                             <h2>{recipe?.title}</h2>
                         </IonCol>
                         <IonCol>
-                            <IonButton onClick={changeFavorite}><IonIcon icon={favorite? heart : heartOutline} className={styles.heart}/></IonButton>
+                            <IonItem lines="none" onClick={changeFavorite}><IonIcon icon={favorite? heart : heartOutline} className={styles.heart}/></IonItem>
                         </IonCol>
                     </IonRow>
                     <IonRow>
@@ -171,7 +169,7 @@ const RecipePage: React.FC = () => {
                         <img src={val.valueOf()} alt={val.valueOf()} key={index}/>
                     )}
                 </IonList>
-                <IonItem lines="inset">
+                <IonItem lines="none">
                     <IonLabel position={"stacked"}>Foto</IonLabel>
                     <IonText color="warning">
                         <p>{uploadMessage}</p>

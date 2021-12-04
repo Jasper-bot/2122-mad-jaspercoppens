@@ -222,16 +222,19 @@ form rework:
 https://dev.to/aaronksaunders/video-using-react-hook-form-field-array-in-a-modal-form-15l8
 chat:
 https://firebase.google.com/codelabs/firebase-web?authuser=0#0
+Deployment:
+https://www.youtube.com/watch?v=lCcBEDPTk4o
 
 
 TODO:
 form validation bij addRecipe
-eigen recepten pagina
-favoriete recepten pagina
+favoriete recepten pagina: na klikken op recept: menubar favo blauw blijven
 chat
+Lay out account pagina
 badges (?)
 regels voor databank in firebase
 search pagina (samen laten maken met alle recepten pagina)
+fix header
 
 
 

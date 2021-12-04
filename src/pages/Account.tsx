@@ -28,7 +28,6 @@ const Account: React.FC = () => {
             </IonHeader>
             <IonContent fullscreen>
                 <IonTitle>Welcome {userName}</IonTitle>
-                <IonButton color={"warning"}>tst</IonButton>
                 <IonItem>
                     <IonIcon slot="start" icon={moon} />
                     <IonLabel>Dark Mode</IonLabel>
