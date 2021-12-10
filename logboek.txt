@@ -214,6 +214,7 @@ GEDAAN
     - my recipes pagina uitgewerkt
     - alle fotos onder bepaalde directory opgehaald
     - recept toevoegen en verwijderen aan favorieten aangemaakt
+    - deployment op netlify
 
 PROBLEEM
 
@@ -225,6 +226,23 @@ https://firebase.google.com/codelabs/firebase-web?authuser=0#0
 Deployment:
 https://www.youtube.com/watch?v=lCcBEDPTk4o
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+WEEK 9
+WAT DOEN
+    - filter laten werken en verhuizen naar all recipes pagina
+    - form validation bij addRecipe
+    - account pagina
+
+GEDAAN
+    - Search recipes bar toegevoegd bij all recipes
+    - search recipes pagina weg
+    - search recipes filter voor title en category
+
+
+LINKS / COMMANDS / BIJHOUDEN
+
+https://stackoverflow.com/questions/31831651/javascript-filter-array-multiple-conditions
 
 TODO:
 form validation bij addRecipe
@@ -235,7 +253,4 @@ badges (?)
 regels voor databank in firebase
 search pagina (samen laten maken met alle recepten pagina)
 fix header
-
-
-
-
+foto toevoegen bij recept is nog wa buggy e ja

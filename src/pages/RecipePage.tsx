@@ -36,7 +36,8 @@ const RecipePage: React.FC = () => {
     const { id } = useParams<RouteParams>() ;
     const [recipe, setRecipe] = useState<Recipe>();
     const [photo, setPhoto] = useState('/assets/images/addImage.png');
-    const [pictures, setPictures] = useState([]);
+    const [previousPhoto, setPreviousPhoto] = useState('/assets/images/addImage.png');
+    const [pictures, setPictures] = useState({urls: [], names: []});
     const [uploadMessage, setUploadMessage] = useState('');
     const [favorite, setFavorite] = useState(false);
 
@@ -46,7 +47,7 @@ const RecipePage: React.FC = () => {
         const recipeRef = db.collection('recipes').doc(id);
         recipeRef.get().then ((doc) => setRecipe(toRecipe(doc)));
         if(favoriteRecipes.includes(id)) setFavorite(true);
-    }, [id, favoriteRecipes]);
+    }, [id]);
 
     useEffect(() => () => {
         if(photo.startsWith('blob:')){
@@ -55,18 +56,21 @@ const RecipePage: React.FC = () => {
     }, [photo]);
 
     useEffect(() => {
-        setPictures([]);
+        setPictures({urls: [], names: []});
         storage.ref().child(`images/${id}`).listAll()
             .then(res => {
                 res.items.forEach((item) => {
-                    item.getDownloadURL().then((url) => {
-                        setPictures(arr => [...arr, url]);
-                    })
+                    if(item.name  != id) {
+                        let name = getName(item.name);
+                        item.getDownloadURL().then((url) => {
+                            setPictures(prevState => ({urls: [...prevState.urls, url], names: [...prevState.names, name]}));
+                        });
+                    }
                 })
             }).catch(err => {
             alert(err.message);
         });
-    },[id]);
+    },[id, uploadMessage]);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if(event.target.files.length > 0) {
@@ -76,15 +80,22 @@ const RecipePage: React.FC = () => {
         }
     }
 
+    const getName = (name) => {
+        return name.substring(0, name.indexOf("."));
+    }
+
     const handleAddPhoto = async () => {
-        if(photo == '/assets/images/addImage.png'){
-            setUploadMessage('Je hebt geen foto geselecteerd');
-        }
-        try {
-            await savePhoto(photo, id, userName);
-            setUploadMessage('foto added succesfully');
-        }catch (e) {
-            setUploadMessage(e.message);
+        if(photo == previousPhoto){
+            setUploadMessage('Je hebt geen foto geselecteerd of je hebt deze foto al geüploadt.');
+        } else {
+            try {
+                await savePhoto(photo, id, userName);
+            }catch (e) {
+                setUploadMessage(e.message);
+            } finally {
+                setPreviousPhoto(photo);
+                setUploadMessage('foto added succesfully');
+            }
         }
     }
 
@@ -164,13 +175,21 @@ const RecipePage: React.FC = () => {
                 <IonListHeader>
                     Fotos
                 </IonListHeader>
+                {pictures.urls.length == 0 &&
+                <IonText color={"primary"}>
+                    <p>Er zijn nog geen foto's toegevoegd aan dit recept door andere gebruikers. Voeg als eerste een foto toe!</p>
+                </IonText>
+                }
                 <IonList>
-                    {pictures.map((val, index) =>
-                        <img src={val.valueOf()} alt={val.valueOf()} key={index}/>
+                    {pictures.urls.map((val, index) =>
+                        <div key={index}>
+                            <img src={val.valueOf()} alt={val.valueOf()}/>
+                            <p>Foto geplaatst door: {pictures.names[index]}</p>
+                        </div>
                     )}
                 </IonList>
                 <IonItem lines="none">
-                    <IonLabel position={"stacked"}>Foto</IonLabel>
+                    <IonLabel position={"stacked"}>Upload een nieuwe foto:</IonLabel>
                     <IonText color="warning">
                         <p>{uploadMessage}</p>
                     </IonText>
