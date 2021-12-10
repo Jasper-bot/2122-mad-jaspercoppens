@@ -237,7 +237,7 @@ WAT DOEN
 GEDAAN
     - Search recipes bar toegevoegd bij all recipes
     - search recipes pagina weg
-    - search recipes filter voor title en category
+    - search recipes filter voor title  category en ingredients
 
 
 LINKS / COMMANDS / BIJHOUDEN

@@ -15,7 +15,7 @@ import React, {useEffect, useState} from "react";
 import {Recipe, toRecipe} from "../models/recipe";
 import Header from "../components/Header";
 import {useAuth} from "../auth";
-import {funnel, funnelOutline} from "ionicons/icons";
+import {filterCircle, funnel, funnelOutline} from "ionicons/icons";
 import styles from "./SearchRecipes.module.css";
 import {title} from "@ionic/cli/lib/color";
 
@@ -37,21 +37,38 @@ const AllRecipes: React.FC = () => {
         }, [userId]);
 
     useEffect(() => {
+        //verwijder hoofdletters
+        //verwijder witruimte
         let filter = {
             title: searchText,
             ingredients: getIngredientsArray(),
             category: category
         }
 
-        // @TODO filteren op ingredienten
         let newRecipes = allRecipes.filter(obj =>
             (filter.title === "" || filter.title === undefined || obj.title.includes(filter.title) ) &&
-            (filter.category === "" || filter.category === undefined || obj.category === filter.category));
+            (filter.category === "" || filter.category === undefined || obj.category === filter.category) &&
+            (filter.ingredients === undefined || filter.ingredients[0] === "" || isSubset(obj.ingredients, filter.ingredients)));
 
         setRecipes(newRecipes);
     }, [searchText, category, ingredients]);
 
+    // function isSubset(array1, array2) {
+    //     return array2.every(function (element) {
+    //         return array1.includes(element);
+    //     });
+    // }
+
+    // returns true if array2 is a subset of array1
+    const isSubset = (array1, array2) => {
+        return array2.every(function (element) {
+            return array1.includes(element);
+        });
+    }
+
     const getIngredientsArray = () => {
+        //verwijder hoofdletters
+        //verwijder witruimte
         return  ingredients.split(',');
     }
 

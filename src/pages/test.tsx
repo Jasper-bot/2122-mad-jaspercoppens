@@ -31,6 +31,23 @@ const Test: React.FC = () => {
         console.log(errors);
     }
 
+    function isSubset(array1, array2) {
+        // returns true if array2 is a subset of array1
+
+        return array2.every(function (element) {
+            return array1.includes(element);
+        });
+    }
+
+    const test2 = () => {
+    let array2 = ['sauzen'];
+    let array1 = ['vis', 'frieten', 'groenten', 'sauzen'];
+
+    console.log(array1, array2);
+
+    console.log(isSubset(array1, array2));
+}
+
     return (
         <IonPage>
             <IonHeader>
@@ -46,6 +63,9 @@ const Test: React.FC = () => {
                 </IonList>
                 <IonButton onClick={test}>
                     test
+                </IonButton>
+                <IonButton onClick={test2}>
+                    test2
                 </IonButton>
             </IonContent>
         </IonPage>
