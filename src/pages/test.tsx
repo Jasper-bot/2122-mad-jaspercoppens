@@ -15,6 +15,7 @@ import { auth } from '../firebase/firebase.utils.js';
 import Header from "../components/Header";
 import {useAuth} from "../auth";
 import {moon} from "ionicons/icons";
+import {removeWhitespaceFromArray, removeWhitespaceFromString, stringToArrayByComma} from "../helperfunctions";
 
 const Test: React.FC = () => {
     const { userName } = useAuth();
@@ -29,6 +30,12 @@ const Test: React.FC = () => {
         await addErrorMessage('1');
         await addErrorMessage('2');
         console.log(errors);
+    }
+
+    function test3(){
+        let array = ["vuur", "  aard e", "wzAZZEter  "];
+        let string = "   LKQD, qmDQFslkdfj,  DQSFq ,d     s, fqsldf mlmlkqj    ,";
+        console.log(stringToArrayByComma(string));
     }
 
     function isSubset(array1, array2) {
@@ -66,6 +73,9 @@ const Test: React.FC = () => {
                 </IonButton>
                 <IonButton onClick={test2}>
                     test2
+                </IonButton>
+                <IonButton onClick={test3}>
+                    test3
                 </IonButton>
             </IonContent>
         </IonPage>

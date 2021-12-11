@@ -18,11 +18,12 @@ import {useAuth} from "../auth";
 const Favorites: React.FC = () => {
     const { userId, favoriteRecipes } = useAuth();
     const [recipes, setRecipes] = useState<Recipe[]>([]);
+
     useEffect(() => {
         const recipesRef = db.collection('recipes');
         favoriteRecipes.forEach( el => {
             let recipeRef = recipesRef.doc(el);
-            recipeRef.get().then ((doc) => {
+            recipeRef.onSnapshot ((doc) => {
                 setRecipes(arr => [...arr, toRecipe(doc)]);
             });
         })
@@ -35,8 +36,8 @@ const Favorites: React.FC = () => {
             </IonHeader>
             <IonContent fullscreen>
                 <IonTitle className="ion-padding">Favoriete Recepten</IonTitle>
-                {recipes.map((entry) =>
-                    <IonCard routerLink={`/my/recipes/view/${entry.id}`} key={entry.id}>
+                {recipes.map((entry, index) =>
+                    <IonCard routerLink={`/my/recipes/view/${entry.id}`} key={index}>
                         <img src={entry.photo} alt={entry.title}/>
                         <IonCardHeader>
                             <IonCardSubtitle>{entry.userName}</IonCardSubtitle>

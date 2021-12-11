@@ -49,12 +49,11 @@ export function useAuthInit(): AuthInit {
     return authInit;
 }
 
-//kan generiek gemaakt worden door collection mee te geven als parameter
 async function read(id) {
     let response = await db
         .collection("users")
         .doc(id)
         .get();
     if (response === null || response === undefined) return null;
-    return await response.data();
+    return response.data();
 }

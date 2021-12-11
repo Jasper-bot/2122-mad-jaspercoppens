@@ -233,24 +233,28 @@ WAT DOEN
     - filter laten werken en verhuizen naar all recipes pagina
     - form validation bij addRecipe
     - account pagina
+    - helper functies bundelen
 
 GEDAAN
     - Search recipes bar toegevoegd bij all recipes
     - search recipes pagina weg
     - search recipes filter voor title  category en ingredients
+    - form validation bij add recipe in orde
 
 
 LINKS / COMMANDS / BIJHOUDEN
 
 https://stackoverflow.com/questions/31831651/javascript-filter-array-multiple-conditions
 
+
+DEADLINE 25/01
+
 TODO:
-form validation bij addRecipe
 favoriete recepten pagina: na klikken op recept: menubar favo blauw blijven
 chat
 Lay out account pagina
 badges (?)
 regels voor databank in firebase
-search pagina (samen laten maken met alle recepten pagina)
 fix header
 foto toevoegen bij recept is nog wa buggy e ja
+refresh bij favorieten

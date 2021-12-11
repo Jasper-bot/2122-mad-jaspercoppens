@@ -18,6 +18,7 @@ import {useAuth} from "../auth";
 import {filterCircle, funnel, funnelOutline} from "ionicons/icons";
 import styles from "./SearchRecipes.module.css";
 import {title} from "@ionic/cli/lib/color";
+import {isSubset} from "../helperfunctions";
 
 const AllRecipes: React.FC = () => {
     const { userId } = useAuth();
@@ -40,35 +41,22 @@ const AllRecipes: React.FC = () => {
         //verwijder hoofdletters
         //verwijder witruimte
         let filter = {
-            title: searchText,
+            title: searchText.trim().toLowerCase(),
             ingredients: getIngredientsArray(),
             category: category
         }
 
+        console.log(filter);
+
         let newRecipes = allRecipes.filter(obj =>
-            (filter.title === "" || filter.title === undefined || obj.title.includes(filter.title) ) &&
+            (filter.title === "" || filter.title === undefined || obj.title.trim().toLowerCase().includes(filter.title) ) &&
             (filter.category === "" || filter.category === undefined || obj.category === filter.category) &&
             (filter.ingredients === undefined || filter.ingredients[0] === "" || isSubset(obj.ingredients, filter.ingredients)));
 
         setRecipes(newRecipes);
     }, [searchText, category, ingredients]);
 
-    // function isSubset(array1, array2) {
-    //     return array2.every(function (element) {
-    //         return array1.includes(element);
-    //     });
-    // }
-
-    // returns true if array2 is a subset of array1
-    const isSubset = (array1, array2) => {
-        return array2.every(function (element) {
-            return array1.includes(element);
-        });
-    }
-
     const getIngredientsArray = () => {
-        //verwijder hoofdletters
-        //verwijder witruimte
         return  ingredients.split(',');
     }
 
@@ -104,7 +92,7 @@ const AllRecipes: React.FC = () => {
                                         <IonLabel >
                                             Vis
                                         </IonLabel>
-                                        <IonRadio slot="start" value="vis" />
+                                        <IonRadio slot="start" value="Vis" />
                                     </IonItem>
                                 </IonCol>
                                 <IonCol>
@@ -156,7 +144,9 @@ const AllRecipes: React.FC = () => {
                 <IonItem hidden={hideSearchOnIngr} lines="none" className={[styles.center_textx , styles.centerx].join(" ")} >
                     <IonList className={styles.centerx}>
                         <IonTextarea value={ingredients}
-                                     onIonChange={(event) => setIngredients(event.detail.value)} placeholder={'Geef hier ingrediënten in, gescheiden door een komma'} autoGrow={true}/>
+                                     onIonChange={(event) => setIngredients(event.detail.value)}
+                                     placeholder={'Geef hier ingrediënten in, gescheiden door een komma'}
+                                     autoGrow={true}/>
                         <IonButton color="dark">Zoek</IonButton>
                     </IonList>
                 </IonItem>
