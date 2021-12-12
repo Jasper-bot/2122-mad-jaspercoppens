@@ -6,7 +6,7 @@ export interface Recipe {
     title?: string;
     description?: string;
     photo?: string;
-    uploaderId?: string;
+    userId?: string;
     userName?: string;
     ingredients?: string[];
     steps?: string[];

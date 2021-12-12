@@ -240,7 +240,7 @@ GEDAAN
     - search recipes pagina weg
     - search recipes filter voor title  category en ingredients
     - form validation bij add recipe in orde
-
+    - Delete recipe bij eigen recepten toegevoegd
 
 LINKS / COMMANDS / BIJHOUDEN
 
@@ -258,3 +258,4 @@ regels voor databank in firebase
 fix header
 foto toevoegen bij recept is nog wa buggy e ja
 refresh bij favorieten
+Ionloading bij add recipe

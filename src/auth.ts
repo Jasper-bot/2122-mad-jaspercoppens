@@ -9,6 +9,7 @@ interface Auth {
     userId?: string;
     userName?: string;
     favoriteRecipes?: string[];
+    badges?;
 }
 
 interface AuthInit{
@@ -38,7 +39,8 @@ export function useAuthInit(): AuthInit {
                             loggedIn: true,
                             userId: firebaseUser.uid,
                             userName: user.username,
-                            favoriteRecipes: user.favoriteRecipes
+                            favoriteRecipes: user.favoriteRecipes,
+                            badges: user.badges
                     }});
                 })
             } else {

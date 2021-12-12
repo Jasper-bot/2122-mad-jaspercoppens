@@ -38,16 +38,12 @@ const AllRecipes: React.FC = () => {
         }, [userId]);
 
     useEffect(() => {
-        //verwijder hoofdletters
-        //verwijder witruimte
         let filter = {
             title: searchText.trim().toLowerCase(),
             ingredients: getIngredientsArray(),
             category: category
         }
-
         console.log(filter);
-
         let newRecipes = allRecipes.filter(obj =>
             (filter.title === "" || filter.title === undefined || obj.title.trim().toLowerCase().includes(filter.title) ) &&
             (filter.category === "" || filter.category === undefined || obj.category === filter.category) &&

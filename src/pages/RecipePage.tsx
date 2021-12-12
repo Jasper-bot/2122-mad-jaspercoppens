@@ -6,15 +6,15 @@ import {
     IonFabButton, IonGrid,
     IonHeader,
     IonIcon, IonItem, IonLabel, IonList, IonListHeader,
-    IonPage, IonRow, IonText,
+    IonPage, IonRow, IonText, useIonAlert,
 } from '@ionic/react';
 import {db, storage} from '../firebase/firebase.utils';
 import { ref, listAll, getDownloadURL } from "firebase/storage";
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, arrayRemove, deleteDoc } from "firebase/firestore";
 import React, {useEffect, useRef, useState} from "react";
-import {useParams} from "react-router";
+import {useHistory, useParams} from "react-router";
 import {Recipe, toRecipe} from "../models/recipe";
-import {chatbubble, heart, heartOutline} from "ionicons/icons";
+import {chatbubble, heart, heartOutline, text} from "ionicons/icons";
 import Header from "../components/Header";
 import styles from "./RecipePage.module.css";
 import {useAuth} from "../auth";
@@ -40,7 +40,9 @@ const RecipePage: React.FC = () => {
     const [pictures, setPictures] = useState({urls: [], names: []});
     const [uploadMessage, setUploadMessage] = useState('');
     const [favorite, setFavorite] = useState(false);
+    const [confirmDelete] = useIonAlert();
 
+    const history = useHistory();
     const fileInputRef = useRef<HTMLInputElement>();
 
     useEffect(() => {
@@ -113,6 +115,25 @@ const RecipePage: React.FC = () => {
         setFavorite(!favorite);
     }
 
+    const handleDelete = async () => {
+        const storageRef = storage.ref(`images/${id}`);
+        storageRef.listAll().then((listResults) => {
+            const promises = listResults.items.map((item) => {
+                return item.delete();
+            });
+            Promise.all(promises);
+        }).catch((error) => {
+            console.log("Error removing document:", error);
+            return;
+        });
+        await deleteDoc(doc(db, "recipes", id)).then(() => {
+                history.goBack();
+            }
+        ).catch((error) => {
+            console.log("Error removing document:", error);
+        });
+    }
+
     return (
         <IonPage >
             <IonHeader>
@@ -120,6 +141,19 @@ const RecipePage: React.FC = () => {
             </IonHeader>
             <IonContent class="ion-padding">
                 <IonGrid>
+                    {recipe?.userId === userId &&
+                        <IonRow className={["ion-align-items-center", "ion-justify-content-center"].join(" ")}>
+                            <IonCol offset="2">
+                                <IonButton color={"danger"} onClick={() => confirmDelete({
+                                    header:'aaaa',
+                                    message:'Ben je zeker dat je dit recept wil verwijderen?',
+                                    buttons:['Nee!', {text: 'Ja!', handler:handleDelete}]
+                                })
+
+                                }>Verwijder Recept</IonButton>
+                            </IonCol>
+                        </IonRow>
+                    }
                     <IonRow className={["ion-align-items-center", "ion-justify-content-center"].join(" ")} >
                         <IonCol offset="3">
                             <h2>{recipe?.title}</h2>
