@@ -163,7 +163,7 @@ const RecipePage: React.FC = () => {
                         </IonCol>
                     </IonRow>
                     <IonRow>
-                        <IonCol offset="3" class={"ion-no-padding"}>
+                        <IonCol offset="3">
                             <p  className={[styles.uploader].join(" ")} >Door {recipe?.userName }</p>
                         </IonCol>
                     </IonRow>

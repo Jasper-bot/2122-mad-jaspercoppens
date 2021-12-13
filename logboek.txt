@@ -250,12 +250,27 @@ https://stackoverflow.com/questions/31831651/javascript-filter-array-multiple-co
 DEADLINE 25/01
 
 TODO:
-favoriete recepten pagina: na klikken op recept: menubar favo blauw blijven
+1//
 chat
-Lay out account pagina
-badges (?)
 regels voor databank in firebase
+pwa
+recept bewerken
+
+2//
+badges
+Lay out account pagina
+Lay out recept toevoegen verbeteren
+Lay out titels verbeteren
+error handling controleren
+
+3//
+favoriete recepten pagina: na klikken op recept: menubar favo blauw blijven
 fix header
-foto toevoegen bij recept is nog wa buggy e ja
+foto toevoegen bij recept is soms buggy?
 refresh bij favorieten
 Ionloading bij add recipe
+IonLoading bij delete recipe
+
+optioneel:  ingredienten/stappen checkboxes geven
+            aantal personen aanpassen om ingredientenlijst te schalen
+            import/export van recepten
