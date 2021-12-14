@@ -261,7 +261,7 @@ badges
 Lay out account pagina
 Lay out recept toevoegen verbeteren
 Lay out titels verbeteren
-error handling controleren
+error handling controleren (try catch na readuser in auth.ts)
 
 3//
 favoriete recepten pagina: na klikken op recept: menubar favo blauw blijven

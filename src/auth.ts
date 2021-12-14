@@ -31,8 +31,8 @@ export function useAuthInit(): AuthInit {
     useEffect(() => {
         return firebaseAuth.onAuthStateChanged((firebaseUser) => {
             if(firebaseUser){
+                console.log(firebaseUser);
                 read(firebaseUser.uid).then((user) => {
-                    console.log("user: ",user);
                     setAuthInit({
                         loading: false,
                         auth:  {
