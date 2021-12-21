@@ -94,7 +94,8 @@ const AddRecipe: React.FC = () => {
             photo: photo,
             steps: removeWhitespaceFromArray(data.steps),
             ingredients: removeWhitespaceFromArray(data.ingredients),
-            category: data.category
+            category: data.category,
+            numberOfPersons: data.numberOfPersons
         };
 
         const recipeRef = await recipesRef.add(recipeData);

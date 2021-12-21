@@ -16,18 +16,32 @@ import Header from "../components/Header";
 import {useAuth} from "../auth";
 
 const Favorites: React.FC = () => {
-    const { userId, favoriteRecipes } = useAuth();
+    const { userId } = useAuth();
     const [recipes, setRecipes] = useState<Recipe[]>([]);
 
     useEffect(() => {
-        const recipesRef = db.collection('recipes');
-        favoriteRecipes.forEach( el => {
-            let recipeRef = recipesRef.doc(el);
-            recipeRef.onSnapshot ((doc) => {
-                setRecipes(arr => [...arr, toRecipe(doc)]);
-            });
+        const userRef = db.collection('users').doc(userId);
+        userRef.onSnapshot((data) => {
+            setRecipes( []);
+            const recipesRef = db.collection('recipes');
+            data.data().favoriteRecipes.forEach( el => {
+                let recipeRef = recipesRef.doc(el);
+                recipeRef.onSnapshot ((doc) => {
+                    setRecipes(arr => [...arr, toRecipe(doc)]);
+                });
+            })
         })
-    }, [userId, favoriteRecipes]);
+    }, [userId])
+
+    // useEffect(() => {
+    //     const recipesRef = db.collection('recipes');
+    //     favoriteRecipes.forEach( el => {
+    //         let recipeRef = recipesRef.doc(el);
+    //         recipeRef.onSnapshot ((doc) => {
+    //             setRecipes(arr => [...arr, toRecipe(doc)]);
+    //         });
+    //     })
+    // }, [userId, favoriteRecipes]);
 
     return (
         <IonPage>

@@ -57,7 +57,14 @@ const Register: React.FC = ({  }) => {
         db.collection("users").doc(userId).set({
                 username: username,
                 email: email,
-                favoriteRecipes: []
+                favoriteRecipes: [],
+                badges: {
+                    Dessert: [0,0],
+                    Veggie: [0,0],
+                    Vis: [0,0],
+                    Vlees: [0,0],
+                    Andere : [0,0]
+                }
         });
     }
 

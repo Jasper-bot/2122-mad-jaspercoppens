@@ -6,5 +6,5 @@ export interface User {
     email: string,
     username: string,
     favoriteRecipes?: string[];
-    badges?;
+    badges?:{Dessert: [], Veggie:[], Vis:[], Vlees:[]};
 }

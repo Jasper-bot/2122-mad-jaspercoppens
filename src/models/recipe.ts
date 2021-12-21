@@ -11,6 +11,7 @@ export interface Recipe {
     ingredients?: string[];
     steps?: string[];
     category?: string;
+    numberOfPersons?: number;
 }
 
 export function toRecipe(doc): Recipe {

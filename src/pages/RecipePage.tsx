@@ -115,6 +115,10 @@ const RecipePage: React.FC = () => {
         setFavorite(!favorite);
     }
 
+    const handleEdit = () => {
+        console.log("edit");
+    }
+
     const handleDelete = async () => {
         const storageRef = storage.ref(`images/${id}`);
         storageRef.listAll().then((listResults) => {
@@ -145,7 +149,7 @@ const RecipePage: React.FC = () => {
                         <IonRow className={["ion-align-items-center", "ion-justify-content-center"].join(" ")}>
                             <IonCol offset="2">
                                 <IonButton color={"danger"} onClick={() => confirmDelete({
-                                    header:'aaaa',
+                                    header:'Verwijder recept',
                                     message:'Ben je zeker dat je dit recept wil verwijderen?',
                                     buttons:['Nee!', {text: 'Ja!', handler:handleDelete}]
                                 })
@@ -153,6 +157,13 @@ const RecipePage: React.FC = () => {
                                 }>Verwijder Recept</IonButton>
                             </IonCol>
                         </IonRow>
+                    }
+                    {recipe?.userId === userId &&
+                    <IonRow className={["ion-align-items-center", "ion-justify-content-center"].join(" ")}>
+                        <IonCol offset="2">
+                            <IonButton color={"warning"} onClick={handleEdit}>Bewerk Recept</IonButton>
+                        </IonCol>
+                    </IonRow>
                     }
                     <IonRow className={["ion-align-items-center", "ion-justify-content-center"].join(" ")} >
                         <IonCol offset="3">
