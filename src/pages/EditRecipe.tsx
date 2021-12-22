@@ -26,13 +26,13 @@ import {
 import {removeWhitespaceFromArray, stringToArrayByComma, stringToArrayByNewline} from "../helperfunctions";
 import {Recipe, toRecipe} from "../models/recipe";
 
-async function savePhoto(blobUrl, idNewRecipe) {
-    const photoRef = storage.ref(`/images/${idNewRecipe}/${idNewRecipe}`);
+async function savePhoto(blobUrl, idRecipe) {
+    const photoRef = storage.ref(`/images/${idRecipe}/${idRecipe}`);
     const response = await fetch(blobUrl);
     const blob = await response.blob();
     const snapshot = await photoRef.put(blob);
     const url = await snapshot.ref.getDownloadURL();
-    await db.collection("recipes").doc(idNewRecipe).update({
+    await db.collection("recipes").doc(idRecipe).update({
         photo: url
     });
 }
@@ -93,31 +93,15 @@ const EditRecipe: React.FC = () => {
         userName: userName,
         photo:null
     });
-    let initialValues;
 
     useEffect(() => {
         const recipeRef = db.collection('recipes').doc(id);
         console.log(recipeRef);
         recipeRef.get().then ((doc) =>{
             setRecipe(toRecipe(doc));
+            setPhoto(doc.data().photo)
         });
     }, [id]);
-
-    useEffect(() => {
-        if(recipe) {
-            initialValues = {
-                title: recipe.title,
-                description: recipe.description,
-                userId: userId,
-                userName: recipe.userName,
-                photo: photo,
-                steps: recipe.steps,
-                ingredients: recipe.ingredients,
-                category: recipe.category,
-                numberOfPersons: recipe.numberOfPersons
-            }
-        }
-    }, [recipe])
 
     useEffect(() => () => {
         if(photo.startsWith('blob:')){
@@ -125,7 +109,7 @@ const EditRecipe: React.FC = () => {
         }
     }, [photo]);
 
-    const handleAddRecipe = async(data) => {
+    const handleEditRecipe = async(data) => {
         const recipesRef = db.collection('recipes');
         const recipeData = {
             title: data.title,
@@ -137,10 +121,10 @@ const EditRecipe: React.FC = () => {
             ingredients: removeWhitespaceFromArray(data.ingredients),
             category: data.category
         };
+        await recipesRef.doc(id).update(recipeData);
 
-        const recipeRef = await recipesRef.add(recipeData);
         if (recipeData.photo.startsWith('blob:')) {
-            await savePhoto(photo, recipeRef.id);
+            await savePhoto(photo, id);
         }
         history.goBack();
     }
@@ -161,7 +145,6 @@ const EditRecipe: React.FC = () => {
     }
 
     const handleReset = () => {
-
     }
 
     const getValues = () => recipe
@@ -176,7 +159,7 @@ const EditRecipe: React.FC = () => {
                 initialValues={getValues()}
                 validationSchema={validationSchema}
                 onSubmit={async(values, {resetForm}) => {
-                    await handleAddRecipe(values);
+                    await handleEditRecipe(values);
                     setPhoto('/assets/images/addImage.png');
                     resetForm();
                 }}

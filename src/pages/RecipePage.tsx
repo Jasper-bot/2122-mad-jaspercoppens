@@ -115,8 +115,8 @@ const RecipePage: React.FC = () => {
         setFavorite(!favorite);
     }
 
-    const handleEdit = () => {
-        console.log("edit");
+    const goToEdit = () => {
+        history.push(`/my/recipes/edit-recipe/${id}`)
     }
 
     const handleDelete = async () => {
@@ -161,7 +161,7 @@ const RecipePage: React.FC = () => {
                     {recipe?.userId === userId &&
                     <IonRow className={["ion-align-items-center", "ion-justify-content-center"].join(" ")}>
                         <IonCol offset="2">
-                            <IonButton color={"warning"} onClick={handleEdit}>Bewerk Recept</IonButton>
+                            <IonButton color={"warning"} onClick={goToEdit}>Bewerk Recept</IonButton>
                         </IonCol>
                     </IonRow>
                     }
