@@ -232,7 +232,7 @@ WEEK 9
 WAT DOEN
     - filter laten werken en verhuizen naar all recipes pagina
     - form validation bij addRecipe
-    - account pagina
+    - acc ount pagina
     - helper functies bundelen
 
 GEDAAN
@@ -251,6 +251,8 @@ WEEK 10
     - edit recipe
     - added firebase security lines
     - basic badges functionaliteit toegevoegd
+
+
 DEADLINE 25/01
 
 TODO:
@@ -258,10 +260,9 @@ TODO:
 chat
 regels voor databank in firebase voor data structuur
 pwa
-recept bewerken: foto in andere form doen
 
 2//
-badges lay out + verhogen bij foto toevoegen
+badges lay out
 Lay out account pagina
 Lay out recept toevoegen verbeteren
 Lay out titels verbeteren

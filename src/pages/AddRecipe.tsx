@@ -14,6 +14,7 @@ import Header from "../components/Header";
 import * as yup from "yup";
 import {FieldArray, Formik, Field} from 'formik';
 import {db, storage} from '../firebase/firebase.utils';
+import { increment } from "firebase/firestore";
 import {useAuth} from "../auth";
 import {useHistory} from "react-router";
 import styles from "./AddRecipe.module.css";
@@ -77,6 +78,7 @@ const AddRecipe: React.FC = () => {
     const {userId, userName}  = useAuth();
     const history = useHistory();
     const fileInputRef = useRef<HTMLInputElement>();
+    const [badgeCat, setBadgeCat] = useState('');
 
     useEffect(() => () => {
         if(photo.startsWith('blob:')){
@@ -102,7 +104,27 @@ const AddRecipe: React.FC = () => {
         if (recipeData.photo.startsWith('blob:')) {
              await savePhoto(photo, recipeRef.id);
         }
+        updateUserBadge(data.category);
         history.goBack();
+    }
+
+     const readBadges =async (id) => {
+        let response = await db
+            .collection("users")
+            .doc(id)
+            .get();
+        if (response === null || response === undefined) return null;
+        return response.data().badges;
+    }
+
+    const updateUserBadge = async (category) => {
+        readBadges(userId).then((data) => {
+            let newData = data;
+            newData[category][0] += 1;
+            db.collection("users").doc(userId).update({
+                badges: newData
+            });
+        })
     }
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -289,14 +311,6 @@ const AddRecipe: React.FC = () => {
                                     <IonButton type="submit">Voeg recept toe</IonButton>
                                 </IonItem>
                             </form>
-
-                            {/*<div style={{ fontSize: "smaller" }}>*/}
-                            {/*    <p>VALUES</p>*/}
-                            {/*    <pre>{JSON.stringify(formikProps.values, null, 2)}</pre>*/}
-
-                            {/*    <p>ERRORS</p>*/}
-                            {/*    <pre>{JSON.stringify(formikProps.errors, null, 2)} </pre>*/}
-                            {/*</div>*/}
                         </IonContent>
                     )}
 
@@ -305,7 +319,6 @@ const AddRecipe: React.FC = () => {
                 {/*    <IonButton onClick={handleAddRecipe}>Voeg toe</IonButton>*/}
                 {/*    /!*<IonLoading/>*!/*/}
                 {/*</IonRow>*/}
-
         </IonPage>
     );
 };

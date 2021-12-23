@@ -9,7 +9,7 @@ interface Auth {
     userId?: string;
     userName?: string;
     favoriteRecipes?: string[];
-    badges:{Dessert: [], Veggie:[], Vis:[], Vlees:[]};
+    badges?:{Dessert: [], Veggie:[], Vis:[], Vlees:[]};
 }
 
 interface AuthInit{
@@ -17,7 +17,7 @@ interface AuthInit{
     auth?: Auth;
 }
 
-export const AuthContext = React.createContext<Auth>({badges: {Dessert: [], Veggie: [], Vis: [], Vlees: []}, loggedIn: false});
+export const AuthContext = React.createContext<Auth>({loggedIn: false});
 
 // hooks
 // gebruikt door components om auth data te gebruiken
@@ -44,7 +44,7 @@ export function useAuthInit(): AuthInit {
                     }});
                 })
             } else {
-                setAuthInit({loading: false, auth: {loggedIn: false, badges:{Dessert: [], Veggie:[], Vis:[], Vlees:[]}}})
+                setAuthInit({loading: false, auth: {loggedIn: false}})
             }
         });
     }, []);

@@ -4,3 +4,7 @@
     text-decoration: underline;
     /*text-transform: none;*/
 }
+
+.icons {
+    max-width: 50px;
+}

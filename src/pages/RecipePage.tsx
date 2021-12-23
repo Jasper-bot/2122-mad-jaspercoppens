@@ -92,6 +92,7 @@ const RecipePage: React.FC = () => {
         } else {
             try {
                 await savePhoto(photo, id, userName);
+                await updateUserBadge(recipe.category);
             }catch (e) {
                 setUploadMessage(e.message);
             } finally {
@@ -100,6 +101,26 @@ const RecipePage: React.FC = () => {
             }
         }
     }
+
+    const readBadges =async (id) => {
+        let response = await db
+            .collection("users")
+            .doc(id)
+            .get();
+        if (response === null || response === undefined) return null;
+        return response.data().badges;
+    }
+
+    const updateUserBadge = async (category) => {
+        readBadges(userId).then((data) => {
+            let newData = data;
+            newData[category][1] += 1;
+            db.collection("users").doc(userId).update({
+                badges: newData
+            });
+        })
+    }
+
 
     const changeFavorite = async () => {
         const userRef = db.collection('users').doc(userId);
