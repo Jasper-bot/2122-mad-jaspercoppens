@@ -46,8 +46,10 @@ const RecipePage: React.FC = () => {
     const fileInputRef = useRef<HTMLInputElement>();
 
     useEffect(() => {
+        console.log("in effect");
         const recipeRef = db.collection('recipes').doc(id);
         recipeRef.get().then ((doc) => setRecipe(toRecipe(doc)));
+        //recipeRef.onSnapshot ((doc) => setRecipe(toRecipe(doc)));
         if(favoriteRecipes.includes(id)) setFavorite(true);
     }, [id]);
 
@@ -121,7 +123,6 @@ const RecipePage: React.FC = () => {
         })
     }
 
-
     const changeFavorite = async () => {
         const userRef = db.collection('users').doc(userId);
         if(favorite) {
@@ -152,7 +153,8 @@ const RecipePage: React.FC = () => {
             return;
         });
         await deleteDoc(doc(db, "recipes", id)).then(() => {
-                history.goBack();
+            //history.push(`/my/recipes`);
+            history.goBack();
             }
         ).catch((error) => {
             console.log("Error removing document:", error);

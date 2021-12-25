@@ -2,8 +2,8 @@ LOGBOEK Mobile Application Development
 Naam: Jasper Coppens
 Projectomschrijving:
 Een digitaal kookboek waar iedereen kan inloggen en recepten aan toevoegen. 
-Elk recept bevat een ingrediëntenlijst (aanpasbaar voor x aantal personen), beschrijving en foto's of een demonstratievideo. 
-Gebruikers kunnen de uploader van het recept berichten sturen of een verzoek tot live video chat om vragen te stellen.
+Elk recept bevat een ingrediëntenlijst, beschrijving en foto's of een demonstratievideo.
+Gebruikers kunnen de uploader van het recept berichten sturen om vragen te stellen.
 Ook bestaat de mogelijkheid om openbare reviews/reacties te plaatsen of foto's van uw uitvoering van een recept, na goedkeuring van de foto, te delen op de pagina van een recept. 
 Gebruikers kunnen favoriete recepten bewaren in een lijst of bepaalde categorieën volgen zodat ze meldingen krijgen van nieuwe recepten bij een categorie.
 Gebruikers kunnen ook een aantal ingrediënten ingeven en een overzicht krijgen van alle recepten die hiermee klaar te maken zijn.
@@ -232,7 +232,7 @@ WEEK 9
 WAT DOEN
     - filter laten werken en verhuizen naar all recipes pagina
     - form validation bij addRecipe
-    - acc ount pagina
+    - account pagina
     - helper functies bundelen
 
 GEDAAN
@@ -246,15 +246,21 @@ LINKS / COMMANDS / BIJHOUDEN
 
 https://stackoverflow.com/questions/31831651/javascript-filter-array-multiple-conditions
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
 WEEK 10
+GEDAAN
     - favorites update automatisch
-    - edit recipe
+    - edit recipe pagina
     - added firebase security lines
-    - basic badges functionaliteit toegevoegd
+    - badges functionaliteit toegevoegd
 
+LINKS / COMMANDS / BIJHOUDEN
+https://www.youtube.com/watch?v=eW5MdE3ZcAw
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 DEADLINE 25/01
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 TODO:
 1//
 chat
@@ -262,13 +268,14 @@ regels voor databank in firebase voor data structuur
 pwa
 
 2//
-badges lay out
+Afbeeldingen compresssss
 Lay out account pagina
 Lay out recept toevoegen verbeteren
 Lay out titels verbeteren
 error handling controleren (try catch na readuser in auth.ts)
 
 3//
+favicon
 favoriete recepten pagina: na klikken op recept: menubar favo blauw blijven
 fix header
 foto toevoegen bij recept is soms buggy?

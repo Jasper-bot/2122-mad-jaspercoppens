@@ -20,17 +20,21 @@ import {toBadges} from "../helperfunctions";
 
 const Account: React.FC = () => {
     const { userName, userId } = useAuth();
-    const [badges, setBadges]  = useState([{Dessert: [], Veggie:[], Vis:[], Vlees:[]}])
+
     const [vleesBdgLvl, setVleesBdgLvl ] = useState([]);
     const [visBdgLvl, setVisBdgLvl ] = useState([]);
     const [veggieBdgLvl, setVeggieBdgLvl ] = useState([]);
     const [dessertBdgLvl, setDessertBdgLvl ] = useState([]);
     const [andereBdgLvl, setAndereBdgLvl ] = useState([]);
-    const [hideVleesBdg, setHideVleesBdg] = useState(true);
-    const [hideVisBdg, setHideVisBdg] = useState(true);
-    const [hideVeggieBdg, setHideVeggieBdg] = useState(true);
-    const [hideDessertBdg, setHideDessertBdg] = useState(true);
-    const [hideAndereBdg, setHideAndereBdg] = useState(true);
+
+    const [showBadges, setShowBadges] = useState(
+        {
+        hideVleesBdg: true,
+        hideVisBdg: true,
+        hideVeggieBdg: true,
+        hideDessertBdg: true,
+        hideAndereBdg: true
+    })
 
     const toggleDarkModeHandler = () => {
         document.body.classList.toggle("dark");
@@ -45,7 +49,7 @@ const Account: React.FC = () => {
             setDessertBdgLvl( data.data().badges.Dessert);
             setAndereBdgLvl( data.data().badges.Andere);
         })
-    }, [userId, badges]);
+    }, [userId]);
 
     return (
         <IonPage>
@@ -56,24 +60,44 @@ const Account: React.FC = () => {
                 <IonTitle>Welcome {userName}</IonTitle>
                 <IonGrid>
                     <IonRow>
-                        <IonCol onClick={() => setHideVleesBdg(!hideVleesBdg)}>
-                            <IonList>
+                        <IonCol onClick={() =>
+                            setShowBadges({
+                                hideVleesBdg: !showBadges.hideVleesBdg,
+                                hideVisBdg: true,
+                                hideVeggieBdg: true,
+                                hideDessertBdg: true,
+                                hideAndereBdg: true
+                            })}
+                        >
+                            <IonList className={styles.listcenter}>
                                 <IonImg src={"assets/icon/meat.png"} className={styles.icons}/>
                                 <IonLabel>
                                     {vleesBdgLvl[0] > 10 && vleesBdgLvl[1] > 20 ? "Slager lvl 3" : vleesBdgLvl[0] > 5 && vleesBdgLvl[1] > 10 ? "Slager lvl 2" :  vleesBdgLvl[0] > 1 && vleesBdgLvl[1] > 2? "Slager lvl 1" :"Slager lvl 0" }
                                 </IonLabel>
                             </IonList>
                         </IonCol>
-                        <IonCol onClick={() => setHideVisBdg(!hideVisBdg)}>
-                            <IonList>
+                        <IonCol onClick={() =>  setShowBadges({
+                            hideVleesBdg: true,
+                            hideVisBdg: !showBadges.hideVisBdg,
+                            hideVeggieBdg: true,
+                            hideDessertBdg: true,
+                            hideAndereBdg: true
+                        })}>
+                            <IonList className={styles.listcenter}>
                                <IonImg src={"assets/icon/fish.png"} className={styles.icons}/>
                                 <IonLabel>
                                     {visBdgLvl[0] > 10 && visBdgLvl[1] > 20 ? "Visser lvl 3" : visBdgLvl[0] > 5 && visBdgLvl[1] > 10 ? "Visser lvl 2" :  visBdgLvl[0] > 1 && visBdgLvl[1] > 2? "Visser lvl 1" :"Visser lvl " }
                                 </IonLabel>
                             </IonList>
                         </IonCol>
-                        <IonCol onClick={() => setHideVeggieBdg(!hideVeggieBdg)}>
-                            <IonList>
+                        <IonCol onClick={() => setShowBadges({
+                            hideVleesBdg: true,
+                            hideVisBdg: true,
+                            hideVeggieBdg: !showBadges.hideVeggieBdg,
+                            hideDessertBdg: true,
+                            hideAndereBdg: true
+                        })}>
+                            <IonList className={styles.listcenter}>
                                 <IonImg src={"assets/icon/vegan.png"} className={styles.icons}/>
                                 <IonLabel>
                                     {veggieBdgLvl[0] > 10 && veggieBdgLvl[1] > 20 ? "Groenteboer lvl 3" : veggieBdgLvl[0] > 5 && veggieBdgLvl[1] > 10 ? "Groenteboer lvl 2" :  veggieBdgLvl[0] > 1 && veggieBdgLvl[1] > 2? "Groenteboer lvl 1" :"Groenteboer lvl 0" }
@@ -81,7 +105,7 @@ const Account: React.FC = () => {
                             </IonList>
                         </IonCol>
                     </IonRow>
-                    <IonRow hidden={hideVleesBdg}>
+                    <IonRow hidden={showBadges.hideVleesBdg} className={styles.row}>
                         {
                             vleesBdgLvl[0] > 10 && vleesBdgLvl[1] > 20 ?
                                 `Proficiat! Je bent een slager van topniveau!`
@@ -93,7 +117,7 @@ const Account: React.FC = () => {
                                  `Upload nog ${1 - vleesBdgLvl[0] < 0 ? 0: 1 - vleesBdgLvl[0]} recepten met vlees en ${2 - vleesBdgLvl[1] < 0 ? 0: 2 - vleesBdgLvl[1]}  foto’s van vleesgerechten van andere gebruikers om Slager lvl 1 te verdienen.`
                         }
                     </IonRow>
-                    <IonRow hidden={hideVisBdg}>
+                    <IonRow hidden={showBadges.hideVisBdg} className={styles.row}>
                         {
                             visBdgLvl[0] > 10 && visBdgLvl[1] > 20 ?
                                 `Proficiat! Je bent een Visser van topniveau!`
@@ -105,7 +129,7 @@ const Account: React.FC = () => {
                                         `Upload nog ${1 - visBdgLvl[0] < 0 ? 0: 1 - visBdgLvl[0]} recepten met vlees en ${2 - visBdgLvl[1] < 0 ? 0: 2 - visBdgLvl[1]}  foto’s van visgerechten van andere gebruikers om Visser lvl 1 te verdienen.`
                         }
                     </IonRow>
-                    <IonRow hidden={hideVeggieBdg}>
+                    <IonRow hidden={showBadges.hideVeggieBdg} className={styles.row}>
                         {
                             veggieBdgLvl[0] > 10 && veggieBdgLvl[1] > 20 ?
                                 `Proficiat! Je bent een Groenteboer van topniveau!`
@@ -118,16 +142,28 @@ const Account: React.FC = () => {
                         }
                     </IonRow>
                     <IonRow>
-                        <IonCol onClick={() => setHideDessertBdg(!hideDessertBdg)}>
-                            <IonList>
+                        <IonCol onClick={() => setShowBadges({
+                            hideVleesBdg: true,
+                            hideVisBdg: true,
+                            hideVeggieBdg: true,
+                            hideDessertBdg: !showBadges.hideDessertBdg,
+                            hideAndereBdg: true
+                        })}>
+                            <IonList className={styles.listcenter}>
                                 <IonImg src={"assets/icon/cake.png"} className={styles.icons}/>
                                 <IonLabel>
                                     {dessertBdgLvl[0] > 10 && dessertBdgLvl[1] > 20 ? "Liefhebber lvl 3" : dessertBdgLvl[0] > 5 && dessertBdgLvl[1] > 10 ? "Liefhebber lvl 2" :  dessertBdgLvl[0] > 1 && dessertBdgLvl[1] > 2? "Liefhebber lvl 1" :"Liefhebber lvl 0" }
                                 </IonLabel>
                             </IonList>
                         </IonCol>
-                        <IonCol onClick={() => setHideAndereBdg(!hideAndereBdg)}>
-                            <IonList>
+                        <IonCol onClick={() => setShowBadges({
+                            hideVleesBdg: true,
+                            hideVisBdg: true,
+                            hideVeggieBdg: true,
+                            hideDessertBdg: true,
+                            hideAndereBdg: !showBadges.hideAndereBdg
+                        })}>
+                            <IonList className={styles.listcenter}>
                                 <IonImg src={"assets/icon/restaurant.png"} className={styles.icons}/>
                                 <IonLabel>
                                     {andereBdgLvl[0] > 10 && andereBdgLvl[1] > 20 ? "Alternatieveling lvl 3" : andereBdgLvl[0] > 5 && andereBdgLvl[1] > 10 ? "Alternatieveling lvl 2" :  andereBdgLvl[0] > 1 && andereBdgLvl[1] > 2? "Alternatieveling lvl 1" :"Alternatieveling lvl 0" }
@@ -135,7 +171,7 @@ const Account: React.FC = () => {
                             </IonList>
                         </IonCol>
                     </IonRow>
-                    <IonRow hidden={hideDessertBdg}>
+                    <IonRow hidden={showBadges.hideDessertBdg} className={styles.row}>
                         {
                             dessertBdgLvl[0] > 10 && dessertBdgLvl[1] > 20 ?
                                 `Proficiat! Je bent een Dessert liefhebber van topniveau!`
@@ -147,7 +183,7 @@ const Account: React.FC = () => {
                                         `Upload nog ${1 - dessertBdgLvl[0] < 0 ? 0: 1 - dessertBdgLvl[0]} desserts en ${2 - dessertBdgLvl[1] < 0 ? 0: 2 - dessertBdgLvl[1]}  foto’s van desserts van andere gebruikers om Liefhebber lvl 1 te verdienen.`
                         }
                     </IonRow>
-                    <IonRow hidden={hideAndereBdg}>
+                    <IonRow hidden={showBadges.hideAndereBdg} className={styles.row}>
                         {
                             andereBdgLvl[0] > 10 && andereBdgLvl[1] > 20 ?
                                 `Proficiat! Je bent een Alternatieveling van topniveau!`
