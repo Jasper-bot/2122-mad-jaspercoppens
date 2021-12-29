@@ -5,7 +5,7 @@ import {
     IonInput,
     IonItem,
     IonLabel,
-    IonList, IonListHeader,
+    IonList, IonListHeader, IonLoading,
     IonPage, IonRadio, IonRadioGroup,
     IonRow, IonSelect, IonSelectOption, IonTextarea
 } from '@ionic/react';
@@ -78,7 +78,8 @@ const AddRecipe: React.FC = () => {
     const {userId, userName}  = useAuth();
     const history = useHistory();
     const fileInputRef = useRef<HTMLInputElement>();
-    const [badgeCat, setBadgeCat] = useState('');
+    const [loading, setLoading] = useState(false);
+    //const [badgeCat, setBadgeCat] = useState('');
 
     useEffect(() => () => {
         if(photo.startsWith('blob:')){
@@ -87,6 +88,7 @@ const AddRecipe: React.FC = () => {
     }, [photo]);
 
     const handleAddRecipe = async(data) => {
+        setLoading(true);
         const recipesRef = db.collection('recipes');
         const recipeData = {
             title: data.title,
@@ -105,6 +107,7 @@ const AddRecipe: React.FC = () => {
              await savePhoto(photo, recipeRef.id);
         }
         updateUserBadge(data.category);
+        setLoading(false);
         history.goBack();
     }
 
@@ -170,6 +173,7 @@ const AddRecipe: React.FC = () => {
                 >
                     {formikProps => (
                         <IonContent class="ion-padding">
+                            <IonLoading isOpen={loading}/>
                             <form onSubmit={formikProps.handleSubmit}>
                                 <IonItem lines="inset">
                                     <IonLabel position={"stacked"}>Title</IonLabel>

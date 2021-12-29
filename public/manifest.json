@@ -1,6 +1,6 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "short_name": "Brechts kookboek",
+  "name": "Brechts kookboek",
   "icons": [
     {
       "src": "assets/icon/favicon.png",
@@ -8,13 +8,37 @@
       "type": "image/x-icon"
     },
     {
-      "src": "assets/icon/icon.png",
+      "src": "assets/icon/icon144x144.svg",
+      "type": "image/svg",
+      "sizes": "144x144",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon/icon192x192.svg",
+      "type": "image/svg",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon/icon512x512.svg",
+      "type": "image/svg",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon/splashscreen.png",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon/maskable-icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#ffffff",
   "background_color": "#ffffff"

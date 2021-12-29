@@ -5,7 +5,7 @@ import {
     IonFab,
     IonFabButton, IonGrid,
     IonHeader,
-    IonIcon, IonItem, IonLabel, IonList, IonListHeader,
+    IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonLoading,
     IonPage, IonRow, IonText, useIonAlert,
 } from '@ionic/react';
 import {db, storage} from '../firebase/firebase.utils';
@@ -40,6 +40,7 @@ const RecipePage: React.FC = () => {
     const [pictures, setPictures] = useState({urls: [], names: []});
     const [uploadMessage, setUploadMessage] = useState('');
     const [favorite, setFavorite] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [confirmDelete] = useIonAlert();
 
     const history = useHistory();
@@ -89,6 +90,7 @@ const RecipePage: React.FC = () => {
     }
 
     const handleAddPhoto = async () => {
+        setLoading(true);
         if(photo == previousPhoto){
             setUploadMessage('Je hebt geen foto geselecteerd of je hebt deze foto al geüploadt.');
         } else {
@@ -99,9 +101,11 @@ const RecipePage: React.FC = () => {
                 setUploadMessage(e.message);
             } finally {
                 setPreviousPhoto(photo);
+                setLoading(false);
                 setUploadMessage('foto added succesfully');
             }
         }
+
     }
 
     const readBadges =async (id) => {
@@ -142,6 +146,7 @@ const RecipePage: React.FC = () => {
     }
 
     const handleDelete = async () => {
+        setLoading(true);
         //verwijder alle fotos rond het recept
         const storageRef = storage.ref(`images/${id}`);
         storageRef.listAll().then((listResults) => {
@@ -170,6 +175,7 @@ const RecipePage: React.FC = () => {
         ).catch((error) => {
             console.log("Error removing document:", error);
         });
+        setLoading(false);
     }
 
     return (
@@ -178,6 +184,7 @@ const RecipePage: React.FC = () => {
                 <Header />
             </IonHeader>
             <IonContent class="ion-padding">
+                <IonLoading isOpen={loading}/>
                 <IonGrid>
                     {recipe?.userId === userId &&
                         <IonRow className={["ion-align-items-center", "ion-justify-content-center"].join(" ")}>

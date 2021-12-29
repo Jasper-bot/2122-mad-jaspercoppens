@@ -111,10 +111,10 @@ const Account: React.FC = () => {
                                 `Proficiat! Je bent een slager van topniveau!`
                             : vleesBdgLvl[0] > 5 && vleesBdgLvl[1] > 10 ?
                                 `Upload nog ${10 - vleesBdgLvl[0] < 0 ? 0: 10 - vleesBdgLvl[0]} recepten met vlees en ${20 - vleesBdgLvl[1] < 0? 0 : 20 - vleesBdgLvl[1] }  foto’s van vleesgerechten van andere gebruikers om Slager lvl 3 te verdienen.`
-                            :  vleesBdgLvl[0] > 1 && vleesBdgLvl[1] > 2?
-                                 `Upload nog ${5 - vleesBdgLvl[0] < 0 ? 0 : 5 - vleesBdgLvl[0]} recepten met vlees en ${10 - vleesBdgLvl[1] < 0 ? 0: 10 - vleesBdgLvl[1]}  foto’s van vleesgerechten van andere gebruikers om Slager lvl 2 te verdienen.`
-                            :
-                                 `Upload nog ${1 - vleesBdgLvl[0] < 0 ? 0: 1 - vleesBdgLvl[0]} recepten met vlees en ${2 - vleesBdgLvl[1] < 0 ? 0: 2 - vleesBdgLvl[1]}  foto’s van vleesgerechten van andere gebruikers om Slager lvl 1 te verdienen.`
+                                :  vleesBdgLvl[0] > 1 && vleesBdgLvl[1] > 2?
+                                    `Upload nog ${5 - vleesBdgLvl[0] < 0 ? 0 : 5 - vleesBdgLvl[0]} recepten met vlees en ${10 - vleesBdgLvl[1] < 0 ? 0: 10 - vleesBdgLvl[1]}  foto’s van vleesgerechten van andere gebruikers om Slager lvl 2 te verdienen.`
+                                    :
+                                        `Upload nog ${1 - vleesBdgLvl[0] < 0 ? 0: 1 - vleesBdgLvl[0]} recepten met vlees en ${2 - vleesBdgLvl[1] < 0 ? 0: 2 - vleesBdgLvl[1]}  foto’s van vleesgerechten van andere gebruikers om Slager lvl 1 te verdienen.`
                         }
                     </IonRow>
                     <IonRow hidden={showBadges.hideVisBdg} className={styles.row}>
