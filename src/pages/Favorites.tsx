@@ -14,6 +14,8 @@ import React, {useEffect, useState} from "react";
 import {Recipe, toRecipe} from "../models/recipe";
 import Header from "../components/Header";
 import {useAuth} from "../auth";
+import {sadOutline} from "ionicons/icons";
+import {deleteDoc, doc} from "firebase/firestore";
 
 const Favorites: React.FC = () => {
     const { userId } = useAuth();
@@ -27,7 +29,9 @@ const Favorites: React.FC = () => {
             data.data().favoriteRecipes.forEach( el => {
                 let recipeRef = recipesRef.doc(el);
                 recipeRef.onSnapshot ((doc) => {
-                    setRecipes(arr => [...arr, toRecipe(doc)]);
+                    if(doc.exists) {
+                        setRecipes(arr => [...arr, toRecipe(doc)]);
+                    }
                 });
             })
         })

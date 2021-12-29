@@ -142,6 +142,7 @@ const RecipePage: React.FC = () => {
     }
 
     const handleDelete = async () => {
+        //verwijder alle fotos rond het recept
         const storageRef = storage.ref(`images/${id}`);
         storageRef.listAll().then((listResults) => {
             const promises = listResults.items.map((item) => {
@@ -152,10 +153,20 @@ const RecipePage: React.FC = () => {
             console.log("Error removing document:", error);
             return;
         });
+        //verwijder het recept uit de favorieten van alle users
+        db.collection("users").get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                //console.log(doc.id, " => ", doc.data());
+                const userRef = db.collection('users').doc(doc.id);
+                updateDoc(userRef, {
+                    favoriteRecipes: arrayRemove(id)
+                });
+            });
+        })
+        //verwijder het recept
         await deleteDoc(doc(db, "recipes", id)).then(() => {
-            //history.push(`/my/recipes`);
             history.goBack();
-            }
+        }
         ).catch((error) => {
             console.log("Error removing document:", error);
         });

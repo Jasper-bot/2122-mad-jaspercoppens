@@ -254,12 +254,13 @@ GEDAAN
     - edit recipe pagina
     - added firebase security lines
     - badges functionaliteit toegevoegd
+    - delete recipe: verwijder uit lijst favo recepten van elke user
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/watch?v=eW5MdE3ZcAw
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
-DEADLINE 25/01
+DEADLINE 16/01  20uur
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 TODO:
 1//
@@ -273,6 +274,7 @@ Lay out account pagina
 Lay out recept toevoegen verbeteren
 Lay out titels verbeteren
 error handling controleren (try catch na readuser in auth.ts)
+
 
 3//
 favicon
