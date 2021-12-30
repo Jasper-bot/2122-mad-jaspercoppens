@@ -258,6 +258,7 @@ GEDAAN
     - ionloadings toegevoegd bij delete en add en pic change
     - Lay out account pagina
     - Lay out recept toevoegen verbeteren
+    - Comments uitgebreid bij recept pagina
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/watch?v=eW5MdE3ZcAw
@@ -275,10 +276,11 @@ pwa (service worker alleen nog)    https://www.youtube.com/watch?v=IaJqMcOMuDM
 Afbeeldingen compress
     https://firebase.google.com/products/extensions/firebase-storage-resize-images
 error handling controleren (try catch na readuser in auth.ts)
+data check comments
 
 3//
 favoriete recepten pagina: na klikken op recept: menubar favo blauw blijven
-fix header
 
-optioneel: goedkeuren foto's
-           verwijderen eigen fotos
+optioneel:
+           goedkeuren foto's
+           verwijderen eigen comments

@@ -16,6 +16,7 @@ import Header from "../components/Header";
 import {useAuth} from "../auth";
 import {moon} from "ionicons/icons";
 import {removeWhitespaceFromArray, removeWhitespaceFromString, stringToArrayByComma} from "../helperfunctions";
+import {db, storage} from '../firebase/firebase.utils';
 
 const Test: React.FC = () => {
     const { userName } = useAuth();
@@ -27,9 +28,8 @@ const Test: React.FC = () => {
     }
 
     const test = async () => {
-        await addErrorMessage('1');
-        await addErrorMessage('2');
-        console.log(errors);
+        const recipeRef = db.collection('recipes').doc('9d7f39GySFe3OCk3znKQ').collection('comments').doc('V1QMHxjwC7DbkLpVr5kt').get();
+        console.log(recipeRef.then(data => console.log(data)));
     }
 
     function test3(){
