@@ -6,3 +6,12 @@
 .small {
     font-size: 70%;
 }
+.fieldbox {
+    border-width: 0px 0px 1px 0px;
+    border-color: rgb(59, 59, 59);
+}
+.fieldbox:focus {
+    border-width: 0px 0px 2px 0px;
+    border-color: #3880ff;
+    outline: none;
+}

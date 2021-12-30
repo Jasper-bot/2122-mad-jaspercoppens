@@ -1,6 +1,6 @@
 import {
     IonButton,
-    IonContent,
+    IonContent, IonGrid,
     IonHeader,
     IonInput,
     IonItem,
@@ -41,17 +41,17 @@ const validationSchema = yup.object({
     title: yup
         .string()
         .nullable()
-        .min(5, "Title should at least be 5 characters long")
-        .required("Title is required"),
+        .min(5, "Titel moet minstens uit 5 karakters bestaan.")
+        .required("Titel is verplicht"),
     description: yup
         .string()
         .nullable()
-        .min(20, "Description should at least be 20 characters long")
-        .required("Description is required"),
+        .min(20, "Beschrijving moet minstens uit 20 karakters bestaan")
+        .required("Beschrijving is verplicht"),
     category: yup
         .mixed()
-        .oneOf(['Vis', 'Vlees', 'Veggie', 'Dessert', 'Andere'], "The category is invalid")
-        .required("Category is required"),
+        .oneOf(['Vis', 'Vlees', 'Veggie', 'Dessert', 'Andere'], "Ongeldige categorie")
+        .required("Categorie is verplicht"),
     numberOfPersons: yup
         .number()
         .positive("Aantal personen moet een positief getal zijn.")
@@ -60,17 +60,17 @@ const validationSchema = yup.object({
     ingredients: yup
         .array()
         .of(yup.string()
-            .min(2, "een ingredient moet uit minstens 2 karakters bestaan.")
-            .required("een ingrediënt kan niet leeg zijn."))
-        .min(2, "Je recept heeft moet minstens uit twee ingrediënten bestaan.")
-        .required("Ingrediënten is verplicht."),
+            .min(2, "Een ingredient moet uit minstens 2 karakters bestaan.\n")
+            .required("Een ingrediënt kan niet leeg zijn.\n"))
+        .min(2, "Je recept heeft moet minstens uit twee ingrediënten bestaan.\n")
+        .required("Ingrediënten is verplicht.\n"),
     steps: yup
         .array()
         .of(yup.string()
-            .min(2, "een stap moet uit minstens 2 karakters bestaan")
-            .required("een stap kan niet leeg zijn."))
-        .min(2, "Je recept heeft moet minstens uit twee stappen bestaan.")
-        .required("Stappen is verplicht."),
+            .min(2, "Een stap moet uit minstens 2 karakters bestaan\n")
+            .required("Een stap kan niet leeg zijn.\n"))
+        .min(2, "Je recept heeft moet minstens uit twee stappen bestaan.\n")
+        .required("Stappen is verplicht.\n"),
 })
 
 const AddRecipe: React.FC = () => {
@@ -137,7 +137,7 @@ const AddRecipe: React.FC = () => {
             setPhoto(photoUrl);
         }
     }
-
+    // @TODO camera api gebruiken
     const handlePictureClick = async () => {
         //fileInputRef.current.click();
         const photo = await Camera.getPhoto({
@@ -160,8 +160,8 @@ const AddRecipe: React.FC = () => {
                         description: null,
                         category: null,
                         numberOfPersons: null,
-                        ingredients: [],
-                        steps: []
+                        ingredients: [''],
+                        steps: ['']
                     }}
                     validationSchema={validationSchema}
                     onSubmit={async(values, {resetForm}) => {
@@ -176,7 +176,7 @@ const AddRecipe: React.FC = () => {
                             <IonLoading isOpen={loading}/>
                             <form onSubmit={formikProps.handleSubmit}>
                                 <IonItem lines="inset">
-                                    <IonLabel position={"stacked"}>Title</IonLabel>
+                                    <IonLabel position={"stacked"}>Titel</IonLabel>
                                     <IonInput
                                         type="text"
                                         name="title"
@@ -188,7 +188,7 @@ const AddRecipe: React.FC = () => {
                                     {formikProps.touched.title && formikProps.errors.title}
                                 </IonLabel>
                                 <IonItem lines="inset">
-                                    <IonLabel position={"stacked"}>Description</IonLabel>
+                                    <IonLabel position={"stacked"}>Beschrijving</IonLabel>
                                     <IonTextarea
                                         name="description"
                                         placeholder="Bijvoorbeeld: Een oerklassieker die iedereen lust!"
@@ -234,22 +234,26 @@ const AddRecipe: React.FC = () => {
                                             <div className={"ion-padding-vertical"}>
                                                 {formikProps.values.ingredients && formikProps.values.ingredients.length > 0 ? (
                                                     formikProps.values.ingredients.map((ingredient, index) => (
-                                                        <div key={index}>
-                                                            <Field name={`ingredients.${index}`} />
-                                                            <IonButton
-                                                                type="button"
-                                                                color={"secondary"}
-                                                                onClick={() => arrayHelpers.remove(index)}
-                                                            >
-                                                                -
-                                                            </IonButton>
-                                                            <IonButton
-                                                                type="button"
-                                                                color={"secondary"}
-                                                                onClick={() => arrayHelpers.insert(index, '')}
-                                                            >
-                                                                +
-                                                            </IonButton>
+                                                        <div key={index} className={styles.parentdiv}>
+                                                            <IonGrid class="ion-no-padding">
+                                                                <IonRow>
+                                                                    <Field name={`ingredients.${index}`} placeholder={"600gr tomaat"} className={styles.fieldbox}/>
+                                                                    <IonButton
+                                                                        type="button"
+                                                                        color={"primary"}
+                                                                        onClick={() => arrayHelpers.remove(index)}
+                                                                    >
+                                                                        -
+                                                                    </IonButton>
+                                                                    <IonButton
+                                                                        type="button"
+                                                                        color={"primary"}
+                                                                        onClick={() => arrayHelpers.insert(index, '')}
+                                                                    >
+                                                                        +
+                                                                    </IonButton>
+                                                                </IonRow>
+                                                            </IonGrid>
                                                         </div>
 
                                                     ))
@@ -275,21 +279,25 @@ const AddRecipe: React.FC = () => {
                                                 {formikProps.values.steps && formikProps.values.steps.length > 0 ? (
                                                     formikProps.values.steps.map((step, index) => (
                                                         <div key={index}>
-                                                            <Field name={`steps.${index}`} />
-                                                            <IonButton
-                                                                type="button"
-                                                                color={"secondary"}
-                                                                onClick={() => arrayHelpers.remove(index)}
-                                                            >
-                                                                -
-                                                            </IonButton>
-                                                            <IonButton
-                                                                type="button"
-                                                                color={"secondary"}
-                                                                onClick={() => arrayHelpers.insert(index, '')}
-                                                            >
-                                                                +
-                                                            </IonButton>
+                                                            <IonGrid class="ion-no-padding">
+                                                                <IonRow>
+                                                                    <Field name={`steps.${index}`} placeholder="Kook voor 10 minuten." className={styles.fieldbox}/>
+                                                                    <IonButton
+                                                                        type="button"
+                                                                        color={"primary"}
+                                                                        onClick={() => arrayHelpers.remove(index)}
+                                                                    >
+                                                                        -
+                                                                    </IonButton>
+                                                                    <IonButton
+                                                                        type="button"
+                                                                        color={"primary"}
+                                                                        onClick={() => arrayHelpers.insert(index, '')}
+                                                                    >
+                                                                        +
+                                                                    </IonButton>
+                                                                </IonRow>
+                                                            </IonGrid>
                                                         </div>
                                                     ))
                                                 ) : (
@@ -297,13 +305,14 @@ const AddRecipe: React.FC = () => {
                                                         {/* show this when user has removed all friends from the list */}
                                                         Voeg stap toe
                                                     </IonButton>
+
                                                 )}
                                             </div>
                                         )}
                                     />
                                 </IonItem>
                                 <IonLabel color="danger" className={[styles.small, "ion-padding"].join(" ")} position={"stacked"}>
-                                    {formikProps.touched.steps && formikProps.errors.steps}
+                                    {formikProps.touched.steps && formikProps.errors.steps }
                                 </IonLabel>
                                 <IonItem lines="none">
                                     <IonLabel position={"stacked"}>Foto</IonLabel>
@@ -311,7 +320,7 @@ const AddRecipe: React.FC = () => {
                                     <img src={photo} alt=""
                                          onClick={() => fileInputRef.current.click()}/>
                                 </IonItem>
-                                <IonItem>
+                                <IonItem lines={"none"}>
                                     <IonButton type="submit">Voeg recept toe</IonButton>
                                 </IonItem>
                             </form>

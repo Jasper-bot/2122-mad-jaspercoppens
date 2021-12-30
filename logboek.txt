@@ -256,6 +256,8 @@ GEDAAN
     - badges functionaliteit toegevoegd
     - delete recipe: verwijder uit lijst favo recepten van elke user
     - ionloadings toegevoegd bij delete en add en pic change
+    - Lay out account pagina
+    - Lay out recept toevoegen verbeteren
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/watch?v=eW5MdE3ZcAw
@@ -267,22 +269,16 @@ TODO:
 1//
 chat
 regels voor databank in firebase voor data structuur
-pwa
+pwa (service worker alleen nog)    https://www.youtube.com/watch?v=IaJqMcOMuDM
 
 2//
 Afbeeldingen compress
     https://firebase.google.com/products/extensions/firebase-storage-resize-images
-Lay out account pagina
-Lay out recept toevoegen verbeteren
-Lay out titels verbeteren
-lay out extra fotos
 error handling controleren (try catch na readuser in auth.ts)
 
 3//
-favicon
 favoriete recepten pagina: na klikken op recept: menubar favo blauw blijven
 fix header
 
-optioneel:  ingredienten/stappen checkboxes geven
-            aantal personen aanpassen om ingredientenlijst te schalen
-            import/export van recepten
+optioneel: goedkeuren foto's
+           verwijderen eigen fotos

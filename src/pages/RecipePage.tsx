@@ -177,6 +177,7 @@ const RecipePage: React.FC = () => {
         });
         setLoading(false);
     }
+    // @TODO camera api gebruiken
 
     return (
         <IonPage >
@@ -259,7 +260,7 @@ const RecipePage: React.FC = () => {
                     )}
                 </IonList>
                 <IonListHeader>
-                    Fotos
+                    Foto's
                 </IonListHeader>
                 {pictures.urls.length == 0 &&
                 <IonText color={"primary"}>
