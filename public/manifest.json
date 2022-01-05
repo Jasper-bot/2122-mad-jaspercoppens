@@ -8,28 +8,22 @@
       "type": "image/x-icon"
     },
     {
-      "src": "assets/icon/icon144x144.svg",
-      "type": "image/svg",
-      "sizes": "144x144",
-      "purpose": "any"
+      "src": "assets/icon/maskable_icon_x48.png",
+      "type": "image/png",
+      "sizes": "48x48",
+      "purpose": "maskable"
     },
     {
-      "src": "assets/icon/icon192x192.svg",
-      "type": "image/svg",
+      "src": "assets/icon/maskable_icon_x192.png",
+      "type": "image/png",
       "sizes": "192x192",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/icon/icon512x512.svg",
-      "type": "image/svg",
-      "sizes": "512x512",
-      "purpose": "any"
+      "purpose": "maskable"
     },
     {
       "src": "assets/icon/maskable_icon_x512.png",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
       "src": "assets/icon/splashscreen.png",
@@ -38,7 +32,7 @@
       "purpose": "any"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#ffffff",
   "background_color": "#ffffff"
