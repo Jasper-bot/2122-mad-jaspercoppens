@@ -24,12 +24,6 @@
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
-    },
-    {
-      "src": "assets/icon/splashscreen.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any"
     }
   ],
   "start_url": "/",
