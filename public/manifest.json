@@ -26,19 +26,20 @@
       "purpose": "any"
     },
     {
+      "src": "assets/icon/maskable_icon_x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
       "src": "assets/icon/splashscreen.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any"
-    },
-    {
-      "src": "assets/icon/maskable-icon.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any maskable"
     }
   ],
   "start_url": "/",
+  "scope"
   "display": "standalone",
   "theme_color": "#ffffff",
   "background_color": "#ffffff"

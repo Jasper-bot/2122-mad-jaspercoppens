@@ -13,7 +13,7 @@ Ook kunnen gebruikers kookbadges verdienen. De badge "eierboer lvl 1" krijgt men
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 WEEK 1
-Technologie kiezen (een wpa in react en firebase), een aantal tutorialvideos kijken omtrent wpa's.
+Technologie kiezen (een pwa in react en firebase), een aantal tutorialvideos kijken omtrent wpa's.
 
 Uitdenken wat ik ga doen (kookboekapplicatie) en op pinterest/internet kijken naar inspiratie voor design. Foto's zoeken voor in de applicatie en beginnen met het figma design.
 
@@ -32,7 +32,7 @@ https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lect
 
 WEEK 3
 GEDAAN
-	- Udemy course chapter over wpa en react uitgekeken.
+	- Udemy course chapter over pwa en react uitgekeken.
 	- project setup met pwa template
 	- Ionic components toegevoegd
 	- Firebase project aangemaakt en videolessen rond firebase gekeken

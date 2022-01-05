@@ -7,7 +7,7 @@ import {
     IonItem,
     IonLabel,
     IonList, IonLoading,
-    IonPage, IonRouterLink, IonRow, IonText
+    IonPage, IonRouterLink, IonRow, IonText, IonToolbar
 } from "@ionic/react";
 
 import styles from './Login.module.css';
@@ -37,7 +37,8 @@ const Login: React.FC = ({  }) => {
     }
     return (
         <IonPage>
-            <IonHeader>
+            <IonHeader class="ion-no-border">
+                {/*<img src="assets/images/logintopbarcanvas.jpg" alt=""></img>*/}
                 <RegisterHeader/>
             </IonHeader>
             <IonContent class="ion-padding">
