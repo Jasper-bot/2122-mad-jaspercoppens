@@ -259,6 +259,7 @@ GEDAAN
     - Lay out account pagina
     - Lay out recept toevoegen verbeteren
     - Comments uitgebreid bij recept pagina
+    - installable pwa
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/watch?v=eW5MdE3ZcAw
@@ -270,7 +271,6 @@ TODO:
 1//
 chat
 regels voor databank in firebase voor data structuur
-pwa (service worker alleen nog)    https://www.youtube.com/watch?v=IaJqMcOMuDM
 
 2//
 Afbeeldingen compress
