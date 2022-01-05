@@ -33,15 +33,19 @@ export function useAuthInit(): AuthInit {
             if(firebaseUser){
                 console.log('firebaseUser',firebaseUser);
                 read(firebaseUser.uid).then((data ) => {
-                    setAuthInit({
-                        loading: false,
-                        auth:  {
-                            loggedIn: true,
-                            userId: firebaseUser.uid,
-                            userName: data.username,
-                            favoriteRecipes: data.favoriteRecipes,
-                            badges: data.badges
-                    }});
+                    if(data){
+                        setAuthInit({
+                            loading: false,
+                            auth:  {
+                                loggedIn: true,
+                                userId: firebaseUser.uid,
+                                userName: data.username,
+                                favoriteRecipes: data.favoriteRecipes,
+                                badges: data.badges
+                            }});
+                    } else {
+                        setAuthInit({loading: false, auth: {loggedIn: false}})
+                    }
                 })
             } else {
                 setAuthInit({loading: false, auth: {loggedIn: false}})
