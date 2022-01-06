@@ -55,7 +55,6 @@ const RecipePage: React.FC = () => {
     const fileInputRef = useRef<HTMLInputElement>();
 
     useEffect(() => {
-        console.log("in effect");
         const recipeRef = db.collection('recipes').doc(id);
         recipeRef.get().then ((doc) => setRecipe(toRecipe(doc)));
         //recipeRef.onSnapshot ((doc) => setRecipe(toRecipe(doc)));

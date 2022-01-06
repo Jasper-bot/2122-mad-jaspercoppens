@@ -38,7 +38,6 @@ const Login: React.FC = ({  }) => {
     return (
         <IonPage>
             <IonHeader class="ion-no-border">
-                {/*<img src="assets/images/logintopbarcanvas.jpg" alt=""></img>*/}
                 <RegisterHeader/>
             </IonHeader>
             <IonContent class="ion-padding">

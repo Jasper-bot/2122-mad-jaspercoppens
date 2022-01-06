@@ -6,3 +6,10 @@
     color: black;
     text-decoration: underline;
 }
+
+@media (prefers-color-scheme: dark) {
+    .login{
+        color: ghostwhite;
+        text-decoration: underline;
+    }
+}
