@@ -15,3 +15,9 @@
     border-color: #3880ff;
     outline: none;
 }
+
+@media (prefers-color-scheme: dark) {
+    .fieldbox{
+        color: black;
+    }
+}
