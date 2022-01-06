@@ -260,6 +260,7 @@ GEDAAN
     - Lay out recept toevoegen verbeteren
     - Comments uitgebreid bij recept pagina
     - installable pwa
+    - dark mode fixes
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/watch?v=eW5MdE3ZcAw
@@ -281,6 +282,5 @@ data check comments
 3//
 favoriete recepten pagina: na klikken op recept: menubar favo blauw blijven
 
-optioneel:
-           goedkeuren foto's
+optioneel: goedkeuren foto's
            verwijderen eigen comments

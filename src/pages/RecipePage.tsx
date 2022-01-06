@@ -38,7 +38,7 @@ async function savePhoto(blobUrl, recipeId, uploaderName, comment) {
 }
 
 const RecipePage: React.FC = () => {
-    const { userName, favoriteRecipes, userId } = useAuth();
+    const { userName, userId } = useAuth();
     const { id } = useParams<RouteParams>() ;
     const [recipe, setRecipe] = useState<Recipe>();
     const [photo, setPhoto] = useState('/assets/images/addImage.png');
@@ -56,9 +56,11 @@ const RecipePage: React.FC = () => {
 
     useEffect(() => {
         const recipeRef = db.collection('recipes').doc(id);
+        const userRef = db.collection('users').doc(userId);
         recipeRef.get().then ((doc) => setRecipe(toRecipe(doc)));
-        //recipeRef.onSnapshot ((doc) => setRecipe(toRecipe(doc)));
-        if(favoriteRecipes.includes(id)) setFavorite(true);
+        userRef.onSnapshot((doc) => {
+            doc.data().favoriteRecipes.includes(id) ? setFavorite(true) : setFavorite(false);
+        });
     }, [id]);
 
     useEffect(() => () => {
@@ -72,7 +74,6 @@ const RecipePage: React.FC = () => {
         const commentsRef = db.collection('recipes').doc(id).collection('comments');
         commentsRef.onSnapshot((docs) =>{
             docs.docs.forEach(doc => {
-                console.log(doc.data())
                 if(doc.exists) {
                     setComments(arr => [...arr, toComment(doc)])
                 }
@@ -118,7 +119,7 @@ const RecipePage: React.FC = () => {
                 await savePhoto(photo, id, userName, comment);
                 await updateUserBadge(recipe.category);
                 //await db.collection("comments").doc(id).set();
-            }catch (e) {
+            } catch (e) {
                 setUploadMessage(e.message);
             } finally {
                 setPreviousPhoto(photo);

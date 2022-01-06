@@ -21,7 +21,6 @@ import Test from "./pages/test";
 const App: React.FC = () => {
     const {loading, auth} = useAuthInit();
 
-    console.log("authstate is", auth);
     if(loading) {
         return <IonLoading isOpen />
     }
