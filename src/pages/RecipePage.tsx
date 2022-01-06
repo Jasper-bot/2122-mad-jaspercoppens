@@ -1,5 +1,5 @@
 import {
-    IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
+    IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
     IonCol,
     IonContent,
     IonFab,
@@ -229,15 +229,17 @@ const RecipePage: React.FC = () => {
                     </IonRow>
                     }
                     <IonRow className={["ion-align-items-center", "ion-justify-content-center"].join(" ")} >
-                        <IonCol offset="3">
+                        <IonCol size="8">
                             <h2>{recipe?.title}</h2>
                         </IonCol>
                         <IonCol>
-                            <IonItem lines="none" onClick={changeFavorite}><IonIcon icon={favorite? heart : heartOutline} className={styles.heart}/></IonItem>
+                            <IonItem lines="none" onClick={changeFavorite}>
+                                <IonIcon icon={favorite? heart : heartOutline} className={styles.heart} slot="end"/>
+                            </IonItem>
                         </IonCol>
                     </IonRow>
                     <IonRow>
-                        <IonCol offset="3">
+                        <IonCol>
                             <p  className={[styles.uploader].join(" ")} >Door {recipe?.userName }</p>
                         </IonCol>
                     </IonRow>

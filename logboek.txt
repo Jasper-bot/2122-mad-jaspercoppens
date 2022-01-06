@@ -261,6 +261,7 @@ GEDAAN
     - Comments uitgebreid bij recept pagina
     - installable pwa
     - dark mode fixes
+    - favoriete recepten hartje op recipepage gefixt
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/watch?v=eW5MdE3ZcAw
