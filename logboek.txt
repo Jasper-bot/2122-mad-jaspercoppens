@@ -261,10 +261,31 @@ GEDAAN
     - Comments uitgebreid bij recept pagina
     - installable pwa
     - dark mode fixes
-    - favoriete recepten hartje op recipepage gefixt
+    - favoriete recepten hartje op recipepage gefixt + design
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/watch?v=eW5MdE3ZcAw
+Betere manier voor .onSnapshot?:
+https://dev.to/alterclass/build-a-realtime-chat-app-in-5-min-with-react-and-firebase-3f8m
+------
+useEffect(() => {
+  // Subscribe to query with onSnapshot
+  const unsubscribe = query.onSnapshot(querySnapshot => {
+    // Get all documents from collection - with IDs
+    const data = querySnapshot.docs.map(doc => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    // Update state
+    setDocs(data);
+  });
+
+  // Detach listener
+  return unsubscribe;
+}, []);
+------
+
+
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 DEADLINE 16/01  20uur

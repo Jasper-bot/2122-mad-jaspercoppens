@@ -228,9 +228,9 @@ const RecipePage: React.FC = () => {
                         </IonCol>
                     </IonRow>
                     }
-                    <IonRow className={["ion-align-items-center", "ion-justify-content-center"].join(" ")} >
+                    <IonRow className={["ion-align-items-center", "ion-justify-content-center", "ion-text-capitalize"].join(" ")} >
                         <IonCol size="8">
-                            <h2>{recipe?.title}</h2>
+                            <h2 className="ion-no-margin">{recipe?.title}</h2>
                         </IonCol>
                         <IonCol>
                             <IonItem lines="none" onClick={changeFavorite}>

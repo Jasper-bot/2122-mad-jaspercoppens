@@ -225,18 +225,24 @@ const EditRecipe: React.FC = () => {
                                             {formikProps.values.ingredients && formikProps.values.ingredients.length > 0 ? (
                                                 formikProps.values.ingredients.map((ingredient, index) => (
                                                     <div key={index}>
-                                                        <Field name={`ingredients.${index}`} />
+                                                        <Field name={`ingredients.${index}`} className={styles.fieldbox}/>
                                                         <IonButton
                                                             type="button"
-                                                            color={"secondary"}
-                                                            onClick={() => arrayHelpers.remove(index)}
+                                                            color={"primary"}
+                                                            onClick={() => {
+                                                                index--;
+                                                                arrayHelpers.remove(index);
+                                                            }}
                                                         >
                                                             -
                                                         </IonButton>
                                                         <IonButton
                                                             type="button"
-                                                            color={"secondary"}
-                                                            onClick={() => arrayHelpers.insert(index, '')}
+                                                            color={"primary"}
+                                                            onClick={() => {
+                                                                index++;
+                                                                arrayHelpers.insert(index, '');
+                                                            }}
                                                         >
                                                             +
                                                         </IonButton>
@@ -244,7 +250,7 @@ const EditRecipe: React.FC = () => {
 
                                                 ))
                                             ) : (
-                                                <IonButton type="button" color={"secondary"} onClick={() => arrayHelpers.push('')}>
+                                                <IonButton type="button" color={"primary"} onClick={() => arrayHelpers.push('')}>
                                                     Voeg ingrediënt toe
                                                 </IonButton>
                                             )}
@@ -264,25 +270,31 @@ const EditRecipe: React.FC = () => {
                                             {formikProps.values.steps && formikProps.values.steps.length > 0 ? (
                                                 formikProps.values.steps.map((step, index) => (
                                                     <div key={index}>
-                                                        <Field name={`steps.${index}`} />
+                                                        <Field component="textarea" name={`steps.${index}`} className={styles.fieldbox}/>
                                                         <IonButton
                                                             type="button"
-                                                            color={"secondary"}
-                                                            onClick={() => arrayHelpers.remove(index)}
+                                                            color={"primary"}
+                                                            onClick={() =>{
+                                                                index--;
+                                                                arrayHelpers.remove(index);
+                                                            }}
                                                         >
                                                             -
                                                         </IonButton>
                                                         <IonButton
                                                             type="button"
-                                                            color={"secondary"}
-                                                            onClick={() => arrayHelpers.insert(index, '')}
+                                                            color={"primary"}
+                                                            onClick={() => {
+                                                                index++;
+                                                                arrayHelpers.insert(index, '');
+                                                            }}
                                                         >
                                                             +
                                                         </IonButton>
                                                     </div>
                                                 ))
                                             ) : (
-                                                <IonButton type="button" color={"secondary"} onClick={() => arrayHelpers.push('')}>
+                                                <IonButton type="button" color={"primary"} onClick={() => arrayHelpers.push('')}>
                                                     {/* show this when user has removed all friends from the list */}
                                                     Voeg stap toe
                                                 </IonButton>

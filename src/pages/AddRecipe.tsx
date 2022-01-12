@@ -137,7 +137,7 @@ const AddRecipe: React.FC = () => {
             setPhoto(photoUrl);
         }
     }
-    // @TODO camera api gebruiken
+
     const handlePictureClick = async () => {
         //fileInputRef.current.click();
         const photo = await Camera.getPhoto({
@@ -241,14 +241,20 @@ const AddRecipe: React.FC = () => {
                                                                     <IonButton
                                                                         type="button"
                                                                         color={"primary"}
-                                                                        onClick={() => arrayHelpers.remove(index)}
+                                                                        onClick={() =>  {
+                                                                            index--;
+                                                                            arrayHelpers.remove(index)
+                                                                        }}
                                                                     >
                                                                         -
                                                                     </IonButton>
                                                                     <IonButton
                                                                         type="button"
                                                                         color={"primary"}
-                                                                        onClick={() => arrayHelpers.insert(index, '')}
+                                                                        onClick={() => {
+                                                                            index++;
+                                                                            arrayHelpers.insert(index, '');
+                                                                        }}
                                                                     >
                                                                         +
                                                                     </IonButton>
@@ -258,8 +264,8 @@ const AddRecipe: React.FC = () => {
 
                                                     ))
                                                 ) : (
-                                                    <IonButton type="button" color={"secondary"} onClick={() => arrayHelpers.push('')}>
-                                                        {/* show this when user has removed all friends from the list */}
+                                                    // als er 0 ingrediënten zijn
+                                                    <IonButton type="button" color={"primary"} onClick={() => arrayHelpers.push('')}>
                                                        Voeg ingrediënt toe
                                                     </IonButton>
                                                 )}
@@ -281,18 +287,24 @@ const AddRecipe: React.FC = () => {
                                                         <div key={index}>
                                                             <IonGrid class="ion-no-padding">
                                                                 <IonRow>
-                                                                    <Field name={`steps.${index}`} placeholder="Kook voor 10 minuten." className={styles.fieldbox}/>
+                                                                    <Field component="textarea" name={`steps.${index}`} placeholder="Kook voor 10 minuten." className={styles.fieldbox}/>
                                                                     <IonButton
                                                                         type="button"
                                                                         color={"primary"}
-                                                                        onClick={() => arrayHelpers.remove(index)}
+                                                                        onClick={() => {
+                                                                            index--;
+                                                                            arrayHelpers.remove(index);
+                                                                        }}
                                                                     >
                                                                         -
                                                                     </IonButton>
                                                                     <IonButton
                                                                         type="button"
                                                                         color={"primary"}
-                                                                        onClick={() => arrayHelpers.insert(index, '')}
+                                                                        onClick={() => {
+                                                                            index++;
+                                                                            arrayHelpers.insert(index, '');
+                                                                        }}
                                                                     >
                                                                         +
                                                                     </IonButton>
@@ -301,8 +313,8 @@ const AddRecipe: React.FC = () => {
                                                         </div>
                                                     ))
                                                 ) : (
-                                                    <IonButton type="button" color={"secondary"} onClick={() => arrayHelpers.push('')}>
-                                                        {/* show this when user has removed all friends from the list */}
+                                                    // als er 0 stappen zijn
+                                                    <IonButton type="button" color={"primary"} onClick={() => arrayHelpers.push('')}>
                                                         Voeg stap toe
                                                     </IonButton>
 
