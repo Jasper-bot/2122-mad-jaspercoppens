@@ -70,8 +70,9 @@ const Chat: React.FC = () => {
                         messages.map((message, index) =>
                             <Message message={message} key={index} />
                     )}
+                    <IonRow ref={messagesEndRef} />
                 </IonGrid>
-                <div ref={messagesEndRef} />
+
             </IonContent>
             <IonToolbar>
                 <IonRow class="ion-justify-content-end">
