@@ -21,14 +21,14 @@ const Login: React.FC = ({  }) => {
     const { loggedIn } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [status, setstatus] = useState({loading: false, error: false});
+    const [status, setStatus] = useState({loading: false, error: false});
 
     const handleLogin = async () => {
         try {
-            setstatus({loading: true, error: false});
+            setStatus({loading: true, error: false});
             await auth.signInWithEmailAndPassword(email, password);
         } catch(error) {
-            setstatus({loading: false, error: true});
+            setStatus({loading: false, error: true});
         }
 
     }

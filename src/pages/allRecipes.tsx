@@ -63,10 +63,6 @@ const AllRecipes: React.FC = () => {
         setHideSearchOnIngr(!hideSearchOnIngr);
     }
 
-    // useEffect(() => {
-    //
-    // }, recipes)
-
     return (
         <IonPage>
             <IonHeader>

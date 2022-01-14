@@ -103,22 +103,6 @@ const RecipePage: React.FC = () => {
             setPhoto(photoUrl);
         }
     }
-    // useEffect(() => {
-    //     setPictures({urls: [], names: []});
-    //     storage.ref().child(`images/${id}`).listAll()
-    //         .then(res => {
-    //             res.items.forEach((item) => {
-    //                 if(item.name  != id) {
-    //                     let name = getName(item.name);
-    //                     item.getDownloadURL().then((url) => {
-    //                         setPictures(prevState => ({urls: [...prevState.urls, url], names: [...prevState.names, name]}));
-    //                     });
-    //                 }
-    //             })
-    //         }).catch(err => {
-    //         alert(err.message);
-    //     });
-    // },[id, uploadMessage]);
 
     const handleAddPhoto = async () => {
         setLoading(true);
@@ -129,7 +113,6 @@ const RecipePage: React.FC = () => {
             try {
                 await savePhoto(photo, id, userName, comment);
                 await updateUserBadge(recipe.category);
-                //await db.collection("comments").doc(id).set();
             } catch (e) {
                 setUploadMessage(e.message);
             } finally {

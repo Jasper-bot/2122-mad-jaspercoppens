@@ -41,15 +41,6 @@ const Home: React.FC = () => {
                       </Image>
                   </IonCol>
               </IonRow>
-              {/*<IonRow>*/}
-              {/*    <IonCol>*/}
-              {/*        <Image*/}
-              {/*            imagePath="assets/images/zoekrecepten.jpg"*/}
-              {/*            description="Zoek Recepten"*/}
-              {/*            linkPath="search-recipes">*/}
-              {/*        </Image>*/}
-              {/*    </IonCol>*/}
-              {/*</IonRow>*/}
           </IonGrid>
       </IonContent>
     </IonPage>

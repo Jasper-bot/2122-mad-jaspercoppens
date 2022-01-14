@@ -37,16 +37,6 @@ const Favorites: React.FC = () => {
         })
     }, [userId])
 
-    // useEffect(() => {
-    //     const recipesRef = db.collection('recipes');
-    //     favoriteRecipes.forEach( el => {
-    //         let recipeRef = recipesRef.doc(el);
-    //         recipeRef.onSnapshot ((doc) => {
-    //             setRecipes(arr => [...arr, toRecipe(doc)]);
-    //         });
-    //     })
-    // }, [userId, favoriteRecipes]);
-
     return (
         <IonPage>
             <IonHeader>

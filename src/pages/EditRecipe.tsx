@@ -96,7 +96,6 @@ const EditRecipe: React.FC = () => {
 
     useEffect(() => {
         const recipeRef = db.collection('recipes').doc(id);
-        console.log(recipeRef);
         recipeRef.get().then ((doc) =>{
             setRecipe(toRecipe(doc));
             setPhoto(doc.data().photo)

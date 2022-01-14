@@ -2,6 +2,7 @@ import {Recipe} from "./recipe";
 import firebase from "firebase/compat/app";
 
 export interface MessageModel {
+    id?: string,
     text: string,
     username: string,
     userid: string,

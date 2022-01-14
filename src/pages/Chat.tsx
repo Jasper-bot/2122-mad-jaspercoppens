@@ -5,7 +5,7 @@ import {
     IonHeader, IonIcon, IonLabel,
     IonPage, IonRow, IonTextarea, IonTitle, IonToolbar,
 } from '@ionic/react';
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Header from "../components/Header";
 import { useAuth } from "../auth";
 import { db } from '../firebase/firebase.utils';
@@ -24,18 +24,18 @@ const Chat: React.FC = () => {
     const { id } = useParams<RouteParams>() ;
     const [messages, setMessages] = useState<MessageModel[]>([]);
     const [newMsg, setNewMsg] = useState('');
-
-    // const messagesEndRef = React.useRef<null | HTMLDivElement>(null);
+    const messagesEndRef = useRef(null)
 
     useEffect(() => {
         const messagesRef = db.collection('recipes').doc(id).collection('messages').orderBy('createdAt');
         messagesRef.onSnapshot(({ docs }) => {
             setMessages(docs.map(toMessage));
-            // console.log(messages[0].createdAt['seconds'].toDate())
-            //scrollToBottom();
         });
+    }, [id]);
 
-    }, []);
+    useEffect(() => {
+        scrollToBottom()
+    }, [messages])
 
     const handleAddMsg = async() => {
         try {
@@ -53,16 +53,16 @@ const Chat: React.FC = () => {
         }
     }
 
-    // const scrollToBottom = () => {
-    //     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-    // }
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
 
     return (
         <IonPage>
             <IonHeader>
                 <Header />
             </IonHeader>
-            <IonContent fullscreen>
+            <IonContent fullscreen scrollEvents={true}>
                 <IonGrid>
                     {messages.length == 0 ?
                         <h2 className="ion-margin ">Er zijn nog geen berichten verstuurd over dit recept.</h2>
@@ -71,11 +71,12 @@ const Chat: React.FC = () => {
                             <Message message={message} key={index} />
                     )}
                 </IonGrid>
+                <div ref={messagesEndRef} />
             </IonContent>
             <IonToolbar>
                 <IonRow class="ion-justify-content-end">
                     <IonCol size='10'>
-                        <IonTextarea placeholder={"Bericht"} value={newMsg}
+                        <IonTextarea placeholder={"Bericht"} value={newMsg} class="ion-no-padding"
                                      onIonChange={(event) => setNewMsg(event.detail.value)} />
                     </IonCol>
                     <IonCol size='2'>
@@ -85,7 +86,9 @@ const Chat: React.FC = () => {
                     </IonCol>
                 </IonRow>
             </IonToolbar>
+
         </IonPage>
+
     );
 };
 
