@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: 0 auto;
+    width:100%;
+}
+
+.icon {
+    font-size: 1000%;
+    color: grey;
+}
+
+h2 {
+    color: grey;
+    text-align: center;
+}

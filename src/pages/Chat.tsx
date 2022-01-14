@@ -2,7 +2,7 @@ import {
     IonButton,
     IonCol,
     IonContent, IonFooter, IonGrid,
-    IonHeader, IonIcon, IonLabel,
+    IonHeader, IonIcon, IonLabel, IonLoading,
     IonPage, IonRow, IonTextarea, IonTitle, IonToolbar,
 } from '@ionic/react';
 import React, {useEffect, useRef, useState} from "react";
@@ -11,6 +11,7 @@ import { useAuth } from "../auth";
 import { db } from '../firebase/firebase.utils';
 import {MessageModel, toMessage} from "../models/messageModel";
 import Message from "../components/Message";
+import NoMessages from "../components/NoMessages";
 import {useParams} from "react-router";
 import { send } from 'ionicons/icons';
 import firebase from "firebase/compat/app";
@@ -24,18 +25,24 @@ const Chat: React.FC = () => {
     const { id } = useParams<RouteParams>() ;
     const [messages, setMessages] = useState<MessageModel[]>([]);
     const [newMsg, setNewMsg] = useState('');
-    const messagesEndRef = useRef(null)
+    const ref = useRef<HTMLIonContentElement>(null);
 
     useEffect(() => {
-        const messagesRef = db.collection('recipes').doc(id).collection('messages').orderBy('createdAt').limit(50);
-        messagesRef.onSnapshot(({ docs }) => {
-            setMessages(docs.map(toMessage));
-        });
+        setMessages([]);
+        setTimeout(() => {
+            const messagesRef = db.collection('recipes').doc(id).collection('messages').orderBy('createdAt').limit(50);
+            messagesRef.onSnapshot(({ docs }) => {
+                setMessages(docs.map(toMessage));
+            });
+        }, 500);
     }, [id]);
 
     useEffect(() => {
-        setTimeout(scrollToBottom, 250);
-    }, [messages])
+        if(messages.length) {
+            ref.current?.scrollToBottom(200);
+        }
+    }, [messages.length]);
+
 
     const handleAddMsg = async() => {
         try {
@@ -53,42 +60,37 @@ const Chat: React.FC = () => {
         }
     }
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-    }
-
     return (
         <IonPage>
+            {/*<IonLoading isOpen={messages.length === 0}/>*/}
             <IonHeader>
                 <Header />
             </IonHeader>
-            <IonContent fullscreen scrollEvents={true}>
-                <IonGrid>
-                    {messages.length == 0 ?
-                        <h2 className="ion-margin ">Er zijn nog geen berichten verstuurd over dit recept.</h2>
+            <IonContent fullscreen ref={ref}>
+                {messages.length == 0 ?
+                        <NoMessages />
                         :
-                        messages.map((message, index) =>
-                            <Message message={message} key={index} />
-                    )}
-                    <IonRow ref={messagesEndRef} />
-                </IonGrid>
-
+                        <IonGrid>
+                            {messages.map((message, index) =>
+                                <Message message={message} key={index} />
+                            )}
+                        </IonGrid>
+                }
             </IonContent>
-            <IonToolbar>
-                <IonRow class="ion-justify-content-end">
-                    <IonCol size='10'>
-                        <IonTextarea placeholder={"Bericht"} value={newMsg} class="ion-no-padding"
-                                     onIonChange={(event) => setNewMsg(event.detail.value)} />
-                    </IonCol>
-                    <IonCol size='2'>
-                        <IonButton onClick={handleAddMsg}>
-                            <IonIcon icon={send} slot="icon-only" />
-                        </IonButton>
-                    </IonCol>
-                </IonRow>
-            </IonToolbar>
+                <IonToolbar>
+                    <IonRow class="ion-justify-content-end">
+                        <IonCol size='10'>
+                            <IonTextarea placeholder={"Bericht"} value={newMsg} class="ion-no-padding"
+                                         onIonChange={(event) => setNewMsg(event.detail.value)} />
+                        </IonCol>
+                        <IonCol size='2'>
+                            <IonButton onClick={handleAddMsg}>
+                                <IonIcon icon={send} slot="icon-only" />
+                            </IonButton>
+                        </IonCol>
+                    </IonRow>
+                </IonToolbar>
         </IonPage>
-
     );
 };
 
