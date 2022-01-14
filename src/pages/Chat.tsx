@@ -57,7 +57,7 @@ const Chat: React.FC = () => {
                         <h2 className="ion-margin ">Er zijn nog geen berichten verstuurd over dit recept.</h2>
                         :
                         messages.map((message, index) =>
-                            <Message message={message} key={index}></Message>
+                            <Message message={message} key={index} />
                     )}
                 </IonGrid>
             </IonContent>
@@ -69,7 +69,7 @@ const Chat: React.FC = () => {
                     </IonCol>
                     <IonCol size='2'>
                         <IonButton onClick={handleAddMsg}>
-                            <IonIcon icon={send} slot="icon-only"></IonIcon>
+                            <IonIcon icon={send} slot="icon-only" />
                         </IonButton>
                     </IonCol>
                 </IonRow>
