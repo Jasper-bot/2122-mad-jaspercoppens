@@ -25,9 +25,15 @@ const Chat: React.FC = () => {
     const [messages, setMessages] = useState<MessageModel[]>([]);
     const [newMsg, setNewMsg] = useState('');
 
+    // const messagesEndRef = React.useRef<null | HTMLDivElement>(null);
+
     useEffect(() => {
-        const messagesRef = db.collection('recipes').doc(id).collection('messages');
-        messagesRef.onSnapshot(({ docs }) => setMessages(docs.map(toMessage)));
+        const messagesRef = db.collection('recipes').doc(id).collection('messages').orderBy('createdAt');
+        messagesRef.onSnapshot(({ docs }) => {
+            setMessages(docs.map(toMessage));
+            //scrollToBottom();
+        });
+
     }, []);
 
     const handleAddMsg = async() => {
@@ -46,6 +52,10 @@ const Chat: React.FC = () => {
         }
     }
 
+    // const scrollToBottom = () => {
+    //     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    // }
+
     return (
         <IonPage>
             <IonHeader>
@@ -60,6 +70,7 @@ const Chat: React.FC = () => {
                             <Message message={message} key={index} />
                     )}
                 </IonGrid>
+
             </IonContent>
             <IonToolbar>
                 <IonRow class="ion-justify-content-end">
