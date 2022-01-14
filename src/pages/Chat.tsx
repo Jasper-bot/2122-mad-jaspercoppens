@@ -27,14 +27,14 @@ const Chat: React.FC = () => {
     const messagesEndRef = useRef(null)
 
     useEffect(() => {
-        const messagesRef = db.collection('recipes').doc(id).collection('messages').orderBy('createdAt');
+        const messagesRef = db.collection('recipes').doc(id).collection('messages').orderBy('createdAt').limit(50);
         messagesRef.onSnapshot(({ docs }) => {
             setMessages(docs.map(toMessage));
         });
     }, [id]);
 
     useEffect(() => {
-        scrollToBottom()
+        setTimeout(scrollToBottom, 250);
     }, [messages])
 
     const handleAddMsg = async() => {
@@ -87,7 +87,6 @@ const Chat: React.FC = () => {
                     </IonCol>
                 </IonRow>
             </IonToolbar>
-
         </IonPage>
 
     );
