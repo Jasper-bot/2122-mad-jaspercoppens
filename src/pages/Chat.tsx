@@ -31,6 +31,7 @@ const Chat: React.FC = () => {
         const messagesRef = db.collection('recipes').doc(id).collection('messages').orderBy('createdAt');
         messagesRef.onSnapshot(({ docs }) => {
             setMessages(docs.map(toMessage));
+            // console.log(messages[0].createdAt['seconds'].toDate())
             //scrollToBottom();
         });
 
@@ -70,7 +71,6 @@ const Chat: React.FC = () => {
                             <Message message={message} key={index} />
                     )}
                 </IonGrid>
-
             </IonContent>
             <IonToolbar>
                 <IonRow class="ion-justify-content-end">

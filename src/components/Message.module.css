@@ -1,25 +1,22 @@
 .username {
-    padding: 0 !important;
-    border-radius: 0 !important;
     font-size: 80%;
 }
 
-.message {
-    white-space: pre-wrap;
-}
-
-p {
-    padding: 10px;
-    border-radius: 10px;
-}
 
 p.sender {
     background-color: var(--ion-color-tertiary);
     color: #fff;
+    white-space: pre-wrap;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0px;
 }
 
 p.receiver {
     background-color: var(--ion-color-secondary);
     text-align: left;
     color: #fff;
+    white-space: pre-wrap;
+    padding: 10px;
+    border-radius: 10px;
 }

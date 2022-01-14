@@ -15,7 +15,7 @@ const Message: React.FC<MessageProps> = ({ message}) => {
 
     return (
         <IonRow class={"ion-no-margin ion-no-padding"} >
-            <IonCol offset={`${message.userid == userId ? 3 : 0}`} size="9" className="message ion-no-margin ion-no-padding">
+            <IonCol offset={`${message.userid == userId ? 3 : 0}`} size="9" className="ion-no-margin ion-no-padding">
                 {message.userid != userId ?  <p className={styles.username} >{message.username}</p> : <div />}
                 <p className={`text ${message.userid == userId ? styles.sender : styles.receiver}`}>{message.text}</p>
             </IonCol>
@@ -24,28 +24,3 @@ const Message: React.FC<MessageProps> = ({ message}) => {
 };
 
 export default Message;
-
-//
-// export default function MessageModel({data}) {
-//     const {message,sender} = data
-//
-//    //  const MessageModel = style.div`
-//    // min-height: 21px;
-//    // max-width: 90%;
-//    // min-width: 50%;
-//    // width: max-content;
-//    // background: ${sender?'pink':'blue'};;
-//    // text-align: left;
-//    // padding: 10px;
-//    // border-radius: 10px;
-//    // color: white;
-//    // margin: 15px 0;
-//    // float: ${sender?'left':'right'};;
-//    // `
-//
-//     return (
-//         <MessageModel data={undefined}>
-//             {message}
-//         </MessageModel>
-//     )
-// }

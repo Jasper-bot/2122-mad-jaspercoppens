@@ -1,24 +1,40 @@
 import {
-    IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle,
+    IonButton,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
     IonCol,
     IonContent,
     IonFab,
-    IonFabButton, IonGrid,
+    IonFabButton,
+    IonGrid,
     IonHeader,
-    IonIcon, IonImg, IonItem, IonLabel, IonList, IonListHeader, IonLoading,
-    IonPage, IonRow, IonText, IonTextarea, useIonAlert,
+    IonIcon,
+    IonImg,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonListHeader,
+    IonLoading,
+    IonPage,
+    IonRow,
+    IonText,
+    IonTextarea,
+    useIonAlert,
 } from '@ionic/react';
 import {db, storage} from '../firebase/firebase.utils';
-import { ref, listAll, getDownloadURL } from "firebase/storage";
-import { doc, updateDoc, arrayUnion, arrayRemove, deleteDoc } from "firebase/firestore";
+import {arrayRemove, arrayUnion, deleteDoc, doc, updateDoc} from "firebase/firestore";
 import React, {useEffect, useRef, useState} from "react";
 import {useHistory, useParams} from "react-router";
 import {Recipe, toRecipe} from "../models/recipe";
-import {chatbubble, heart, heartOutline, text} from "ionicons/icons";
+import {chatbubble, heart, heartOutline} from "ionicons/icons";
 import Header from "../components/Header";
 import styles from "./RecipePage.module.css";
 import {useAuth} from "../auth";
 import {Comment, toComment} from "../models/comment";
+import {Camera, CameraResultType} from "@capacitor/camera";
 
 interface RouteParams {
     id: string;
@@ -43,7 +59,6 @@ const RecipePage: React.FC = () => {
     const [recipe, setRecipe] = useState<Recipe>();
     const [photo, setPhoto] = useState('/assets/images/addImage.png');
     const [previousPhoto, setPreviousPhoto] = useState('/assets/images/addImage.png');
-    // const [pictures, setPictures] = useState({urls: [], names: []});
     const [comments, setComments] = useState<Comment[]>([]);
     const [uploadMessage, setUploadMessage] = useState('');
     const [favorite, setFavorite] = useState(false);
@@ -105,10 +120,6 @@ const RecipePage: React.FC = () => {
     //     });
     // },[id, uploadMessage]);
 
-    // const getName = (name) => {
-    //     return name.substring(0, name.indexOf("."));
-    // }
-
     const handleAddPhoto = async () => {
         setLoading(true);
         if(photo == previousPhoto){
@@ -129,45 +140,12 @@ const RecipePage: React.FC = () => {
         }
     }
 
-    const readBadges =async (id) => {
-        let response = await db
-            .collection("users")
-            .doc(id)
-            .get();
-        if (response === null || response === undefined) return null;
-        return response.data().badges;
-    }
-
-    const updateUserBadge = async (category) => {
-        readBadges(userId).then((data) => {
-            let newData = data;
-            newData[category][1] += 1;
-            db.collection("users").doc(userId).update({
-                badges: newData
-            });
-        })
-    }
-
-    const changeFavorite = async () => {
-        const userRef = db.collection('users').doc(userId);
-        if(favorite) {
-           await updateDoc(userRef, {
-                favoriteRecipes: arrayRemove(id)
-           });
-        } else {
-            await updateDoc(userRef, {
-                favoriteRecipes: arrayUnion(id)
-            });
-        }
-        setFavorite(!favorite);
-    }
-
-    const goToEdit = () => {
-        history.push(`/my/recipes/edit-recipe/${id}`)
-    }
-
-    const goToChat = () => {
-        history.push(`/my/recipes/${id}/chat`)
+    const handlePictureClick = async () => {
+        const photo = await Camera.getPhoto({
+                resultType: CameraResultType.Uri,
+        });
+        console.log('photo', photo.webPath);
+        setPhoto(photo.webPath);
     }
 
     const handleDelete = async () => {
@@ -195,14 +173,50 @@ const RecipePage: React.FC = () => {
         })
         //verwijder het recept
         await deleteDoc(doc(db, "recipes", id)).then(() => {
-            history.goBack();
-        }
+                history.goBack();
+            }
         ).catch((error) => {
             console.log("Error removing document:", error);
         });
         setLoading(false);
     }
-    // @TODO camera api gebruiken
+
+    const updateUserBadge = async (category) => {
+        readBadges(userId).then((data) => {
+            let newData = data;
+            newData[category][1] += 1;
+            db.collection("users").doc(userId).update({
+                badges: newData
+            });
+        })
+    }
+
+    const readBadges =async (id) => {
+        let response = await db
+            .collection("users")
+            .doc(id)
+            .get();
+        if (response === null || response === undefined) return null;
+        return response.data().badges;
+    }
+
+    const changeFavorite = async () => {
+        const userRef = db.collection('users').doc(userId);
+        if(favorite) {
+           await updateDoc(userRef, {
+                favoriteRecipes: arrayRemove(id)
+           });
+        } else {
+            await updateDoc(userRef, {
+                favoriteRecipes: arrayUnion(id)
+            });
+        }
+        setFavorite(!favorite);
+    }
+
+    const goToEdit = () => {
+        history.push(`/my/recipes/edit-recipe/${id}`)
+    }
 
     return (
         <IonPage >
@@ -289,26 +303,10 @@ const RecipePage: React.FC = () => {
                 <IonListHeader>
                     Foto's
                 </IonListHeader>
-                {/*{pictures.urls.length == 0 &&*/}
-                {/*<IonText color={"primary"}>*/}
-                {/*    <p>Er zijn nog geen foto's toegevoegd aan dit recept door andere gebruikers. Voeg als eerste een foto toe!</p>*/}
-                {/*</IonText>*/}
-                {/*}*/}
-                {/*<IonList>*/}
-                {/*    {pictures.urls.map((val, index) =>*/}
-                {/*        <IonCard key={index}>*/}
-                {/*            <IonImg src={val.valueOf()} alt={val.valueOf()}/>*/}
-                {/*            <IonCardHeader>*/}
-                {/*                <IonCardSubtitle>Geplaatst door:</IonCardSubtitle>*/}
-                {/*                <IonCardTitle> {pictures.names[index]}</IonCardTitle>*/}
-                {/*            </IonCardHeader>*/}
-                {/*        </IonCard>*/}
-                {/*    )}*/}
-                {/*</IonList>*/}
                 {comments.length == 0 &&
-                <IonText color={"primary"}>
-                    <p>Er zijn nog geen foto's toegevoegd aan dit recept door andere gebruikers. Voeg als eerste een foto toe!</p>
-                </IonText>
+                    <IonText color={"primary"}>
+                        <p>Er zijn nog geen foto's toegevoegd aan dit recept door andere gebruikers. Voeg als eerste een foto toe!</p>
+                    </IonText>
                 }
                 <IonList>
                     {comments.map((val, index) =>
@@ -331,7 +329,9 @@ const RecipePage: React.FC = () => {
                     </IonText>
                     <input type="file" accept="image/*" onChange={handleFileChange} ref={fileInputRef} hidden className={styles.img}/>
                     <img src={photo} alt=""
-                         onClick={() => fileInputRef.current.click()}/>
+                         onClick={handlePictureClick}
+                         // onClick={() => fileInputRef.current.click()}
+                    />
                     <IonTextarea placeholder={"Laat hier een boodschap achter voor bij je foto te zetten"} value={comment}
                                  onIonChange={(event) => setComment(event.detail.value)} />
                     <IonButton onClick={handleAddPhoto}>Upload foto + boodschap</IonButton>
