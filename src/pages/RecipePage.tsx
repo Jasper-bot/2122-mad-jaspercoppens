@@ -21,7 +21,7 @@ import {
     IonPage,
     IonRow,
     IonText,
-    IonTextarea,
+    IonTextarea, isPlatform,
     useIonAlert,
 } from '@ionic/react';
 import {db, storage} from '../firebase/firebase.utils';
@@ -141,11 +141,18 @@ const RecipePage: React.FC = () => {
     }
 
     const handlePictureClick = async () => {
-        const photo = await Camera.getPhoto({
-                resultType: CameraResultType.Uri,
-        });
-        console.log('photo', photo.webPath);
-        setPhoto(photo.webPath);
+        if(!isPlatform('desktop') ){
+            try {
+                const photo = await Camera.getPhoto({
+                    resultType: CameraResultType.Uri,
+                });
+                setPhoto(photo.webPath);
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            fileInputRef.current.click();
+        }
     }
 
     const handleDelete = async () => {
