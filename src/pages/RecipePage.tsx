@@ -166,6 +166,10 @@ const RecipePage: React.FC = () => {
         history.push(`/my/recipes/edit-recipe/${id}`)
     }
 
+    const goToChat = () => {
+        history.push(`/my/recipes/${id}/chat`)
+    }
+
     const handleDelete = async () => {
         setLoading(true);
         //verwijder alle fotos rond het recept
@@ -333,7 +337,7 @@ const RecipePage: React.FC = () => {
                     <IonButton onClick={handleAddPhoto}>Upload foto + boodschap</IonButton>
                 </form>
                 <IonFab vertical='bottom' horizontal='end' slot='fixed'>
-                    <IonFabButton>
+                    <IonFabButton routerLink={`/my/recipes/${id}/chat`}>
                         <IonIcon icon={chatbubble} />
                     </IonFabButton>
                 </IonFab>

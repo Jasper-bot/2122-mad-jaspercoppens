@@ -202,6 +202,7 @@ https://github.com/ionic-team/capacitor
 
 WEEK 8
 
+
 WAT DOEN
     - add recipe pagina logica toevoegen tegen lege velden
     - favoriete recepten uitwerken
@@ -248,7 +249,7 @@ https://stackoverflow.com/questions/31831651/javascript-filter-array-multiple-co
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-WEEK 10
+WEEK 10 - vanaf hier heb ik gewerkt met een TODO lijst onderaan dit document. todo's zijn onderverdeeld in 3 categorieën op basis van hoe lang (ikd enk) het duurt om het te implementeren.
 GEDAAN
     - favorites update automatisch
     - edit recipe pagina
@@ -256,18 +257,14 @@ GEDAAN
     - badges functionaliteit toegevoegd
     - delete recipe: verwijder uit lijst favo recepten van elke user
     - ionloadings toegevoegd bij delete en add en pic change
-    - Lay out account pagina
-    - Lay out recept toevoegen verbeteren
-    - Comments uitgebreid bij recept pagina
-    - installable pwa
-    - dark mode fixes
-    - favoriete recepten hartje op recipepage gefixt + design
 
 LINKS / COMMANDS / BIJHOUDEN
 https://www.youtube.com/watch?v=eW5MdE3ZcAw
 Betere manier voor .onSnapshot?:
 https://dev.to/alterclass/build-a-realtime-chat-app-in-5-min-with-react-and-firebase-3f8m
+
 ------
+
 useEffect(() => {
   // Subscribe to query with onSnapshot
   const unsubscribe = query.onSnapshot(querySnapshot => {
@@ -283,9 +280,31 @@ useEffect(() => {
   // Detach listener
   return unsubscribe;
 }, []);
-------
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
+WEEK 11
+GEDAAN
+    - Lay out account pagina
+    - Lay out recept toevoegen verbeteren
+    - Comments uitgebreid bij recept pagina
+    - installable pwa
+    - dark mode fixes
+
+LINKS / COMMANDS / BIJHOUDEN
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+WEEK 12
+    - favoriete recepten hartje op recipepage gefixt + design
+    - bugfixes op add recipe, edit recipe en account page
+
+LINKS / COMMANDS / BIJHOUDEN
+
+DESIGN CHAT:
+https://devdactic.com/ionic-firebase-chat/
+
+createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 DEADLINE 16/01  20uur
@@ -294,6 +313,7 @@ TODO:
 1//
 chat
 regels voor databank in firebase voor data structuur
+android camera bij comment upload
 
 2//
 Afbeeldingen compress

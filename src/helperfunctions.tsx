@@ -42,10 +42,10 @@ export function stringToArrayByNewline(string) {
     let array = string.split('\n\n');
     return removeWhitespaceFromArray(array);
 }
-
-export interface Badges{
-Dessert: [], Veggie:[], Vis:[], Vlees:[]
-}
-export function toBadges(doc): Badges {
-    return{...doc.data()}
-}
+//
+// export interface Badges{
+// Dessert: [], Veggie:[], Vis:[], Vlees:[]
+// }
+// export function toBadges(doc): Badges {
+//     return{...doc.data()}
+// }

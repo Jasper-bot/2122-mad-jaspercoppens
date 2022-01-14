@@ -24,6 +24,7 @@ import AddRecipe from "./pages/AddRecipe";
 import NotFoundPage from "./pages/NotFoundPage";
 import SearchRecipes from "./pages/SearchRecipes";
 import EditRecipe from "./pages/EditRecipe";
+import Chat from "./pages/Chat";
 
 //</editor-fold>
 
@@ -50,6 +51,9 @@ const AppTabs: React.FC = () => {
               </Route>
               <Route path="/my/recipes/edit-recipe/:id">
                 <EditRecipe />
+              </Route>
+              <Route path="/my/recipes/:id/chat">
+                <Chat />
               </Route>
               <Route exact path="/my/recipes">
                 <AllRecipes />

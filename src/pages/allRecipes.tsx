@@ -15,9 +15,8 @@ import React, {useEffect, useState} from "react";
 import {Recipe, toRecipe} from "../models/recipe";
 import Header from "../components/Header";
 import {useAuth} from "../auth";
-import {filterCircle, funnel, funnelOutline} from "ionicons/icons";
+import {funnel, funnelOutline} from "ionicons/icons";
 import styles from "./SearchRecipes.module.css";
-import {title} from "@ionic/cli/lib/color";
 import {isSubset} from "../helperfunctions";
 
 const AllRecipes: React.FC = () => {

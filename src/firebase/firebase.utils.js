@@ -13,16 +13,6 @@ const app = firebase.initializeApp({
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 });
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyAKqeNsoYaPaJNEWIbQzZz-v0X3DitNPgk",
-//     authDomain: "brechts-kookboek.firebaseapp.com",
-//     projectId: "brechts-kookboek",
-//     storageBucket: "brechts-kookboek.appspot.com",
-//     messagingSenderId: "887348437539",
-//     appId: "1:887348437539:web:b55d30dc7baa32025f4796",
-//     measurementId: "G-2WL32M36SF"
-// };
-
 export const auth = app.auth();
 export const db = app.firestore();
 export const storage = app.storage();
