@@ -17,7 +17,7 @@ import Header from "../components/Header";
 import {useAuth} from "../auth";
 import {funnel, funnelOutline} from "ionicons/icons";
 import styles from "./SearchRecipes.module.css";
-import {isSubset} from "../helperfunctions";
+import {getStringArrayLowerCase, isSubset, removeWhitespaceFromString} from "../helperfunctions";
 
 const AllRecipes: React.FC = () => {
     const { userId } = useAuth();
@@ -42,17 +42,16 @@ const AllRecipes: React.FC = () => {
             ingredients: getIngredientsArray(),
             category: category
         }
-        console.log(filter);
         let newRecipes = allRecipes.filter(obj =>
             (filter.title === "" || filter.title === undefined || obj.title.trim().toLowerCase().includes(filter.title) ) &&
             (filter.category === "" || filter.category === undefined || obj.category === filter.category) &&
-            (filter.ingredients === undefined || filter.ingredients[0] === "" || isSubset(obj.ingredients, filter.ingredients)));
+            (filter.ingredients === undefined || filter.ingredients[0] === "" || isSubset(getStringArrayLowerCase(obj.ingredients), getStringArrayLowerCase(filter.ingredients))));
 
         setRecipes(newRecipes);
     }, [searchText, category, ingredients]);
 
     const getIngredientsArray = () => {
-        return  ingredients.split(',');
+        return  ingredients.split(',').filter(ingr => Object.keys(removeWhitespaceFromString(ingr)).length !== 0);
     }
 
     const clickFunnel = () => {

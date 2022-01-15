@@ -5,8 +5,8 @@ import {
     IonInput,
     IonItem,
     IonLabel,
-    IonList, IonListHeader, IonLoading,
-    IonPage, IonRadio, IonRadioGroup,
+    IonLoading,
+    IonPage,
     IonRow, IonSelect, IonSelectOption, IonTextarea
 } from '@ionic/react';
 import React, {useEffect, useRef, useState} from "react";
@@ -14,17 +14,10 @@ import Header from "../components/Header";
 import * as yup from "yup";
 import {FieldArray, Formik, Field} from 'formik';
 import {db, storage} from '../firebase/firebase.utils';
-import { increment } from "firebase/firestore";
 import {useAuth} from "../auth";
 import {useHistory} from "react-router";
 import styles from "./AddRecipe.module.css";
-import {
-    Camera,
-    CameraResultType,
-    CameraSource,
-    Photo,
-} from '@capacitor/camera';
-import {removeWhitespaceFromArray, stringToArrayByComma, stringToArrayByNewline} from "../helperfunctions";
+import {removeWhitespaceFromArray } from "../helperfunctions";
 
 async function savePhoto(blobUrl, idNewRecipe) {
     const photoRef = storage.ref(`/images/${idNewRecipe}/${idNewRecipe}`);
@@ -79,7 +72,6 @@ const AddRecipe: React.FC = () => {
     const history = useHistory();
     const fileInputRef = useRef<HTMLInputElement>();
     const [loading, setLoading] = useState(false);
-    //const [badgeCat, setBadgeCat] = useState('');
 
     useEffect(() => () => {
         if(photo.startsWith('blob:')){
@@ -138,12 +130,12 @@ const AddRecipe: React.FC = () => {
         }
     }
 
-    const handlePictureClick = async () => {
-        //fileInputRef.current.click();
-        const photo = await Camera.getPhoto({
-            resultType: CameraResultType.Uri,
-        });
-    }
+    // const handlePictureClick = async () => {
+    //     //fileInputRef.current.click();
+    //     const photo = await Camera.getPhoto({
+    //         resultType: CameraResultType.Uri,
+    //     });
+    // }
 
     const handleReset = () => {
 

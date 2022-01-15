@@ -1,9 +1,9 @@
 import {
     IonButton,
     IonCol,
-    IonContent, IonFooter, IonGrid,
-    IonHeader, IonIcon, IonLabel, IonLoading,
-    IonPage, IonRow, IonTextarea, IonTitle, IonToolbar,
+    IonContent, IonGrid,
+    IonHeader, IonIcon,
+    IonPage, IonRow, IonTextarea, IonToolbar,
 } from '@ionic/react';
 import React, {useEffect, useRef, useState} from "react";
 import Header from "../components/Header";
@@ -45,18 +45,22 @@ const Chat: React.FC = () => {
 
 
     const handleAddMsg = async() => {
-        try {
-            const message:MessageModel = {
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                recipeid: id,
-                text: newMsg,
-                userid: userId,
-                username: userName
+        if (!newMsg.replace(/\s/g, '').length) {
+            console.log('string only contains whitespace (ie. spaces, tabs or line breaks)');
+        } else {
+            try {
+                const message:MessageModel = {
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    recipeid: id,
+                    text: newMsg,
+                    userid: userId,
+                    username: userName
+                }
+                await db.collection('recipes').doc(id).collection('messages').add(message);
+                setNewMsg('');
+            }  catch (e) {
+                console.log(e.message);
             }
-            await db.collection('recipes').doc(id).collection('messages').add(message);
-            setNewMsg('');
-        }  catch (e) {
-            console.log(e.message);
         }
     }
 

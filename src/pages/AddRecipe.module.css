@@ -7,17 +7,18 @@
     font-size: 70%;
 }
 .fieldbox {
-    border-width: 0px 0px 1px 0px;
+    border-width: 0 0 1px 0;
     border-color: rgb(59, 59, 59);
 }
 .fieldbox:focus {
-    border-width: 0px 0px 2px 0px;
+    border-width: 0 0 2px 0;
     border-color: #3880ff;
     outline: none;
 }
 
 @media (prefers-color-scheme: dark) {
     .fieldbox{
-        color: black;
+        color: white;
+        background-color: var(--ion-background-color, #fff);
     }
 }

@@ -1,10 +1,12 @@
 export interface Comment {
     id?: string,
+    uploaderId?: string,
     comment?: string,
     name?: string,
-    downloadURL?: string
+    downloadURL?: string,
+    storageId?: string
 }
 
 export function toComment(doc): Comment {
-    return { ...doc.data()}
+    return {id: doc.id, ...doc.data()}
 }

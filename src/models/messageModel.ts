@@ -1,4 +1,3 @@
-import {Recipe} from "./recipe";
 import firebase from "firebase/compat/app";
 
 export interface MessageModel {
@@ -7,7 +6,7 @@ export interface MessageModel {
     username: string,
     userid: string,
     createdAt:  firebase.firestore.FieldValue,
-    recipeid:string;
+    recipeid: string
 }
 
 export function toMessage(doc): MessageModel {

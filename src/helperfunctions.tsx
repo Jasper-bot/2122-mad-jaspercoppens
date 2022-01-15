@@ -1,7 +1,9 @@
 // returns true if array2 is a subset of array1
 export function isSubset (array1, array2) {
     return array2.every(function (element) {
-        return array1.includes(element);
+        return array1.find(el2 => {
+            return  el2.includes(element);
+        });
     });
 }
 
@@ -41,6 +43,11 @@ export function stringToArrayByNewline(string) {
     string = string.toLowerCase();
     let array = string.split('\n\n');
     return removeWhitespaceFromArray(array);
+}
+
+
+export function getStringArrayLowerCase(array){
+    return array.map(string => removeWhitespaceFromString(string.toLowerCase()));
 }
 //
 // export interface Badges{

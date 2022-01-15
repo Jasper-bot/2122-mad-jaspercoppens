@@ -29,7 +29,7 @@ import {arrayRemove, arrayUnion, deleteDoc, doc, updateDoc} from "firebase/fires
 import React, {useEffect, useRef, useState} from "react";
 import {useHistory, useParams} from "react-router";
 import {Recipe, toRecipe} from "../models/recipe";
-import {chatbubble, heart, heartOutline} from "ionicons/icons";
+import {chatbubble, heart, heartOutline, trash} from "ionicons/icons";
 import Header from "../components/Header";
 import styles from "./RecipePage.module.css";
 import {useAuth} from "../auth";
@@ -40,14 +40,14 @@ interface RouteParams {
     id: string;
 }
 
-async function savePhoto(blobUrl, recipeId, uploaderName, comment) {
+async function savePhoto(blobUrl, recipeId, uploaderName, comment, userId) {
     const uid = uploaderName + "." + Date.now().toString(36) + Math.random().toString(36).substr(2);
     const photoRef = storage.ref(`/images/${recipeId}/${uid}`);
     const response = await fetch(blobUrl);
     const blob = await response.blob();
     await photoRef.put(blob).then((async () => {
          let downloadUrl = await photoRef.getDownloadURL();
-         const data = {comment: comment, downloadURL: downloadUrl, name: uploaderName};
+         const data = {comment: comment, downloadURL: downloadUrl, name: uploaderName, uploaderId: userId, storageId: uid };
          const commentRef = db.collection('recipes').doc(recipeId).collection('comments');
          await commentRef.add(data);
     }));
@@ -109,10 +109,19 @@ const RecipePage: React.FC = () => {
         if(photo == previousPhoto){
             setUploadMessage('Je hebt geen foto geselecteerd of je hebt deze foto al geüploadt.');
             setLoading(false);
+        } else if( comment.length > 0 && comment.length < 5){
+            setUploadMessage('Gebruik minstens 5 karakters bij een reactie of laat deze leeg!');
+            setLoading(false);
+        } else if(comment.length > 200){
+            setUploadMessage('Gebruik maximum 200 karakters bij een reactie');
+            setLoading(false);
         } else {
             try {
-                await savePhoto(photo, id, userName, comment);
+                await savePhoto(photo, id, userName, comment, userId);
                 await updateUserBadge(recipe.category);
+                setPhoto('/assets/images/addImage.png');
+                setComment('');
+                setUploadMessage('Upload geslaagd!');
             } catch (e) {
                 setUploadMessage(e.message);
             } finally {
@@ -138,7 +147,24 @@ const RecipePage: React.FC = () => {
         }
     }
 
-    const handleDelete = async () => {
+    const handleCommentDelete = async (comment) => {
+        setLoading(true);
+        try {
+            // verwijder comment foto
+            await storage.ref(`images/${id}/${comment.storageId}`).delete()
+            //verwijder comment firebase
+            await db.collection('recipes').doc(id).collection('comments').doc(comment.id).delete()
+            setUploadMessage('Comment verwijderd!')
+        } catch (e) {
+            console.log(e);
+            setUploadMessage('error removing comment');
+            return;
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const handleDeleteRecipe = async () => {
         setLoading(true);
         //verwijder alle fotos rond het recept
         const storageRef = storage.ref(`images/${id}`);
@@ -222,7 +248,7 @@ const RecipePage: React.FC = () => {
                                 <IonButton color={"danger"} onClick={() => confirmDelete({
                                     header:'Verwijder recept',
                                     message:'Ben je zeker dat je dit recept wil verwijderen?',
-                                    buttons:['Nee!', {text: 'Ja!', handler:handleDelete}]
+                                    buttons:['Nee!', {text: 'Ja!', handler:handleDeleteRecipe}]
                                 })
 
                                 }>Verwijder Recept</IonButton>
@@ -307,7 +333,23 @@ const RecipePage: React.FC = () => {
                                 <IonCardTitle> {val.name}</IonCardTitle>
                             </IonCardHeader>
                             <IonCardContent>
-                                {val.comment}
+                                <IonGrid>
+                                    <IonRow>
+                                        <IonCol  size={userId === val.uploaderId ? "9" : "12" }>
+                                            {val.comment}
+                                        </IonCol>
+                                        {val.uploaderId === userId &&
+                                            <IonCol size="3">
+                                               <IonButton onClick={() => confirmDelete({
+                                                   header:'Verwijder Comment',
+                                                   message:'Ben je zeker dat je deze comment wil verwijderen?',
+                                                   buttons:['Laat maar staan!', {text:'Ja, verwijder!', handler: () => handleCommentDelete(val)}]
+                                               })}><IonIcon icon={trash} slot="icon-only" /></IonButton>
+                                            </IonCol>
+                                        }
+                                    </IonRow>
+                                </IonGrid>
+
                             </IonCardContent>
                         </IonCard>
                     )}
@@ -320,7 +362,6 @@ const RecipePage: React.FC = () => {
                     <input type="file" accept="image/*" onChange={handleFileChange} ref={fileInputRef} hidden className={styles.img}/>
                     <img src={photo} alt=""
                          onClick={handlePictureClick}
-                         // onClick={() => fileInputRef.current.click()}
                     />
                     <IonTextarea placeholder={"Laat hier een boodschap achter voor bij je foto te zetten"} value={comment}
                                  onIonChange={(event) => setComment(event.detail.value)} />

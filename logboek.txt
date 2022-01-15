@@ -298,6 +298,9 @@ LINKS / COMMANDS / BIJHOUDEN
 WEEK 12
     - favoriete recepten hartje op recipepage gefixt + design
     - bugfixes op add recipe, edit recipe en account page
+    - Chat toegevoegd
+    - Delete comments
+    - search filter verbeterd
 
 LINKS / COMMANDS / BIJHOUDEN
 
@@ -314,9 +317,5 @@ TODO:
 regels voor databank in firebase voor data structuur
 
 2//
-data check comments
 
 3//
-
-optioneel: goedkeuren foto's
-           verwijderen eigen comments
