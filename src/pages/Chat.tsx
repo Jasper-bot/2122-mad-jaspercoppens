@@ -8,13 +8,13 @@ import {
 import React, {useEffect, useRef, useState} from "react";
 import Header from "../components/Header";
 import { useAuth } from "../auth";
-import { db } from '../firebase/firebase.utils';
+import { db, storage } from '../firebase/firebase.utils';
 import {MessageModel, toMessage} from "../models/messageModel";
 import Message from "../components/Message";
 import NoMessages from "../components/NoMessages";
 import {useParams} from "react-router";
 import { send } from 'ionicons/icons';
-import firebase from "firebase/compat/app";
+import {Timestamp} from "firebase/firestore";
 
 interface RouteParams {
     id: string;
@@ -34,12 +34,14 @@ const Chat: React.FC = () => {
             messagesRef.onSnapshot(({ docs }) => {
                 setMessages(docs.map(toMessage));
             });
+
         }, 500);
     }, [id]);
 
     useEffect(() => {
         if(messages.length) {
             ref.current?.scrollToBottom(200);
+            console.log(messages[0].createdAt[0]);
         }
     }, [messages.length]);
 
@@ -50,7 +52,7 @@ const Chat: React.FC = () => {
         } else {
             try {
                 const message:MessageModel = {
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    createdAt: Timestamp.fromDate(new Date()),
                     recipeid: id,
                     text: newMsg,
                     userid: userId,

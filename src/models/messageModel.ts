@@ -1,11 +1,13 @@
 import firebase from "firebase/compat/app";
 
+import {Timestamp} from "firebase/firestore";
+
 export interface MessageModel {
     id?: string,
     text: string,
     username: string,
     userid: string,
-    createdAt:  firebase.firestore.FieldValue,
+    createdAt:  Timestamp
     recipeid: string
 }
 

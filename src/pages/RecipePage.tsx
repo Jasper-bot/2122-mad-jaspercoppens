@@ -106,6 +106,7 @@ const RecipePage: React.FC = () => {
 
     const handleAddPhoto = async () => {
         setLoading(true);
+        setComments([]);
         if(photo == previousPhoto){
             setUploadMessage('Je hebt geen foto geselecteerd of je hebt deze foto al geüploadt.');
             setLoading(false);
