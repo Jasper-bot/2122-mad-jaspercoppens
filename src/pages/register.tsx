@@ -42,7 +42,7 @@ const Register: React.FC = ({  }) => {
     }
 
     const verifyInput = () => {
-        let reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        let reg = /^(?=.*[A-Za-z])(?=.*\d)\S{8,}$/;
 
         if(password !== rPassword){
             setStatus({loading: false, error: true, errorMessage: "De wachtwoorden zijn niet gelijk"});
