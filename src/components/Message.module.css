@@ -6,14 +6,14 @@
     margin: 10px 0 0 0;
 }
 
-
 p.sender {
     background-color: var(--ion-color-tertiary);
     color: #fff;
     white-space: pre-wrap;
     padding: 10px;
     border-radius: 10px;
-    margin: 5px 0;
+    margin: 5px 10px 5px 0;
+    display: inline-block;
 }
 
 p.receiver {
@@ -23,5 +23,14 @@ p.receiver {
     white-space: pre-wrap;
     padding: 10px;
     border-radius: 10px;
-    margin: 5px 0;
+    margin: 5px 0 5px 10px;
+    display: inline-block;
+}
+
+.messagec{
+    text-align: right;
+}
+
+.messagesx{
+    text-align: left;
 }
