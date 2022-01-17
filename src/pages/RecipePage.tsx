@@ -94,7 +94,7 @@ const RecipePage: React.FC = () => {
                 }
             })
         })
-    },[id]);
+    },[id, uploadMessage]);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if(event.target.files.length > 0) {
