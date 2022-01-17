@@ -94,7 +94,7 @@ const RecipePage: React.FC = () => {
                 }
             })
         })
-    },[id, uploadMessage]);
+    },[id]);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if(event.target.files.length > 0) {
@@ -128,7 +128,6 @@ const RecipePage: React.FC = () => {
             } finally {
                 setPreviousPhoto(photo);
                 setLoading(false);
-                setUploadMessage('foto added succesfully');
             }
         }
     }
