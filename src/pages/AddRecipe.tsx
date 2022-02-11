@@ -174,9 +174,11 @@ const AddRecipe: React.FC = () => {
                                         name="title"
                                         placeholder="Bijvoorbeeld: Tomatensoep"
                                         value={formikProps.values.title}
-                                        onIonChange={formikProps.handleChange}/>
+                                        onIonChange={formikProps.handleChange}
+
+                                        className={styles.small}/>
                                 </IonItem>
-                                <IonLabel  color="danger" className={styles.small}>
+                                <IonLabel color="danger" className={styles.small}>
                                     {formikProps.touched.title && formikProps.errors.title}
                                 </IonLabel>
                                 <IonItem lines="inset">
@@ -185,7 +187,9 @@ const AddRecipe: React.FC = () => {
                                         name="description"
                                         placeholder="Bijvoorbeeld: Een oerklassieker die iedereen lust!"
                                         value={formikProps.values.description}
-                                        onIonChange={formikProps.handleChange}/>
+                                        onIonChange={formikProps.handleChange}
+
+                                        className={styles.small}/>
                                 </IonItem>
                                 <IonLabel  color="danger" className={styles.small}>
                                     {formikProps.touched.description && formikProps.errors.description}
@@ -213,7 +217,9 @@ const AddRecipe: React.FC = () => {
                                         name="numberOfPersons"
                                         placeholder={"bijvoorbeeld: 4"}
                                         value={formikProps.values.numberOfPersons}
-                                        onIonChange={formikProps.handleChange}/>
+                                        onIonChange={formikProps.handleChange}
+
+                                        className={styles.small}/>
                                 </IonItem>
                                 <IonLabel color="danger" className={styles.small}>
                                     {formikProps.touched.numberOfPersons && formikProps.errors.numberOfPersons}

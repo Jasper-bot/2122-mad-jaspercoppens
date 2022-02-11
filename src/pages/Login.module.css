@@ -7,10 +7,6 @@
     text-decoration: underline;
 }
 
-body{
-  background-color: red;
-}
-
 @media (prefers-color-scheme: dark) {
     .login{
         color: ghostwhite;
