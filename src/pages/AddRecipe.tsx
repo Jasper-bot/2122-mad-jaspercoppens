@@ -168,7 +168,7 @@ const AddRecipe: React.FC = () => {
                             <IonLoading isOpen={loading}/>
                             <form onSubmit={formikProps.handleSubmit}>
                                 <IonItem lines="inset">
-                                    <IonLabel position={"stacked"}>Titel</IonLabel>
+                                    <h4><IonLabel position={"stacked"}>Titel</IonLabel></h4>
                                     <IonInput
                                         type="text"
                                         name="title"
@@ -182,7 +182,7 @@ const AddRecipe: React.FC = () => {
                                     {formikProps.touched.title && formikProps.errors.title}
                                 </IonLabel>
                                 <IonItem lines="inset">
-                                    <IonLabel position={"stacked"}>Beschrijving</IonLabel>
+                                    <h4><IonLabel position={"stacked"}>Beschrijving</IonLabel></h4>
                                     <IonTextarea
                                         name="description"
                                         placeholder="Bijvoorbeeld: Een oerklassieker die iedereen lust!"
@@ -191,11 +191,11 @@ const AddRecipe: React.FC = () => {
 
                                         className={styles.small}/>
                                 </IonItem>
-                                <IonLabel  color="danger" className={styles.small}>
+                                <IonLabel color="danger" className={styles.small}>
                                     {formikProps.touched.description && formikProps.errors.description}
                                 </IonLabel>
                                 <IonItem lines="inset">
-                                    <IonLabel position="stacked">Categorie</IonLabel>
+                                    <h4><IonLabel position="stacked">Categorie</IonLabel></h4>
                                     <IonSelect
                                         name="category"
                                         value={formikProps.values.category}
@@ -212,7 +212,7 @@ const AddRecipe: React.FC = () => {
                                     {formikProps.touched.category && formikProps.errors.category}
                                 </IonLabel>
                                 <IonItem lines="inset">
-                                    <IonLabel position={"stacked"}>Voor hoeveel personen is dit recept?</IonLabel>
+                                    <h4><IonLabel position={"stacked"}>Voor hoeveel personen is dit recept?</IonLabel></h4>
                                     <IonInput
                                         name="numberOfPersons"
                                         placeholder={"bijvoorbeeld: 4"}
@@ -224,8 +224,8 @@ const AddRecipe: React.FC = () => {
                                 <IonLabel color="danger" className={styles.small}>
                                     {formikProps.touched.numberOfPersons && formikProps.errors.numberOfPersons}
                                 </IonLabel>
-                                <IonItem  lines="none">
-                                    <IonLabel position={"stacked"}>Ingrediënten</IonLabel>
+                                <IonItem lines="none">
+                                    <h4><IonLabel position={"stacked"}>Ingrediënten</IonLabel></h4>
                                     <FieldArray
                                         name="ingredients"
                                         render={arrayHelpers => (
@@ -271,11 +271,12 @@ const AddRecipe: React.FC = () => {
                                         )}
                                     />
                                 </IonItem>
+                              {/* TO DO Padding weg als error weg is? */}
                                 <IonLabel color="danger"  className={[styles.small, "ion-padding"].join(" ")}>
                                     {formikProps.touched.ingredients && formikProps.errors.ingredients}
                                 </IonLabel>
                                 <IonItem  lines="none">
-                                    <IonLabel position={"stacked"}>Stappen</IonLabel>
+                                    <h4><IonLabel position={"stacked"}>Stappen</IonLabel></h4>
                                     <FieldArray
                                         name="steps"
                                         render={arrayHelpers => (
@@ -325,7 +326,7 @@ const AddRecipe: React.FC = () => {
                                     {formikProps.touched.steps && formikProps.errors.steps }
                                 </IonLabel>
                                 <IonItem lines="none">
-                                    <IonLabel position={"stacked"}>Foto</IonLabel>
+                                    <h4><IonLabel position={"stacked"}>Foto</IonLabel></h4>
                                     <input type="file" accept="image/*" onChange={handleFileChange} ref={fileInputRef} hidden className={styles.img}/>
                                     <img src={photo} alt=""
                                          onClick={() => fileInputRef.current.click()}/>

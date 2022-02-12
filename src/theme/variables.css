@@ -76,6 +76,20 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-tint: #f5f6f9;
 }
 
+/*css van brecht*/
+h4{
+  font-size: 1.3rem;
+}
+
+@media (min-width:800px) {
+  body{
+    width: 40%;
+    margin: 0 auto;
+  }
+}
+
+
+
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
